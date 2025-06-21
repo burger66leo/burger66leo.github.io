@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+<link rel="icon" type="image/png" href="/assets/images/logo-icon.webp">
 
 <head>
   <meta charset="UTF-8" />
@@ -9,25 +10,31 @@
 </head>
 
 <body>
-  <!-- 裝飾性元素 -->
-  <div class="prism-decoration"></div>
-  <div class="prism-decoration"></div>
-  <div class="prism-decoration"></div>
-
-  <!-- Navbar -->
+  <!-- 導航欄 -->
   <div class="navbar" id="navbar">
-    <div class="logo" onclick="window.location.href='index.html'">
-      <img src="assets/images/logo.png" alt="三稜鏡 prism">
+    <a href="/" class="logo">
+      <picture>
+        <source srcset="assets/images/logo-icon.webp" type="image/webp">
+        <img src="assets/images/logo-icon.png" alt="品牌 Logo">
+      </picture>
+    </a>
+    
+    <!-- 移動端菜單按鈕 -->
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <nav>
+    
+    <nav id="nav">
       <a href="about.html">ABOUT</a>
-      <a href="apps.html">APPS </a>
+      <a href="apps.html">APPS</a>
       <a href="videos.html">VIDEOS</a>
       <a href="work-with-us.html">WORK WITH US</a>
     </nav>
   </div>
 
-  <!-- Hero image -->
+  <!-- Hero 區域 -->
   <div class="hero">
     <video autoplay muted loop playsinline class="hero-video">
       <source src="assets/videos/hero.mp4" type="video/mp4" />
@@ -50,7 +57,8 @@
         我們結合科技影片、專題報導與 APP 工具，持續整合資源、跨界合作，打造多元且深入的內容體驗。
       </p>
     </section>
-    <!-- feature-sectio -->
+    
+    <!-- 功能卡片區域 -->
     <section class="feature-section">
       <div class="feature-card">
         <h3>APP工具</h3>
@@ -67,9 +75,7 @@
     </section>
   </div>
 
-
-
-
+  <!-- Footer -->
   <footer>
     <div class="social-links">
       <a href="https://www.youtube.com/@prism66" target="_blank" title="YouTube">
@@ -95,5 +101,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>
