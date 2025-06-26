@@ -1,0 +1,215 @@
+/* ===========================================
+   About 頁面專用樣式
+   =========================================== */
+
+/* 頁面標題區域 */
+.page-header {
+  background: linear-gradient(135deg, #2a3047 0%, #25232c 100%);
+  padding: 8rem 2rem 4rem 2rem;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 100;
+}
+
+/* 故事內容 */
+.story-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.story-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #e3e3e3;
+}
+
+/* 理念網格 */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.philosophy-card {
+  background-color: #161616bd;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #7373739a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.philosophy-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: #ffffff;
+}
+
+.philosophy-card h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.philosophy-card p {
+  color: #939393;
+  line-height: 1.6;
+}
+
+/* 內容範疇 */
+.content-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.area-item {
+  text-align: center;
+  padding: 2rem;
+  background-color: #161616bd;
+  border-radius: 12px;
+  border: 1px solid #7373739a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.area-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.area-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.area-item h3 {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.area-item p {
+  color: #939393;
+  line-height: 1.6;
+}
+
+/* 團隊內容 */
+.team-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.team-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #e3e3e3;
+}
+
+/* 導航欄活動狀態 */
+nav a.active {
+  color: #facf20;
+  background: rgba(250, 207, 32, 0.1);
+  border-radius: 8px;
+}
+
+/* ===========================================
+   響應式設計 - 平板
+   =========================================== */
+@media (max-width: 1024px) {
+  .page-header {
+    padding: 7rem 1.5rem 3rem 1.5rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .philosophy-grid {
+    gap: 1.5rem;
+  }
+  
+  .content-areas {
+    gap: 1.5rem;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 手機
+   =========================================== */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 6rem 1rem 2.5rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2rem;
+  }
+  
+  .header-content p {
+    font-size: 1rem;
+  }
+  
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .content-areas {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .area-item {
+    padding: 1.5rem;
+  }
+  
+  .area-icon {
+    font-size: 2.5rem;
+  }
+  
+  .story-content p,
+  .team-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 小手機
+   =========================================== */
+@media (max-width: 480px) {
+  .page-header {
+    padding: 5rem 1rem 2rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .philosophy-card {
+    padding: 1.5rem;
+  }
+  
+  .area-item {
+    padding: 1.2rem;
+  }
+  
+  .area-icon {
+    font-size: 2rem;
+  }
+}

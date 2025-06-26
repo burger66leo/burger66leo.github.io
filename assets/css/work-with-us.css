@@ -1,0 +1,1184 @@
+/* ===========================================
+   Work With Us 頁面專用樣式 - 簡約現代風格
+   =========================================== */
+
+/* 三角形動態背景 Canvas */
+#triangle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+/* 頁面標題區域 */
+.page-header {
+  background: rgba(15, 15, 35, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 10rem 2rem 6rem 2rem;
+  text-align: center;
+  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(250, 207, 32, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(250, 207, 32, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.header-content h1 {
+  font-size: 3.5rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.header-content p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* 目錄導航 */
+.table-of-contents {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  position: relative;
+}
+
+.toc-nav {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.toc-nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+.toc-nav a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #facf20, #fff7a8);
+  border-radius: 50px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.toc-nav a:hover {
+  color: #000;
+  transform: translateY(-2px);
+}
+
+.toc-nav a:hover::before {
+  opacity: 1;
+}
+
+/* 基礎間距和佈局 */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section {
+  margin-bottom: 8rem;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  text-align: center;
+  position: relative;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #facf20, #fff7a8);
+  border-radius: 1px;
+}
+
+/* 關於段落 */
+.about-section {
+  margin-bottom: 6rem;
+}
+
+.about-section h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
+  max-width: 800px;
+}
+
+/* 觀眾證詞 */
+.testimonials-section {
+  margin-bottom: 6rem;
+}
+
+.testimonials-section h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  backdrop-filter: blur(5px);
+}
+
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.testimonial-card:hover::before {
+  opacity: 1;
+}
+
+.video-title {
+  color: #facf20;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.testimonial-card blockquote {
+  margin: 1.5rem 0;
+  padding: 0;
+  border: none;
+}
+
+.testimonial-card blockquote p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.testimonial-card cite {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* 觀眾輪廓 */
+.audience-profile {
+  margin-bottom: 6rem;
+}
+
+.audience-profile h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.demographics-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.chart-container {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  transition: all 0.4s ease;
+}
+
+.chart-container:hover {
+  transform: translateY(-4px);
+  border-color: rgba(250, 207, 32, 0.2);
+}
+
+.chart-container h4 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.mermaid {
+  margin: 2rem 0;
+}
+
+.data-timestamp {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
+/* 內容解決方案 */
+.section-intro {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 4rem;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+.solution-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(5px);
+  position: relative;
+}
+
+.solution-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.solution-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.solution-card:hover::before {
+  opacity: 1;
+}
+
+.solution-icon {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  filter: grayscale(0.3);
+}
+
+.solution-card h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.solution-card p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* 合作模式 */
+.collaboration-modes {
+  margin-bottom: 6rem;
+}
+
+.collaboration-modes h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.mode-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+
+.mode-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.mode-card h4 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.mode-card p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.platform {
+  color: #facf20;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* 優點範例 */
+.advantages-section {
+  margin-bottom: 6rem;
+}
+
+.advantages-section h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.advantage-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 4rem;
+}
+
+.example-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 3rem;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+
+.example-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.example-card h4 {
+  color: #facf20;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.example-card > p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.video-embed {
+  margin: 2rem 0;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.example-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
+.example-description strong {
+  color: #facf20;
+  font-weight: 600;
+}
+
+/* 內容範例 */
+.content-examples {
+  margin-bottom: 6rem;
+}
+
+.content-examples h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2.5rem;
+}
+
+.example-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.example-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.example-info {
+  padding-top: 1.5rem;
+}
+
+.example-info h4 {
+  color: #facf20;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.example-info p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.example-info strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* 製作流程 */
+.production-process {
+  margin-bottom: 6rem;
+}
+
+.production-process h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.production-process > p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin-bottom: 4rem;
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.process-step {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.process-step:hover {
+  transform: translateY(-6px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.step-number {
+  background: linear-gradient(135deg, #facf20 0%, #fff7a8 100%);
+  color: #000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin: 0 auto 2rem;
+  box-shadow: 0 4px 20px rgba(250, 207, 32, 0.3);
+}
+
+.step-content h4 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.step-content ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.step-content li {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.step-content li::before {
+  content: '▸';
+  color: #facf20;
+  position: absolute;
+  left: 0;
+  font-size: 0.9rem;
+}
+
+.step-content em {
+  color: #facf20;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.process-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+.highlight-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.highlight-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.highlight-card h4 {
+  color: #facf20;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.highlight-card p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.highlight-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.highlight-card li {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.highlight-card li::before {
+  content: '▸';
+  color: #facf20;
+  position: absolute;
+  left: 0;
+}
+
+/* 報價與權益 */
+.pricing-section {
+  margin-bottom: 6rem;
+}
+
+.pricing-section h3 {
+  color: #facf20;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.pricing-section > p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin-bottom: 4rem;
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(250, 207, 32, 0.3);
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(250, 207, 32, 0.1);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(250, 207, 32, 0.2);
+}
+
+.pricing-card:hover::before {
+  opacity: 1;
+}
+
+.pricing-card h4 {
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.duration {
+  color: #facf20;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+}
+
+.features {
+  text-align: left;
+}
+
+.feature {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  position: relative;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.feature::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #facf20;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.payment-info {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+.payment-info h4 {
+  color: #facf20;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.payment-info ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.payment-info li {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.payment-info li::before {
+  content: '▸';
+  color: #facf20;
+  position: absolute;
+  left: 0;
+}
+
+.payment-info p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* 聯絡方式 */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.contact-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.contact-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.contact-item:hover {
+  transform: translateY(-8px);
+  border-color: rgba(250, 207, 32, 0.3);
+}
+
+.contact-item:hover::before {
+  opacity: 1;
+}
+
+.contact-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  filter: grayscale(0.3);
+}
+
+.contact-item h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.contact-item a {
+  color: #facf20;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.contact-item a:hover {
+  color: #fff7a8;
+  transform: translateY(-1px);
+}
+
+/* 導航欄活動狀態 */
+nav a.active {
+  color: #000;
+  background: linear-gradient(135deg, #facf20, #fff7a8);
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+/* ===========================================
+   響應式設計 - 平板
+   =========================================== */
+@media (max-width: 1024px) {
+  .page-header {
+    padding: 8rem 1.5rem 4rem 1.5rem;
+  }
+  
+  .header-content h1 {
+    font-size: 3rem;
+  }
+  
+  .main-content {
+    padding: 3rem 1.5rem;
+  }
+  
+  .section {
+    margin-bottom: 6rem;
+  }
+  
+  .toc-nav {
+    gap: 2rem;
+  }
+  
+  .toc-nav a {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .demographics-charts {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .solutions-grid {
+    gap: 2rem;
+  }
+  
+  .advantage-examples {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .examples-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .process-timeline {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .process-highlights {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 手機
+   =========================================== */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 7rem 1rem 3rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .header-content p {
+    font-size: 1.1rem;
+  }
+  
+  .main-content {
+    padding: 2rem 1rem;
+  }
+  
+  .section {
+    margin-bottom: 5rem;
+  }
+  
+  .section h2 {
+    font-size: 2rem;
+  }
+  
+  .table-of-contents {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .toc-nav {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .toc-nav a {
+    width: 100%;
+    text-align: center;
+    max-width: 300px;
+  }
+  
+  .about-section h3,
+  .testimonials-section h3,
+  .audience-profile h3,
+  .collaboration-modes h3,
+  .advantages-section h3,
+  .content-examples h3,
+  .production-process h3,
+  .pricing-section h3 {
+    font-size: 1.4rem;
+  }
+  
+  .testimonial-card,
+  .chart-container,
+  .solution-card,
+  .mode-card,
+  .example-card,
+  .example-item,
+  .process-step,
+  .highlight-card,
+  .contact-item {
+    padding: 2rem;
+  }
+  
+  .step-number {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .pricing-card {
+    padding: 2.5rem;
+    margin: 0 1rem;
+  }
+  
+  .section-intro {
+    font-size: 1.1rem;
+  }
+  
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .advantage-examples {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 小手機
+   =========================================== */
+@media (max-width: 480px) {
+  .page-header {
+    padding: 6rem 1rem 2.5rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2rem;
+  }
+  
+  .toc-nav a {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .testimonial-card,
+  .chart-container,
+  .solution-card,
+  .mode-card,
+  .example-card,
+  .example-item,
+  .process-step,
+  .highlight-card,
+  .contact-item {
+    padding: 1.5rem;
+  }
+  
+  .pricing-card {
+    padding: 2rem;
+    margin: 0 0.5rem;
+  }
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-icon {
+    font-size: 2.5rem;
+  }
+  
+  .solution-icon {
+    font-size: 3rem;
+  }
+  
+  .process-timeline {
+    grid-template-columns: 1fr;
+  }
+  
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 統一透明化所有卡片 */
+.example-item,
+.process-step,
+.highlight-card,
+.contact-item {
+  background: rgba(255, 255, 255, 0.01) !important;
+  backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.pricing-card,
+.payment-info {
+  background: rgba(255, 255, 255, 0.015) !important;
+  backdrop-filter: blur(8px) !important;
+}

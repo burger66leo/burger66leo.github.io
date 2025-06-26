@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<link rel="icon" type="image/png" href="/assets/images/logo-icon.webp">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>三稜鏡 | Work With Us - 專業內容合作夥伴</title>
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/work-with-us.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+  <!-- 三角形動態背景 Canvas -->
+  <canvas id="triangle-canvas"></canvas>
+  
+  <!-- 導航欄 -->
+  <div class="navbar" id="navbar">
+    <a href="/" class="logo">
+      <picture>
+        <source srcset="../assets/images/logo-icon.webp" type="image/webp">
+        <img src="../assets/images/logo-icon.png" alt="品牌 Logo">
+      </picture>
+    </a>
+    
+    <!-- 移動端菜單按鈕 -->
+    <div class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav id="nav">
+      <a href="about.html">ABOUT</a>
+      <a href="apps.html">APPS</a>
+      <a href="videos.html">VIDEOS</a>
+      <a href="work-with-us.html" class="active">WORK WITH US</a>
+    </nav>
+  </div>
+
+  <!-- 頁面標題區域 -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>三稜鏡 | Work With Us</h1>
+      <p>專業內容合作夥伴</p>
+    </div>
+  </div>
+
+  <!-- 目錄導航 -->
+  <div class="table-of-contents">
+    <nav class="toc-nav">
+      <a href="#channel-intro">頻道介紹</a>
+      <a href="#content-solutions">內容解決方案</a>
+      <a href="#contact">聯絡方式</a>
+    </nav>
+  </div>
+
+  <!-- 主要內容 -->
+  <div class="main-content">
+    <!-- 頻道介紹 -->
+    <section class="section fade-in" id="channel-intro">
+      <h2>頻道介紹</h2>
+      
+      <!-- 關於 -->
+      <div class="about-section">
+        <h3>關於</h3>
+        <p>
+          三棱鏡 Prism是一個專注於數位化生活的 YouTube 頻道，致力於為觀眾提供深入淺出的教學、實用的工具推薦，以及與數位生活相關的一切。我們的內容涵蓋 <strong>旅遊、軟體開發、工作效率應用、數位安全</strong> 等領域，幫助觀眾輕鬆上手各類工具，提升創作與工作效率。
+        </p>
+        <p>
+          我們的受眾以 <strong>知識型工作者、職場人士、科技愛好者</strong> 為主，涵蓋廣泛的 <strong>創業者、自由工作者</strong>。憑藉精準的選題、專業的講解風格，我們的影片獲得了廣泛認可，具備 <strong>高黏著性</strong> 的特點，能夠為品牌帶來有效的曝光與用戶轉化。
+        </p>
+        <p>
+          期待與合適的品牌合作，共同打造高品質的推廣內容，實現雙贏！
+        </p>
+      </div>
+
+      <!-- 觀眾證詞 -->
+      <div class="testimonials-section">
+        <h3>觀眾證詞</h3>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="video-title">積灰8年後，再給這台kobo一個機會！電子書閱讀器真的等於「掌中圖書館」？｜⊿</div>
+            <blockquote>
+              <p>最近終於入手電子書閱讀器，但一直找不到當時點燃我的影片，終於找到你了！…太感謝你啦！支持你繼續做新影片！！！！！</p>
+              <cite>@c19881128 • 24/06</cite>
+            </blockquote>
+            <blockquote>
+              <p>我覺得這支影片解說得很好，不是只說閱讀器的功能或是業配，提到閱讀器對於出版業能有更好的市場分析，幫助出版業做最直接的電子化數據。…很好的影片！</p>
+              <cite>@reverie3428 • 24/05</cite>
+            </blockquote>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="video-title">數發部不如高三生？挑戰100小時 從零開始做個 APP！｜⊿</div>
+            <blockquote>
+              <p>影片質量真的很高，我是職業的蘋果開發者，看到頻道主居然用這麼短的時間就能獨立開發一款程式真的有被震驚到。</p>
+              <cite>@oomb8048 • 24/06</cite>
+            </blockquote>
+            <blockquote>
+              <p>太鼓舞人心了！我曾經是一位iOS App開發者，但因為種種原因已轉行，看到從沒寫過程式的三稜鏡可以做到這個程度，太令我敬佩了！</p>
+              <cite>@shiaubo • 24/06</cite>
+            </blockquote>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="video-title">Google換成百度？LINE Pay換成支付寶？試著用中國APP，在台灣旅行｜⊿</div>
+            <blockquote>
+              <p>題材有趣內容扎實的影片很讚! 期待之後有更多創作~</p>
+              <cite>@abbywu3395 • 24/05</cite>
+            </blockquote>
+            <blockquote>
+              <p>博主评价很中肯，真的，其实大陆人也一样超级讨厌这些无处不在的广告…</p>
+              <cite>@alvindai6716 • 24/05</cite>
+            </blockquote>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="video-title">iPhone 15 pro：從Android到iPhone，跟我想的不太一樣？</div>
+            <blockquote>
+              <p>你的影片真的很棒，非常貼近用戶需求直觀講解之外，也帶入很多專業的領域😊很讚很受用！希望你能繼續拍下去❤</p>
+              <cite>@hevanessa8096 • 23/12</cite>
+            </blockquote>
+            <blockquote>
+              <p>挖到寶了 這頻道的內容好優質 真的看開箱跟報數據太膩了 很需要這種有專業度又著重在體驗、甚至談到具體趨勢而不是亂報瞎猜rumor 的內容 感謝製作</p>
+              <cite>@joshuahuang777 • 23/11</cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- 觀眾輪廓 -->
+      <div class="audience-profile">
+        <h3>觀眾輪廓</h3>
+        <div class="demographics-charts">
+          <div class="chart-container">
+            <h4>年齡層分佈</h4>
+            <div class="mermaid">
+              pie title 年齡層分佈
+                "18-24歲" : 10.6
+                "25-34歲" : 33.9
+                "35-44歲" : 29.9
+                "45-54歲" : 19.3
+                "55-64歲" : 6.2
+            </div>
+          </div>
+          <div class="chart-container">
+            <h4>性別比例</h4>
+            <div class="mermaid">
+              pie title 性別比例
+                "女性" : 16.9
+                "男性" : 83.1
+            </div>
+          </div>
+        </div>
+        <p class="data-timestamp">數據時間：2025/6</p>
+      </div>
+    </section>
+
+    <!-- 內容解決方案 -->
+    <section class="section fade-in" id="content-solutions">
+      <h2>內容解決方案</h2>
+      <p class="section-intro">
+        面臨日益複雜的管理問題，品牌不只需要與客戶溝通。逐漸要擴展到投資人、潛在消費者，甚至是社會。
+      </p>
+
+      <div class="solutions-grid">
+        <div class="solution-card">
+          <div class="solution-icon">👥</div>
+          <h3>品牌推廣</h3>
+          <p>永續成長的堅實基礎！傳達公司的理念、宗旨、使命、願景和價值觀，並期待品牌效應並提高您的企業形象。</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon">🎁</div>
+          <h3>產品置入</h3>
+          <p>信任和期望增加，讓籌集資金更容易或是增加銷售額。</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon">🎉</div>
+          <h3>活動介紹</h3>
+          <p>精確地鎖定其目標市場，短時間內接觸到大量潛在客戶。</p>
+        </div>
+      </div>
+
+      <!-- 合作模式 -->
+      <div class="collaboration-modes">
+        <h3>合作模式</h3>
+        <div class="modes-grid">
+          <div class="mode-card">
+            <h4>置入行銷影片</h4>
+            <p>60-90秒的合作影片。可以在三稜鏡YouTube影片中置入發布。</p>
+            <span class="platform">平台：YouTube</span>
+          </div>
+          <div class="mode-card">
+            <h4>數位行銷圖文</h4>
+            <p>我們將根據您的目標、目的、預算和要求製作有效的圖文宣傳。</p>
+            <span class="platform">平台：Instagram、Facebook</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 優點 -->
+      <div class="advantages-section">
+        <h3>優點</h3>
+        <div class="advantage-examples">
+          <div class="example-card">
+            <h4>產生共鳴</h4>
+            <p>建立一個吸引人的故事並與觀眾產生共鳴</p>
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/PZvinNlwhqw" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="example-description">
+              <strong>2024/4/5｜與Surfshark VPN合作</strong><br>
+              影片內容圍以Anytype以隱私主題帶出Surfshark VPN 的使用場景，精確的鎖定其目標受眾。與優質的內容綁定，有助於提升品牌的形象和聲譽。
+            </div>
+          </div>
+
+          <div class="example-card">
+            <h4>影像傳意</h4>
+            <p>將無法用語言表達的訊息和無法用形式表達的感受轉化為影片內容。</p>
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/bscLBstsEoI" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="example-description">
+              <strong>2024/5/5｜與NAYO SMART合作</strong><br>
+              在旅行全程使用NAYO SMART的合作包款，配合動態的影像，詳細介紹產品的優點及實際使用的體驗。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 內容範例 -->
+      <div class="content-examples">
+        <h3>內容範例</h3>
+        <div class="examples-grid">
+          <div class="example-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/uL_XHxmtAX4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="example-info">
+              <h4>與 DeskIn 合作</h4>
+              <p><strong>數發部不如高三生？挑戰100小時 從零開始做個 APP！｜⊿</strong></p>
+              <p>以403花蓮大地震為出發點，嘗試從零開始開發APP。並且聚焦討論地震APP這個社會議題。不少從業者都表示對內容的品質感到震驚。</p>
+            </div>
+          </div>
+
+          <div class="example-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/bscLBstsEoI" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="example-info">
+              <h4>與 NAYO SMART 合作</h4>
+              <p><strong>Google換成百度？LINE Pay換成支付寶？試著用中國APP，在台灣旅行｜⊿</strong></p>
+              <p>在旅行過程中全程使用中國APP，對比軟體生態以及內容差別。用輕鬆有趣、並且中立客觀的角度探討中國互聯網的生存困境。</p>
+            </div>
+          </div>
+
+          <div class="example-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/PZvinNlwhqw" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="example-info">
+              <h4>與 Surfshark 合作</h4>
+              <p><strong>告別用了四年的Notion，更簡單、更穩定、不失控！Anytype是何方神聖？【附模板】｜⊿</strong></p>
+              <p>從對比notion切入新筆記軟體Anytype，介紹了實際的應用操作，最後討論Anytype的核心價值。</p>
+            </div>
+          </div>
+
+          <div class="example-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/GpVuqg-nKfI" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="example-info">
+              <h4>與 Surfshark 合作</h4>
+              <p><strong>誰在說真話？科技YouTuber殘酷排名大解密🔥排名最差的竟然是「他」？｜⊿</strong></p>
+              <p>分析不同YouTuber的內容，了解其受眾影響和評價。鼓勵觀眾深入研究信息的來源以驗證真相。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 製作流程 -->
+      <div class="production-process">
+        <h3>製作流程</h3>
+        <p>三稜鏡有彈性且規範的影片製作流程，將根據您的目標、目的、預算和要求完成有效的合作。</p>
+        
+        <div class="process-timeline">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>合作框架</h4>
+              <ul>
+                <li>品牌Brief</li>
+                <li>確認合作方向</li>
+                <li>提供製作時程表</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>合作內容設計</h4>
+              <ul>
+                <li>腳本撰寫</li>
+                <li>腳本提交</li>
+                <li>客戶回饋</li>
+                <li><em>腳本獲得確認</em></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>內容製作</h4>
+              <ul>
+                <li>執行及後製</li>
+                <li>完成影片提交</li>
+                <li>客戶回饋</li>
+                <li><em>客戶確認</em></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>影片上線</h4>
+              <ul>
+                <li>影片上線</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-highlights">
+          <div class="highlight-card">
+            <h4>穩定進度</h4>
+            <p>三棱鏡頻道在合作初期即會提供 <strong>完整的合作製程表</strong>，清楚列出各階段的製作進度與審核時間點，確保雙方對流程有一致的預期。我們的製作進度規劃明確，包含 <strong>腳本撰寫、審核調整、影片製作、影片審核及最終發布</strong>，讓品牌能夠掌握進度，確保內容按時、高品質產出。透過這種穩定的運作方式，我們能夠 <strong>確保影片準時上線，並達到最佳推廣效果</strong>。</p>
+          </div>
+
+          <div class="highlight-card">
+            <h4>雙重審核機制</h4>
+            <p>為確保品牌形象與推廣內容達到最佳效果，三棱鏡頻道提供 <strong>雙重審核機制</strong>，讓品牌能夠在關鍵環節確認內容，確保推廣符合期待。</p>
+            <ul>
+              <li><strong>腳本確認</strong>：影片製作前，提供完整腳本，品牌可審核並修改內容 <strong>最多兩次</strong>。</li>
+              <li><strong>影片確認</strong>：影片初稿完成後，品牌可再次審核，對合作片段進行 <strong>最多兩次</strong> 調整。</li>
+            </ul>
+            <p>整體運作上，相當於 <strong>四重審核</strong>，確保廣告內容符合品牌需求。但品牌僅能對合作片段提出修改，<strong>無法干涉影片其他非商業內容</strong>，以維持頻道風格與觀眾體驗。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 報價與權益 -->
+      <div class="pricing-section">
+        <h3>報價與權益</h3>
+        <p>我們提供靈活的合作方案，根據品牌需求量身打造合適的推廣方式，確保廣告內容與觀眾有良好互動，達到最佳宣傳效果。</p>
+        
+        <div class="pricing-cards">
+          <div class="pricing-card featured">
+            <h4>基本方案</h4>
+            <div class="duration">60-90 秒置入廣告</div>
+            <div class="features">
+              <div class="feature">✓ 影片內原生置入（自然融入內容，提高觀眾接受度）</div>
+              <div class="feature">✓ CTA（行動呼籲）加強（客製化引導，提高轉換率）</div>
+              <div class="feature">✓ 雙重審核機制（腳本 & 影片各提供 2 次審核機會）</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-info">
+          <h4>報價與付款</h4>
+          <ul>
+            <li><strong>依專案規模與需求報價</strong></li>
+            <li><strong>支持多種付款方式</strong>（台灣 / 海外帳戶、PayPal皆可）</li>
+          </ul>
+          <p>如果有任何特別需求，也歡迎與我們討論，期待與您合作，共創雙贏！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 聯絡方式 -->
+    <section class="section fade-in" id="contact">
+      <h2>聯絡方式</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <h3>業務合作</h3>
+          <a href="mailto:prism66.business@outlook.com">prism66.business@outlook.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <h3>意見來信</h3>
+          <a href="mailto:prism66.contact@outlook.com">prism66.contact@outlook.com</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="https://www.youtube.com/@prism66" target="_blank" title="YouTube">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" />
+      </a>
+      <span class="separator">|</span>
+      <a href="https://instagram.com/your_instagram" target="_blank" title="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" />
+      </a>
+      <span class="separator">|</span>
+      <a href="https://facebook.com/your_facebook" target="_blank" title="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
+      </a>
+      <span class="separator">|</span>
+      <a href="mailto:prism66.business@outlook.com" title="Email">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" />
+      </a>
+    </div>
+    <div class="copyright">
+      &copy; 2025 三稜鏡 prizm. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    mermaid.initialize({ 
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#facf20',
+        primaryTextColor: '#ffffff',
+        primaryBorderColor: '#facf20'
+      }
+    });
+  </script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/work-with-us.js"></script>
+  <script src="../assets/js/grid-triangle-background.js"></script>
+</body>
+</html>

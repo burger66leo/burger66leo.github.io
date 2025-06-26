@@ -1,0 +1,469 @@
+/* ===========================================
+   Videos 頁面專用樣式
+   =========================================== */
+
+/* 頁面標題區域 */
+.page-header {
+  background: linear-gradient(135deg, #2a3047 0%, #25232c 100%);
+  padding: 8rem 2rem 4rem 2rem;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 100;
+}
+
+/* 理念內容 */
+.philosophy-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.philosophy-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #e3e3e3;
+}
+
+/* 分類篩選器 */
+.category-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.filter-btn {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #7373739a;
+  background: transparent;
+  color: #e3e3e3;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.filter-btn:hover {
+  border-color: #facf20;
+  color: #facf20;
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: #facf20;
+  color: #1f1f1f;
+  border-color: #facf20;
+}
+
+/* 影片網格 */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.video-card {
+  background-color: #161616bd;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #7373739a;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: #facf20;
+}
+
+/* 影片縮圖 */
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.thumbnail-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2a3047 0%, #25232c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.play-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(250, 207, 32, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f1f1f;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.video-card:hover .play-icon {
+  background: #facf20;
+  transform: scale(1.1);
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* 影片資訊 */
+.video-info {
+  padding: 1.5rem;
+}
+
+.video-info h3 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.video-description {
+  color: #939393;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* 影片元數據 */
+.video-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-tag {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.category-tag.tech-giants {
+  background: rgba(74, 144, 226, 0.2);
+  color: #4A90E2;
+}
+
+.category-tag.brand-analysis {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ECC71;
+}
+
+.category-tag.product-strategy {
+  background: rgba(155, 89, 182, 0.2);
+  color: #9B59B6;
+}
+
+.category-tag.business-model {
+  background: rgba(230, 126, 34, 0.2);
+  color: #E67E22;
+}
+
+.views, .date {
+  color: #939393;
+  font-size: 0.8rem;
+}
+
+/* 製作理念 */
+.production-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.value-item {
+  text-align: center;
+  padding: 2rem;
+  background-color: #161616bd;
+  border-radius: 12px;
+  border: 1px solid #7373739a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.value-item h3 {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.value-item p {
+  color: #939393;
+  line-height: 1.6;
+}
+
+/* 訂閱區域 */
+.subscribe-section {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.subscribe-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #e3e3e3;
+}
+
+.subscribe-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.subscribe-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2rem;
+  background: #FF0000;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.subscribe-button:hover {
+  background: #CC0000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+}
+
+.subscribe-button img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.subscriber-count {
+  color: #939393;
+  font-size: 0.9rem;
+}
+
+/* 導航欄活動狀態 */
+nav a.active {
+  color: #facf20;
+  background: rgba(250, 207, 32, 0.1);
+  border-radius: 8px;
+}
+
+/* 篩選動畫 */
+.video-card.hidden {
+  display: none;
+}
+
+.video-card.show {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================================
+   響應式設計 - 平板
+   =========================================== */
+@media (max-width: 1024px) {
+  .page-header {
+    padding: 7rem 1.5rem 3rem 1.5rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .videos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .production-values {
+    gap: 1.5rem;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 手機
+   =========================================== */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 6rem 1rem 2.5rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2rem;
+  }
+  
+  .header-content p {
+    font-size: 1rem;
+  }
+  
+  .category-filter {
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .videos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .video-thumbnail {
+    height: 180px;
+  }
+  
+  .play-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .video-info {
+    padding: 1.2rem;
+  }
+  
+  .video-info h3 {
+    font-size: 1.2rem;
+  }
+  
+  .video-meta {
+    gap: 0.8rem;
+  }
+  
+  .production-values {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .value-item {
+    padding: 1.5rem;
+  }
+  
+  .value-icon {
+    font-size: 2.5rem;
+  }
+  
+  .philosophy-content p,
+  .subscribe-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .subscribe-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 小手機
+   =========================================== */
+@media (max-width: 480px) {
+  .page-header {
+    padding: 5rem 1rem 2rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .category-filter {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    width: 200px;
+    text-align: center;
+  }
+  
+  .video-thumbnail {
+    height: 160px;
+  }
+  
+  .video-info {
+    padding: 1rem;
+  }
+  
+  .video-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .value-item {
+    padding: 1.2rem;
+  }
+  
+  .value-icon {
+    font-size: 2rem;
+  }
+  
+  .subscribe-button {
+    width: 100%;
+    max-width: 280px;
+  }
+}
