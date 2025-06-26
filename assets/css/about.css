@@ -4,22 +4,22 @@
 
 /* 頁面標題區域 */
 .page-header {
-  background: linear-gradient(135deg, #2a3047 0%, #25232c 100%);
+  background: var(--gradient-header);
   padding: 8rem 2rem 4rem 2rem;
   text-align: center;
-  margin-top: 80px;
+  margin-top: var(--navbar-height);
 }
 
 .header-content h1 {
-  font-size: 3rem;
-  color: #ffffff;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-6xl);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
   font-weight: 300;
 }
 
 .header-content p {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   font-weight: 100;
 }
 
@@ -33,7 +33,7 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  color: #e3e3e3;
+  color: var(--text-secondary);
 }
 
 /* 理念網格 */
@@ -45,27 +45,28 @@
 }
 
 .philosophy-card {
-  background-color: #161616bd;
+  background: rgba(74, 92, 106, 0.08);
   padding: 2rem;
   border-radius: 12px;
-  border: 1px solid #7373739a;
+  border: 1px solid rgba(74, 92, 106, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 .philosophy-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border-color: #ffffff;
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .philosophy-card h3 {
   font-size: 1.5rem;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .philosophy-card p {
-  color: #939393;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -80,15 +81,17 @@
 .area-item {
   text-align: center;
   padding: 2rem;
-  background-color: #161616bd;
+  background: rgba(74, 92, 106, 0.08);
   border-radius: 12px;
-  border: 1px solid #7373739a;
+  border: 1px solid rgba(74, 92, 106, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 .area-item:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .area-icon {
@@ -98,12 +101,12 @@
 
 .area-item h3 {
   font-size: 1.4rem;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .area-item p {
-  color: #939393;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -117,14 +120,15 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  color: #e3e3e3;
+  color: var(--text-secondary);
 }
 
 /* 導航欄活動狀態 */
 nav a.active {
-  color: #facf20;
-  background: rgba(250, 207, 32, 0.1);
-  border-radius: 8px;
+  color: #000;
+  background: var(--gradient-yellow);
+  border-radius: 50px;
+  font-weight: 600;
 }
 
 /* ===========================================

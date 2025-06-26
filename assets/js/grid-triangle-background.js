@@ -23,7 +23,7 @@ class GridTriangleBackground {
             amplitude: 0.4,                                 // 動畫幅度
             waveSpeed: 0.015,                              // 波浪速度
             mouseRadius: 4,                                // 滑鼠影響範圍
-            triangleSize: window.innerWidth < 768 ? 0.25 : 0.3  // 三角形大小
+            triangleSize: window.innerWidth < 768 ? 0.06 : 0.075  // 三角形大小 (縮小到25%)
         };
 
         this.init();
@@ -114,33 +114,34 @@ class GridTriangleBackground {
     createSingleTriangle(row, col) {
         const { triangleSize } = this.gridSettings;
         
-        // 創建等邊三角形幾何體
-        const height = triangleSize * Math.sqrt(3) / 2;
+        // 創建直角三角形幾何體
+        const size = triangleSize;
         
         const vertices = new Float32Array([
-            0, height * 2/3, 0,              // 頂點
-            -triangleSize/2, -height/3, 0,   // 左下
-            triangleSize/2, -height/3, 0     // 右下
+            0, 0, 0,           // 直角頂點 (原點)
+            size, 0, 0,        // 右下角
+            0, size, 0         // 左上角
         ]);
 
         const uvs = new Float32Array([
-            0.5, 1.0,    // 頂點 UV
-            0.0, 0.0,    // 左下 UV
-            1.0, 0.0     // 右下 UV
+            0.0, 0.0,    // 直角頂點 UV
+            1.0, 0.0,    // 右下角 UV
+            0.0, 1.0     // 左上角 UV
         ]);
 
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
         geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
 
-        // 創建材質 - 根據網格位置變化顏色
+        // 創建材質
         const material = this.createTriangleMaterial(row, col);
         
         // 創建網格
         const mesh = new THREE.Mesh(geometry, material);
         
-        // 初始隨機旋轉
-        mesh.rotation.z = Math.random() * Math.PI * 2;
+        // 添加一些隨機旋轉變化 (90度的倍數，保持直角三角形的特性)
+        const rotations = [0, Math.PI/2, Math.PI, Math.PI*3/2];
+        mesh.rotation.z = rotations[Math.floor(Math.random() * 4)];
 
         return {
             mesh: mesh,
@@ -222,10 +223,23 @@ class GridTriangleBackground {
             const syncWaveY = Math.cos(this.time * waveSpeed * 0.7 + userData.delay) * amplitude * 0.2;
             const syncWaveZ = Math.sin(this.time * waveSpeed * 1.3 + userData.delay + userData.phase) * amplitude * 0.1;
 
-            // 網格協調波浪效果
-            const gridSyncX = Math.sin(this.time * 0.02 + userData.gridRow * 0.3) * 0.1;
-            const gridSyncY = Math.cos(this.time * 0.02 + userData.gridCol * 0.3) * 0.1;
-            const gridSyncZ = Math.sin(this.time * 0.02 + (userData.gridRow + userData.gridCol) * 0.2) * 0.05;
+            // 網格協調波浪效果 (增強流動感)
+            const gridSyncX = Math.sin(this.time * 0.025 + userData.gridRow * 0.4) * 0.15;
+            const gridSyncY = Math.cos(this.time * 0.02 + userData.gridCol * 0.3) * 0.12;
+            const gridSyncZ = Math.sin(this.time * 0.03 + (userData.gridRow + userData.gridCol) * 0.2) * 0.08;
+
+            // 全域流動效果 - 讓整個網格有大範圍的流動感
+            const globalFlowX = Math.sin(this.time * 0.008 + userData.gridRow * 0.1) * 0.25;
+            const globalFlowY = Math.cos(this.time * 0.012 + userData.gridCol * 0.15) * 0.2;
+            const globalFlowZ = Math.sin(this.time * 0.01 + (userData.gridRow + userData.gridCol) * 0.05) * 0.1;
+
+            // 對角線波浪效果 - 創造從一個角落到另一個角落的流動
+            const diagonalWave = Math.sin(this.time * 0.015 + (userData.gridRow + userData.gridCol) * 0.3) * 0.18;
+            const diagonalFlowX = diagonalWave * Math.cos(this.time * 0.006);
+            const diagonalFlowY = diagonalWave * Math.sin(this.time * 0.006);
+
+            // 呼吸效果 - 整體縮放
+            const breatheScale = 1.0 + Math.sin(this.time * 0.02) * 0.05;
 
             // 滑鼠互動效果
             const mouseWorldX = this.mouse.x * 12;
@@ -260,31 +274,38 @@ class GridTriangleBackground {
                 // 滑鼠互動時增加透明度
                 triangle.material.opacity = 0.6;
             } else {
-                // 恢復原始透明度
-                triangle.material.opacity = 0.3;
+                // 基礎透明度 + 微妙的閃爍效果
+                const twinkle = Math.sin(this.time * 0.02 + userData.delay + userData.phase) * 0.05;
+                triangle.material.opacity = 0.3 + twinkle;
             }
 
-            // 更新位置
+            // 更新位置 (加入所有流動效果)
             mesh.position.set(
-                originalPos.x + syncWaveX + gridSyncX + mouseEffectX,
-                originalPos.y + syncWaveY + gridSyncY + mouseEffectY,
-                originalPos.z + syncWaveZ + gridSyncZ + mouseEffectZ
+                originalPos.x + syncWaveX + gridSyncX + globalFlowX + diagonalFlowX + mouseEffectX,
+                originalPos.y + syncWaveY + gridSyncY + globalFlowY + diagonalFlowY + mouseEffectY,
+                originalPos.z + syncWaveZ + gridSyncZ + globalFlowZ + mouseEffectZ
             );
 
-            // 更新旋轉
-            mesh.rotation.x = mouseRotation;
-            mesh.rotation.y = mouseRotation * 0.7;
-            mesh.rotation.z += 0.005; // 基礎旋轉
+            // 更新旋轉 (加入連續的流動旋轉)
+            mesh.rotation.x = mouseRotation + Math.sin(this.time * 0.01 + userData.delay) * 0.1;
+            mesh.rotation.y = mouseRotation * 0.7 + Math.cos(this.time * 0.008 + userData.delay) * 0.08;
+            mesh.rotation.z += 0.003 + Math.sin(this.time * 0.005 + userData.gridRow) * 0.002; // 基礎旋轉 + 流動變化
 
-            // 更新縮放
-            mesh.scale.setScalar(mouseScale);
+            // 更新縮放 (加入呼吸效果)
+            const finalScale = mouseScale * breatheScale;
+            mesh.scale.setScalar(finalScale);
         });
     }
 
     updateCamera() {
-        // 輕微的相機移動效果
-        this.camera.position.x = Math.sin(this.time * 0.02) * 0.5;
-        this.camera.position.y = Math.cos(this.time * 0.015) * 0.3;
+        // 增強的相機流動效果
+        this.camera.position.x = Math.sin(this.time * 0.015) * 0.8 + Math.cos(this.time * 0.008) * 0.4;
+        this.camera.position.y = Math.cos(this.time * 0.012) * 0.6 + Math.sin(this.time * 0.006) * 0.3;
+        this.camera.position.z = 10 + Math.sin(this.time * 0.01) * 0.5; // 輕微的前後移動
+        
+        // 相機也有輕微的旋轉
+        this.camera.rotation.z = Math.sin(this.time * 0.005) * 0.02;
+        
         this.camera.lookAt(0, 0, 0);
     }
 
@@ -348,7 +369,7 @@ class GridTriangleBackground {
         this.gridSettings.rows = isMobile ? 8 : 12;
         this.gridSettings.cols = isMobile ? 12 : 18;
         this.gridSettings.spacing = isMobile ? 1.8 : 1.4;
-        this.gridSettings.triangleSize = isMobile ? 0.25 : 0.3;
+        this.gridSettings.triangleSize = isMobile ? 0.06 : 0.075;
         
         // 重新創建網格
         this.createTriangleGrid();

@@ -1,12 +1,11 @@
 /**
  * Work With Us 頁面專用 JavaScript
- * 處理頁面互動和幾何背景控制
+ * 處理頁面互動和導航效果
  */
 
 // 頁面載入時的動畫和初始化
 document.addEventListener('DOMContentLoaded', function() {
   initPageInteractions();
-  initGeometricBackgroundControls();
   // 為頁面標題添加淡入動畫
   const pageHeader = document.querySelector('.page-header');
   if (pageHeader) {
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initPageInteractions() {
-  // 平滑滾動到錨點
+  // 增強的平滑滾動到錨點
   const tocLinks = document.querySelectorAll('.toc-nav a');
   
   tocLinks.forEach(link => {
@@ -33,13 +32,31 @@ function initPageInteractions() {
       const targetElement = document.getElementById(targetId);
       
       if (targetElement) {
-        const offsetTop = targetElement.offsetTop - 100;
+        // 添加點擊動畫效果
+        this.style.transform = 'scale(0.95)';
+        this.style.transition = 'transform 0.1s ease';
         
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
+        // 創建波浪擴散效果
+        createRippleEffect(this, e);
+        
+        setTimeout(() => {
+          this.style.transform = 'scale(1)';
+        }, 100);
+        
+        // 計算目標位置
+        const offsetTop = targetElement.offsetTop - 120; // 增加一點空間
+        
+        // 顯示滾動進度指示器
+        showScrollProgress();
+        
+        // 使用自定義的平滑滾動動畫
+        smoothScrollTo(offsetTop, 1000, () => {
+          // 滾動完成後的回調
+          hideScrollProgress();
+          highlightTarget(targetElement);
         });
         
+        // 更新導航狀態
         updateActiveNavLink(this);
       }
     });
@@ -58,59 +75,6 @@ function initPageInteractions() {
   enhanceFormInteractions();
 }
 
-function initGeometricBackgroundControls() {
-  const checkBackground = () => {
-    if (window.triangleBackground) {
-      setupBackgroundControls();
-    } else {
-      setTimeout(checkBackground, 100);
-    }
-  };
-  
-  checkBackground();
-}
-
-function setupBackgroundControls() {
-  const background = window.triangleBackground;
-  
-  // 根據滾動位置調整背景效果
-  window.addEventListener('scroll', () => {
-    const scrollProgress = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
-    
-    // 根據滾動調整強度
-    const intensity = window.innerWidth < 768 ? 0.3 : 0.5 + (scrollProgress * 0.3);
-    if (background.setIntensity) {
-      background.setIntensity(intensity);
-    }
-  });
-  
-  // 滑鼠懸停特效區域時增強效果
-  const interactiveCards = document.querySelectorAll('.testimonial-card, .solution-card, .example-card, .pricing-card');
-  
-  interactiveCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      if (background.setIntensity) {
-        background.setIntensity(1.0);
-      }
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      const baseIntensity = window.innerWidth < 768 ? 0.3 : 0.5;
-      if (background.setIntensity) {
-        background.setIntensity(baseIntensity);
-      }
-    });
-  });
-  
-  // 頁面可見性變化時控制背景
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      background.pause();
-    } else {
-      background.resume();
-    }
-  });
-}
 
 function updateActiveNavLink(activeLink) {
   const tocLinks = document.querySelectorAll('.toc-nav a');
@@ -263,6 +227,121 @@ function handleFormSubmit(e) {
       firstError.focus();
     }
   }
+}
+
+// 自定義平滑滾動函數
+function smoothScrollTo(targetPosition, duration, callback) {
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    
+    // 使用 easeInOutCubic 緩動函數
+    const ease = progress < 0.5 
+      ? 4 * progress * progress * progress 
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+    
+    window.scrollTo(0, startPosition + distance * ease);
+    
+    // 更新進度指示器
+    updateScrollProgress(progress);
+    
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    } else {
+      // 滾動完成，執行回調
+      if (callback) callback();
+    }
+  }
+  
+  requestAnimationFrame(animation);
+}
+
+// 滾動進度指示器
+function showScrollProgress() {
+  let progressBar = document.getElementById('scroll-progress');
+  if (!progressBar) {
+    progressBar = document.createElement('div');
+    progressBar.id = 'scroll-progress';
+    progressBar.innerHTML = '<div class="progress-fill"></div>';
+    document.body.appendChild(progressBar);
+  }
+  progressBar.classList.add('visible');
+}
+
+function updateScrollProgress(progress) {
+  const progressFill = document.querySelector('#scroll-progress .progress-fill');
+  if (progressFill) {
+    progressFill.style.width = `${progress * 100}%`;
+  }
+}
+
+function hideScrollProgress() {
+  const progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    progressBar.classList.remove('visible');
+    setTimeout(() => {
+      updateScrollProgress(0); // 重置進度
+    }, 300);
+  }
+}
+
+// 波浪擴散效果
+function createRippleEffect(element, event) {
+  const ripple = document.createElement('span');
+  const rect = element.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event.clientX - rect.left - size / 2;
+  const y = event.clientY - rect.top - size / 2;
+  
+  ripple.style.cssText = `
+    position: absolute;
+    width: ${size}px;
+    height: ${size}px;
+    left: ${x}px;
+    top: ${y}px;
+    background: radial-gradient(circle, rgba(250, 207, 32, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleAnimation 0.6s ease-out;
+    pointer-events: none;
+    z-index: 0;
+  `;
+  
+  // 確保父元素有相對定位
+  const originalPosition = element.style.position;
+  element.style.position = 'relative';
+  element.style.overflow = 'hidden';
+  
+  element.appendChild(ripple);
+  
+  // 移除波浪效果
+  setTimeout(() => {
+    element.removeChild(ripple);
+    element.style.position = originalPosition;
+    element.style.overflow = '';
+  }, 600);
+}
+
+// 目標元素高亮效果
+function highlightTarget(element) {
+  // 移除之前的高亮
+  const prevHighlighted = document.querySelector('.section-highlighted');
+  if (prevHighlighted) {
+    prevHighlighted.classList.remove('section-highlighted');
+  }
+  
+  // 添加高亮效果
+  element.classList.add('section-highlighted');
+  
+  // 3秒後移除高亮
+  setTimeout(() => {
+    element.classList.remove('section-highlighted');
+  }, 3000);
 }
 
 // 工具函數

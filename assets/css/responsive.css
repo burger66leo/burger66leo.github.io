@@ -42,7 +42,7 @@
 @media (max-width: 768px) {
   .navbar {
     padding: var(--spacing-md);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(74, 92, 106, 0.7);
   }
   
   .menu-toggle {
@@ -54,7 +54,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(74, 92, 106, 0.95);
     flex-direction: column;
     gap: 0;
     transform: translateY(-100%);
@@ -379,10 +379,11 @@
    深色模式支援 (備用)
    =========================================== */
 @media (prefers-color-scheme: dark) {
-  /* 目前網站已經是深色主題，這裡可以添加額外的深色模式優化 */
+  /* 當使用者偏好深色模式時，這裡可以添加額外的深色模式優化 */
   :root {
+    --background-light: #1a1a1a;
+    --background-dark: #2c3e50;
     --text-primary: #ffffff;
     --text-secondary: #e3e3e3;
-    --background-dark: #212121;
   }
 }

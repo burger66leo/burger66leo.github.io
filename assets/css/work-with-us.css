@@ -2,26 +2,20 @@
    Work With Us 頁面專用樣式 - 簡約現代風格
    =========================================== */
 
-/* 三角形動態背景 Canvas */
-#triangle-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.9;
-  transition: opacity 0.3s ease;
+/* 統一使用系統背景色 */
+body {
+  background: var(--background-light);
+  min-height: 100vh;
 }
+
 
 /* 頁面標題區域 */
 .page-header {
-  background: rgba(15, 15, 35, 0.3);
+  background: var(--gradient-header);
   backdrop-filter: blur(10px);
   padding: 10rem 2rem 6rem 2rem;
   text-align: center;
-  margin-top: 80px;
+  margin-top: var(--navbar-height);
   position: relative;
   overflow: hidden;
 }
@@ -33,7 +27,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(250, 207, 32, 0.05) 0%, transparent 50%),
+  background: radial-gradient(circle at 30% 20%, rgba(243, 215, 78, 0.05) 0%, transparent 50%),
               radial-gradient(circle at 70% 80%, rgba(250, 207, 32, 0.02) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -44,26 +38,26 @@
 }
 
 .header-content h1 {
-  font-size: 3.5rem;
-  color: #ffffff;
-  margin-bottom: 1.5rem;
+  font-size: var(--font-size-6xl);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
   font-weight: 200;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 .header-content p {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-size-xl);
+  color: var(--text-secondary);
   font-weight: 300;
   letter-spacing: 0.01em;
 }
 
 /* 目錄導航 */
 .table-of-contents {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(74, 92, 106, 0.15);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(74, 92, 106, 0.2);
   border-radius: 16px;
   padding: 1.5rem 2rem;
   margin: 2rem auto;
@@ -80,7 +74,7 @@
 }
 
 .toc-nav a {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-primary);
   text-decoration: none;
   padding: 0.8rem 1.5rem;
   border-radius: 50px;
@@ -98,7 +92,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #facf20, #fff7a8);
+  background: var(--gradient-yellow);
   border-radius: 50px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -106,7 +100,7 @@
 }
 
 .toc-nav a:hover {
-  color: #000;
+  color: var(--background-light);
   transform: translateY(-2px);
 }
 
@@ -127,7 +121,7 @@
 
 .section h2 {
   font-size: 2.5rem;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 3rem;
   font-weight: 300;
   letter-spacing: -0.01em;
@@ -143,7 +137,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, #facf20, #fff7a8);
+  background: var(--gradient-yellow);
   border-radius: 1px;
 }
 
@@ -153,7 +147,7 @@
 }
 
 .about-section h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -163,7 +157,7 @@
 .about-section p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-secondary);
   margin-bottom: 2rem;
   max-width: 800px;
 }
@@ -174,7 +168,7 @@
 }
 
 .testimonials-section h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 3rem;
   font-weight: 500;
@@ -188,8 +182,8 @@
 }
 
 .testimonial-card {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(74, 92, 106, 0.08);
+  border: 1px solid rgba(74, 92, 106, 0.2);
   border-radius: 20px;
   padding: 2rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -204,7 +198,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1), rgba(255, 247, 168, 0.05));
   border-radius: 20px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -213,7 +207,7 @@
 
 .testimonial-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .testimonial-card:hover::before {
@@ -221,7 +215,7 @@
 }
 
 .video-title {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-weight: 600;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
@@ -236,7 +230,7 @@
 }
 
 .testimonial-card blockquote p {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1rem;
@@ -245,7 +239,7 @@
 }
 
 .testimonial-card cite {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-muted);
   font-size: 0.85rem;
   font-style: normal;
   font-weight: 500;
@@ -257,7 +251,7 @@
 }
 
 .audience-profile h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 3rem;
   font-weight: 500;
@@ -272,8 +266,8 @@
 }
 
 .chart-container {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(74, 92, 106, 0.08);
+  border: 1px solid rgba(74, 92, 106, 0.2);
   border-radius: 20px;
   padding: 3rem 2rem;
   text-align: center;
@@ -283,11 +277,11 @@
 
 .chart-container:hover {
   transform: translateY(-4px);
-  border-color: rgba(250, 207, 32, 0.2);
+  border-color: rgba(243, 215, 78, 0.2);
 }
 
 .chart-container h4 {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.3rem;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -299,7 +293,7 @@
 }
 
 .data-timestamp {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-muted);
   font-size: 0.9rem;
   text-align: center;
   margin-top: 2rem;
@@ -310,7 +304,7 @@
 .section-intro {
   font-size: 1.3rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   margin-bottom: 4rem;
   text-align: center;
   max-width: 700px;
@@ -327,8 +321,8 @@
 }
 
 .solution-card {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(74, 92, 106, 0.08);
+  border: 1px solid rgba(74, 92, 106, 0.2);
   border-radius: 20px;
   padding: 3rem 2rem;
   text-align: center;
@@ -344,7 +338,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1), rgba(255, 247, 168, 0.05));
   border-radius: 20px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -353,7 +347,7 @@
 
 .solution-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .solution-card:hover::before {
@@ -367,7 +361,7 @@
 }
 
 .solution-card h3 {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
@@ -375,7 +369,7 @@
 }
 
 .solution-card p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.7;
   font-size: 1rem;
   font-weight: 400;
@@ -387,7 +381,7 @@
 }
 
 .collaboration-modes h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 3rem;
   font-weight: 500;
@@ -401,8 +395,8 @@
 }
 
 .mode-card {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(74, 92, 106, 0.08);
+  border: 1px solid rgba(74, 92, 106, 0.2);
   border-radius: 20px;
   padding: 2.5rem;
   transition: all 0.4s ease;
@@ -411,25 +405,25 @@
 
 .mode-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .mode-card h4 {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
 
 .mode-card p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 1.5rem;
   font-weight: 400;
 }
 
 .platform {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -441,7 +435,7 @@
 }
 
 .advantages-section h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 3rem;
   font-weight: 500;
@@ -455,8 +449,8 @@
 }
 
 .example-card {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(74, 92, 106, 0.08);
+  border: 1px solid rgba(74, 92, 106, 0.2);
   border-radius: 24px;
   padding: 3rem;
   transition: all 0.4s ease;
@@ -465,11 +459,11 @@
 
 .example-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .example-card h4 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -477,7 +471,7 @@
 }
 
 .example-card > p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   margin-bottom: 2rem;
   line-height: 1.7;
   font-weight: 400;
@@ -502,7 +496,7 @@
 }
 
 .example-description {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.7;
   margin-top: 2rem;
@@ -510,7 +504,7 @@
 }
 
 .example-description strong {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-weight: 600;
 }
 
@@ -520,7 +514,7 @@
 }
 
 .content-examples h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 3rem;
   font-weight: 500;
@@ -534,8 +528,8 @@
 }
 
 .example-item {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(74, 92, 106, 0.12);
+  border: 1px solid rgba(74, 92, 106, 0.25);
   border-radius: 20px;
   padding: 2rem;
   transition: all 0.4s ease;
@@ -544,7 +538,7 @@
 
 .example-item:hover {
   transform: translateY(-6px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .example-info {
@@ -552,14 +546,14 @@
 }
 
 .example-info h4 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
   font-weight: 500;
 }
 
 .example-info p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 1rem;
   font-size: 1rem;
@@ -567,7 +561,7 @@
 }
 
 .example-info strong {
-  color: #ffffff;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -577,7 +571,7 @@
 }
 
 .production-process h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -585,7 +579,7 @@
 }
 
 .production-process > p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 4rem;
   font-size: 1.1rem;
@@ -604,8 +598,8 @@
 }
 
 .process-step {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(74, 92, 106, 0.12);
+  border: 1px solid rgba(74, 92, 106, 0.25);
   border-radius: 20px;
   padding: 2.5rem;
   text-align: center;
@@ -616,7 +610,7 @@
 
 .process-step:hover {
   transform: translateY(-6px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .step-number {
@@ -631,11 +625,11 @@
   font-weight: 700;
   font-size: 1.3rem;
   margin: 0 auto 2rem;
-  box-shadow: 0 4px 20px rgba(250, 207, 32, 0.3);
+  box-shadow: 0 4px 20px rgba(243, 215, 78, 0.3);
 }
 
 .step-content h4 {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
@@ -649,7 +643,7 @@
 }
 
 .step-content li {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   margin-bottom: 0.8rem;
   padding-left: 1.5rem;
   position: relative;
@@ -659,14 +653,14 @@
 
 .step-content li::before {
   content: '▸';
-  color: #facf20;
+  color: var(--primary-yellow);
   position: absolute;
   left: 0;
   font-size: 0.9rem;
 }
 
 .step-content em {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-style: normal;
   font-weight: 600;
 }
@@ -678,8 +672,8 @@
 }
 
 .highlight-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(74, 92, 106, 0.12);
+  border: 1px solid rgba(74, 92, 106, 0.25);
   border-radius: 20px;
   padding: 3rem;
   transition: all 0.4s ease;
@@ -688,18 +682,18 @@
 
 .highlight-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .highlight-card h4 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
 
 .highlight-card p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 1.5rem;
   font-weight: 400;
@@ -712,7 +706,7 @@
 }
 
 .highlight-card li {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   margin-bottom: 1rem;
   padding-left: 1.5rem;
   position: relative;
@@ -722,7 +716,7 @@
 
 .highlight-card li::before {
   content: '▸';
-  color: #facf20;
+  color: var(--primary-yellow);
   position: absolute;
   left: 0;
 }
@@ -733,7 +727,7 @@
 }
 
 .pricing-section h3 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.6rem;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -741,7 +735,7 @@
 }
 
 .pricing-section > p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 4rem;
   font-size: 1.1rem;
@@ -759,13 +753,13 @@
 }
 
 .pricing-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 2px solid rgba(250, 207, 32, 0.3);
+  background: rgba(74, 92, 106, 0.15);
+  border: 2px solid rgba(243, 215, 78, 0.3);
   border-radius: 24px;
   padding: 3rem;
   max-width: 450px;
   text-align: center;
-  box-shadow: 0 10px 40px rgba(250, 207, 32, 0.1);
+  box-shadow: 0 10px 40px rgba(243, 215, 78, 0.1);
   transition: all 0.4s ease;
   backdrop-filter: blur(20px);
   position: relative;
@@ -778,7 +772,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1), rgba(255, 247, 168, 0.05));
   border-radius: 24px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -787,7 +781,7 @@
 
 .pricing-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(250, 207, 32, 0.2);
+  box-shadow: 0 20px 60px rgba(243, 215, 78, 0.2);
 }
 
 .pricing-card:hover::before {
@@ -795,14 +789,14 @@
 }
 
 .pricing-card h4 {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.6rem;
   margin-bottom: 1rem;
   font-weight: 500;
 }
 
 .duration {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 2.5rem;
@@ -814,7 +808,7 @@
 }
 
 .feature {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   padding-left: 2rem;
   position: relative;
@@ -827,21 +821,21 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: #facf20;
+  color: var(--primary-yellow);
   font-weight: 700;
   font-size: 1.1rem;
 }
 
 .payment-info {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(74, 92, 106, 0.12);
+  border: 1px solid rgba(74, 92, 106, 0.25);
   border-radius: 20px;
   padding: 3rem;
   backdrop-filter: blur(10px);
 }
 
 .payment-info h4 {
-  color: #facf20;
+  color: var(--primary-yellow);
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
@@ -854,7 +848,7 @@
 }
 
 .payment-info li {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   margin-bottom: 1rem;
   padding-left: 1.5rem;
   position: relative;
@@ -864,13 +858,13 @@
 
 .payment-info li::before {
   content: '▸';
-  color: #facf20;
+  color: var(--primary-yellow);
   position: absolute;
   left: 0;
 }
 
 .payment-info p {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.8;
   font-weight: 400;
 }
@@ -884,8 +878,8 @@
 }
 
 .contact-item {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(74, 92, 106, 0.12);
+  border: 1px solid rgba(74, 92, 106, 0.25);
   border-radius: 20px;
   padding: 3rem 2rem;
   text-align: center;
@@ -901,7 +895,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(250, 207, 32, 0.1), rgba(255, 247, 168, 0.05));
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1), rgba(255, 247, 168, 0.05));
   border-radius: 20px;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -910,7 +904,7 @@
 
 .contact-item:hover {
   transform: translateY(-8px);
-  border-color: rgba(250, 207, 32, 0.3);
+  border-color: rgba(243, 215, 78, 0.3);
 }
 
 .contact-item:hover::before {
@@ -924,7 +918,7 @@
 }
 
 .contact-item h3 {
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
@@ -932,7 +926,7 @@
 }
 
 .contact-item a {
-  color: #facf20;
+  color: var(--primary-yellow);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -941,16 +935,125 @@
 }
 
 .contact-item a:hover {
-  color: #fff7a8;
+  color: var(--primary-yellow-light);
   transform: translateY(-1px);
 }
 
 /* 導航欄活動狀態 */
 nav a.active {
   color: #000;
-  background: linear-gradient(135deg, #facf20, #fff7a8);
+  background: var(--gradient-yellow);
   border-radius: 50px;
   font-weight: 600;
+}
+
+/* 目錄導航點擊動畫 */
+.toc-nav a {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toc-nav a:active {
+  transform: scale(0.95);
+}
+
+/* 區段高亮效果 */
+.section-highlighted {
+  position: relative;
+  animation: sectionHighlight 3s ease-out;
+}
+
+.section-highlighted::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  right: -2rem;
+  bottom: -2rem;
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1), rgba(255, 247, 168, 0.05));
+  border-radius: 24px;
+  z-index: -1;
+  animation: highlightGlow 3s ease-out;
+}
+
+@keyframes sectionHighlight {
+  0% {
+    transform: translateY(10px);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes highlightGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+/* 滾動進度指示器 */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+}
+
+#scroll-progress.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#scroll-progress .progress-fill {
+  height: 100%;
+  background: var(--gradient-yellow);
+  width: 0%;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px rgba(250, 207, 32, 0.5);
+}
+
+/* 增強目錄導航的 hover 效果 */
+.toc-nav a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(243, 215, 78, 0.3);
+}
+
+/* 波浪擴散動畫 */
+@keyframes rippleAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* 確保目錄導航有足夠的層級 */
+.toc-nav a {
+  position: relative;
+  z-index: 1;
 }
 
 /* ===========================================
@@ -1172,13 +1275,13 @@ nav a.active {
 .process-step,
 .highlight-card,
 .contact-item {
-  background: rgba(255, 255, 255, 0.01) !important;
+  background: rgba(74, 92, 106, 0.08) !important;
   backdrop-filter: blur(5px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(74, 92, 106, 0.2) !important;
 }
 
 .pricing-card,
 .payment-info {
-  background: rgba(255, 255, 255, 0.015) !important;
+  background: rgba(74, 92, 106, 0.12) !important;
   backdrop-filter: blur(8px) !important;
 }
