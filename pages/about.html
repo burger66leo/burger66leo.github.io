@@ -239,61 +239,114 @@
     <!-- Disclosure -->
     <section class="section fade-in">
       <h2>Disclosure</h2>
-      <div class="disclosure-intro">
-        <p>我們相信透明是建立信任的基礎。以下是我們對內容獨立性與合作透明度的承諾。</p>
-      </div>
+      <p class="disclosure-intro-text">我們相信透明是建立信任的基礎。以下是我們對內容獨立性與合作透明度的承諾。</p>
       
-      <div class="disclosure-grid">
-        <div class="disclosure-item">
-          <div class="disclosure-icon">🔍</div>
-          <h3>獨立性承諾</h3>
-          <p>
-            每一支影片、每一篇分析，都忠實反映我們的真實觀點與深度思考。
-          </p>
-          <ul>
-            <li>不發布受外部影響的內容</li>
-            <li>所有廣告內容明確標註與隔離</li>
-            <li>保持客觀分析的獨立立場</li>
-          </ul>
+      <div class="disclosure-toggle-list">
+        <div class="disclosure-toggle-item">
+          <button class="disclosure-toggle-header" data-toggle="independence">
+            <div class="disclosure-toggle-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>獨立性承諾</h3>
+            <div class="disclosure-chevron">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="disclosure-toggle-content" id="independence">
+            <p>每一支影片、每一篇分析，都忠實反映我們的真實觀點與深度思考。</p>
+            <ul>
+              <li>不發布受外部影響的內容</li>
+              <li>所有廣告內容明確標註與隔離</li>
+              <li>保持客觀分析的獨立立場</li>
+            </ul>
+          </div>
         </div>
         
-        <div class="disclosure-item">
-          <div class="disclosure-icon">📋</div>
-          <h3>透明度政策</h3>
-          <p>
-            我們會主動披露任何可能影響內容客觀性的利益相關情況。
-          </p>
-          <ul>
-            <li>發布時標註所有利益相關資訊</li>
-            <li>提供完整的合作背景說明</li>
-            <li>歡迎觀眾對內容獨立性提出疑問</li>
-          </ul>
+        <div class="disclosure-toggle-item">
+          <button class="disclosure-toggle-header" data-toggle="transparency">
+            <div class="disclosure-toggle-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>透明度政策</h3>
+            <div class="disclosure-chevron">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="disclosure-toggle-content" id="transparency">
+            <p>我們會主動披露任何可能影響內容客觀性的利益相關情況。</p>
+            <ul>
+              <li>發布時標註所有利益相關資訊</li>
+              <li>提供完整的合作背景說明</li>
+              <li>歡迎觀眾對內容獨立性提出疑問</li>
+            </ul>
+          </div>
         </div>
         
-        <div class="disclosure-item">
-          <div class="disclosure-icon">🤝</div>
-          <h3>產品合作</h3>
-          <p>
-            我們歡迎有意義的產品合作，但始終保持評測的客觀性。
-          </p>
-          <ul>
-            <li>接受產品送測，但不接受內容干涉</li>
-            <li>分享真實使用體驗與客觀評價</li>
-            <li>測試完成後歸還所有送測產品</li>
-          </ul>
+        <div class="disclosure-toggle-item">
+          <button class="disclosure-toggle-header" data-toggle="collaboration">
+            <div class="disclosure-toggle-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>產品合作</h3>
+            <div class="disclosure-chevron">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="disclosure-toggle-content" id="collaboration">
+            <p>我們歡迎有意義的產品合作，但始終保持評測的客觀性。</p>
+            <ul>
+              <li>接受產品送測，但不接受內容干涉</li>
+              <li>分享真實使用體驗與客觀評價</li>
+              <li>測試完成後歸還所有送測產品</li>
+            </ul>
+          </div>
         </div>
         
-        <div class="disclosure-item">
-          <div class="disclosure-icon">🎁</div>
-          <h3>收禮原則</h3>
-          <p>
-            我們設定明確的收禮標準，避免任何可能影響判斷的利益衝突。
-          </p>
-          <ul>
-            <li>不收受超過 <strong>$150 USD</strong> 的禮物</li>
-            <li>拒絕以影響內容為目的的贈禮</li>
-            <li>涵蓋實物、餐飲、旅行、娛樂等所有形式</li>
-          </ul>
+        <div class="disclosure-toggle-item">
+          <button class="disclosure-toggle-header" data-toggle="gifts">
+            <div class="disclosure-toggle-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="20,12 20,22 4,22 4,12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="2" y="7" width="20" height="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="12" y1="22" x2="12" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>收禮原則</h3>
+            <div class="disclosure-chevron">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          <div class="disclosure-toggle-content" id="gifts">
+            <p>我們設定明確的收禮標準，避免任何可能影響判斷的利益衝突。</p>
+            <ul>
+              <li>不收受超過 <strong>$150 USD</strong> 的禮物</li>
+              <li>拒絕以影響內容為目的的贈禮</li>
+              <li>涵蓋實物、餐飲、旅行、娛樂等所有形式</li>
+            </ul>
+          </div>
         </div>
       </div>
       

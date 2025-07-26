@@ -97,6 +97,42 @@
   margin: 3rem 0;
 }
 
+/* 左右漸層遮罩效果 */
+.content-gallery::before,
+.content-gallery::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px; /* 遮罩寬度 */
+  z-index: 200; /* 確保在卡片之上 */
+  pointer-events: none; /* 不阻擋互動 */
+}
+
+/* 左側漸層遮罩 */
+.content-gallery::before {
+  left: 0;
+  background: linear-gradient(to right, 
+    var(--background-light) 0%, 
+    var(--background-light) 20%, 
+    rgba(238, 238, 238, 0.8) 50%,
+    rgba(238, 238, 238, 0.4) 80%,
+    transparent 100%
+  );
+}
+
+/* 右側漸層遮罩 */
+.content-gallery::after {
+  right: 0;
+  background: linear-gradient(to left, 
+    var(--background-light) 0%, 
+    var(--background-light) 20%, 
+    rgba(238, 238, 238, 0.8) 50%,
+    rgba(238, 238, 238, 0.4) 80%,
+    transparent 100%
+  );
+}
+
 .content-cards {
   position: absolute;
   width: 22rem;
@@ -206,70 +242,106 @@
 }
 
 /* Disclosure 樣式 */
-.disclosure-intro {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem;
-  background: rgba(243, 215, 78, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(243, 215, 78, 0.2);
-}
-
-.disclosure-intro p {
+.disclosure-intro-text {
   font-size: 1.2rem;
   color: var(--text-secondary);
-  margin: 0;
-  font-weight: 300;
-}
-
-.disclosure-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  text-align: center;
   margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
-.disclosure-item {
-  background: rgba(74, 92, 106, 0.05);
-  padding: 2rem;
+.disclosure-toggle-list {
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.disclosure-toggle-item {
+  border: 1px solid rgba(74, 92, 106, 0.15);
   border-radius: 12px;
-  border: 1px solid rgba(74, 92, 106, 0.1);
+  margin-bottom: 1rem;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.disclosure-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+.disclosure-toggle-item:hover {
   border-color: rgba(243, 215, 78, 0.3);
+  box-shadow: 0 2px 8px rgba(74, 92, 106, 0.1);
 }
 
-.disclosure-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
+.disclosure-toggle-header {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  text-align: left;
 }
 
-.disclosure-item h3 {
+.disclosure-toggle-header:hover {
+  background: rgba(243, 215, 78, 0.05);
+}
+
+.disclosure-toggle-header.active {
+  background: rgba(243, 215, 78, 0.1);
+}
+
+.disclosure-toggle-icon {
+  color: var(--primary-yellow);
+  flex-shrink: 0;
+}
+
+.disclosure-toggle-header h3 {
   color: var(--text-primary);
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  flex: 1;
 }
 
-.disclosure-item p {
+.disclosure-chevron {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.disclosure-toggle-header.active .disclosure-chevron {
+  transform: rotate(180deg);
+}
+
+.disclosure-toggle-content {
+  padding: 0 2rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.disclosure-toggle-content.active {
+  max-height: 500px;
+  padding: 1.5rem 2rem 2rem 2rem;
+}
+
+.disclosure-toggle-content p {
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
-  text-align: center;
+  line-height: 1.6;
   font-style: italic;
 }
 
-.disclosure-item ul {
+.disclosure-toggle-content ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.disclosure-item li {
+.disclosure-toggle-content li {
   color: var(--text-secondary);
   margin-bottom: 0.8rem;
   padding-left: 1.5rem;
@@ -277,11 +349,11 @@
   line-height: 1.5;
 }
 
-.disclosure-item li::before {
+.disclosure-toggle-content li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--primary-gold);
+  color: var(--primary-yellow);
   font-weight: bold;
 }
 

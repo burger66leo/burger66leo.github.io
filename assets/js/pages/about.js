@@ -10,6 +10,7 @@ window.addEventListener('load', function() {
     setTimeout(() => {
       initStackingCards();
       initContentGallery();
+      initDisclosureToggle();
     }, 100);
   } else {
     console.error('GSAP 或 ScrollTrigger 未載入');
@@ -78,142 +79,169 @@ window.addEventListener('resize', () => {
   }, 250);
 });
 
-// 內容畫廊動畫系統 - 完全按照 demo code 重新設計
+// 內容畫廊動畫系統 - 重新開始，最簡化版本
 function initContentGallery() {
-  console.log('🎬 初始化內容畫廊動畫 - 重新設計版本');
+  console.log('🎬 重新開始：最簡化內容畫廊動畫');
   
-  // 清除衝突的 ScrollTriggers
+  // 先測試最基本的情況：只顯示第一張卡片在中心
+  const cards = gsap.utils.toArray('.content-card');
+  
+  if (cards.length === 0) {
+    console.log('❌ 找不到卡片');
+    return;
+  }
+  
+  console.log(`✅ 找到 ${cards.length} 個卡片`);
+  
+  // 只清除內容畫廊相關的 ScrollTriggers，不影響堆疊卡片
   ScrollTrigger.getAll().forEach(trigger => {
-    if (trigger.vars && trigger.vars.trigger?.classList?.contains('content-gallery')) {
+    if (trigger.vars && trigger.vars.trigger && 
+        trigger.vars.trigger.classList?.contains('content-gallery')) {
       trigger.kill();
     }
   });
-
-  // 完全按照 demo 的邏輯
-  let iteration = 0;
   
-  const spacing = 0.1,
-        snap = gsap.utils.snap(spacing),
-        cards = gsap.utils.toArray('.content-card'),
-        seamlessLoop = buildSeamlessLoop(cards, spacing),
-        scrub = gsap.to(seamlessLoop, {
-            totalTime: 0,
-            duration: 0.5,
-            ease: "power3",
-            paused: true
-        }),
-        trigger = ScrollTrigger.create({
-            trigger: ".content-gallery",
-            start: "top center",
-            end: "bottom center",
-            scrub: 0.05, // 更低的靈敏度
-            // 移除 pin，讓頁面可以正常滾動
-            onUpdate(self) {
-                if (self.progress === 1 && self.direction > 0 && !self.wrapping) {
-                    wrapForward(self);
-                } else if (self.progress < 1e-5 && self.direction < 0 && !self.wrapping) {
-                    wrapBackward(self);
-                } else {
-                    scrub.vars.totalTime = snap((iteration + self.progress) * seamlessLoop.duration());
-                    scrub.invalidate().restart();
-                    self.wrapping = false;
-                }
-            }
-        });
-
-  function wrapForward(trigger) {
-      iteration++;
-      trigger.wrapping = true;
-      // 重置進度，繼續循環
-      trigger.progress(0.01);
-      setTimeout(() => trigger.wrapping = false, 100);
+  // 測試按鈕控制
+  let currentIndex = 0;
+  
+  // 初始化一排卡片的位置和縮放
+  updateCardsLayout();
+  
+  console.log('🎯 一排卡片佈局：中心最大，兩邊漸小');
+  
+  // 更新所有卡片的位置和縮放
+  function updateCardsLayout() {
+    cards.forEach((card, index) => {
+      const offset = index - currentIndex; // 相對於當前卡片的偏移
+      const distance = Math.abs(offset); // 距離中心的絕對距離
+      
+      // 計算位置 (每張卡片間距 80%)
+      const xPercent = offset * 80;
+      
+      // 計算縮放 (中心 = 1, 每遠離一張卡片縮小 0.15)
+      const scale = Math.max(0.4, 1 - distance * 0.15);
+      
+      // 計算透明度 (最遠顯示3張卡片)
+      const opacity = distance <= 2 ? (distance <= 1 ? 1 : 0.6) : 0;
+      
+      // 計算 z-index (中心最高)
+      const zIndex = 100 - distance;
+      
+      gsap.set(card, {
+        xPercent: xPercent,
+        scale: scale,
+        opacity: opacity,
+        zIndex: zIndex
+      });
+      
+      console.log(`卡片 ${index + 1}: offset=${offset}, xPercent=${xPercent}, scale=${scale.toFixed(2)}, opacity=${opacity}`);
+    });
   }
-
-  function wrapBackward(trigger) {
-      iteration--;
-      if (iteration < 0) {
-          iteration = 9;
-          seamlessLoop.totalTime(seamlessLoop.totalTime() + seamlessLoop.duration() * 10);
-          scrub.pause();
-      }
-      trigger.wrapping = true;
-      // 重置進度，繼續循環
-      trigger.progress(0.99);
-      setTimeout(() => trigger.wrapping = false, 100);
-  }
-
-  function scrubTo(totalTime) {
-      // 處理循環邊界
-      let progress = (totalTime - seamlessLoop.duration() * iteration) / seamlessLoop.duration();
-      if (progress > 1) {
-          wrapForward(trigger);
-      } else if (progress < 0) {
-          wrapBackward(trigger);
-      } else {
-          scrub.vars.totalTime = totalTime;
-          scrub.invalidate().restart();
-      }
-  }
-
-  // 按鈕控制
-  document.querySelector(".content-next")?.addEventListener("click", () => 
-      scrubTo(scrub.vars.totalTime + spacing)
-  );
-  document.querySelector(".content-prev")?.addEventListener("click", () => 
-      scrubTo(scrub.vars.totalTime - spacing)
-  );
-
-  // Demo 風格的初始化 - 簡單淡入第一張卡片內容
-  gsap.to('.content-card', {opacity: 1, delay: 0.1, duration: 0.3});
-
-  console.log(`✅ Demo 重新設計版本初始化完成`);
-}
-
-// 建立無限循環的水平滑動動畫 - 完全按照 Demo 原始碼
-function buildSeamlessLoop(items, spacing) {
-    let overlap = Math.ceil(1 / spacing), // number of EXTRA animations on either side of the start/end to accommodate the seamless looping
-        startTime = items.length * spacing + 0.5, // the time on the rawSequence at which we'll start the seamless loop
-        loopTime = (items.length + overlap) * spacing + 1, // the spot at the end where we loop back to the startTime 
-        rawSequence = gsap.timeline({paused: true}), // this is where all the "real" animations live
-        seamlessLoop = gsap.timeline({ // this merely scrubs the playhead of the rawSequence so that it appears to seamlessly loop
-            paused: true,
-            repeat: -1, // to accommodate infinite scrolling/looping
-            onRepeat() { // works around a super rare edge case bug that's fixed GSAP 3.6.1
-                this._time === this._dur && (this._tTime += this._dur - 0.01);
-            }
-        }),
-        l = items.length + overlap * 2,
-        time = 0,
-        i, index, item;
-
-    // set initial state of items - 完全按照 demo
-    gsap.set(items, {xPercent: 400, opacity: 0, scale: 0});
-
-    // now loop through and create all the animations in a staggered fashion. Remember, we must create EXTRA animations at the end to accommodate the seamless looping.
-    for (i = 0; i < l; i++) {
-        index = i % items.length;
-        item = items[index];
-        time = i * spacing;
-        rawSequence.fromTo(item, {scale: 0, opacity: 0}, {scale: 1, opacity: 1, zIndex: 100, duration: 0.5, yoyo: true, repeat: 1, ease: "power1.in", immediateRender: false}, time)
-                   .fromTo(item, {xPercent: 400}, {xPercent: -400, duration: 1, ease: "none", immediateRender: false}, time);
-        i <= items.length && seamlessLoop.add("label" + i, time);
-    }
+  
+  function showCard(index, isFromScroll = false) {
+    const targetIndex = ((index % cards.length) + cards.length) % cards.length;
     
-    // here's where we set up the scrubbing of the playhead to make it appear seamless. 
-    rawSequence.time(startTime);
-    seamlessLoop.to(rawSequence, {
-        time: loopTime,
-        duration: loopTime - startTime,
-        ease: "none"
-    }).fromTo(rawSequence, {time: overlap * spacing + 1}, {
-        time: startTime,
-        duration: startTime - (overlap * spacing + 1),
-        immediateRender: false,
-        ease: "none"
+    // 避免切換到同一張卡片
+    if (targetIndex === currentIndex) return;
+    
+    // 更新當前索引
+    currentIndex = targetIndex;
+    
+    // 重新計算所有卡片的位置和縮放
+    cards.forEach((card, cardIndex) => {
+      const offset = cardIndex - currentIndex;
+      const distance = Math.abs(offset);
+      
+      const xPercent = offset * 80;
+      const scale = Math.max(0.4, 1 - distance * 0.15);
+      const opacity = distance <= 2 ? (distance <= 1 ? 1 : 0.6) : 0;
+      const zIndex = 100 - distance;
+      
+      gsap.to(card, {
+        xPercent: xPercent,
+        scale: scale,
+        opacity: opacity,
+        zIndex: zIndex,
+        duration: isFromScroll ? 0.3 : 0.6,
+        ease: "power2.out"
+      });
     });
     
-    console.log(`📊 Demo 原始版本無縫循環建立完成，總長度: ${seamlessLoop.duration()}`);
-    
-    return seamlessLoop;
+    console.log(`🎯 切換到卡片 ${currentIndex + 1} ${isFromScroll ? '[滾動]' : '[按鈕]'}`);
+  }
+  
+  // 按鈕控制
+  document.querySelector(".content-next")?.addEventListener("click", () => {
+    showCard(currentIndex + 1);
+  });
+  
+  document.querySelector(".content-prev")?.addEventListener("click", () => {
+    showCard(currentIndex - 1);
+  });
+  
+  // 添加滾動控制
+  ScrollTrigger.create({
+    trigger: ".content-gallery",
+    start: "top center",
+    end: "bottom center",
+    scrub: 0.1, // 調整滾動敏感度
+    onUpdate(self) {
+      const progress = self.progress;
+      const targetIndex = Math.round(progress * (cards.length - 1));
+      
+      // 只有當目標索引改變時才切換
+      if (targetIndex !== currentIndex) {
+        console.log(`📜 滾動觸發切換到卡片 ${targetIndex + 1} (進度: ${progress.toFixed(3)})`);
+        showCard(targetIndex, true); // 標記為滾動觸發
+      }
+    }
+  });
+  
+  console.log('✅ 橫向滑動系統初始化完成 - 支援按鈕和滾動控制');
+}
+
+// Disclosure toggle 功能
+function initDisclosureToggle() {
+  console.log('🎛️ 初始化 Disclosure Toggle 功能');
+  
+  const toggleHeaders = document.querySelectorAll('.disclosure-toggle-header');
+  
+  if (toggleHeaders.length === 0) {
+    console.log('❌ 找不到 toggle headers');
+    return;
+  }
+  
+  toggleHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-toggle');
+      const content = document.getElementById(targetId);
+      const isActive = this.classList.contains('active');
+      
+      // 關閉所有其他的 toggle
+      toggleHeaders.forEach(otherHeader => {
+        if (otherHeader !== this) {
+          otherHeader.classList.remove('active');
+          const otherTargetId = otherHeader.getAttribute('data-toggle');
+          const otherContent = document.getElementById(otherTargetId);
+          if (otherContent) {
+            otherContent.classList.remove('active');
+          }
+        }
+      });
+      
+      // 切換當前 toggle
+      if (isActive) {
+        this.classList.remove('active');
+        content.classList.remove('active');
+      } else {
+        this.classList.add('active');
+        content.classList.add('active');
+      }
+      
+      console.log(`🎛️ Toggle ${targetId}: ${isActive ? '關閉' : '開啟'}`);
+    });
+  });
+  
+  console.log(`✅ Disclosure Toggle 初始化完成 (${toggleHeaders.length} 個項目)`);
 }
 

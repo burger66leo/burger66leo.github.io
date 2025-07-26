@@ -259,6 +259,26 @@ body {
   transform: translateY(-2px);
 }
 
+/* 品牌聲明 */
+.brand-statement {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.08) 0%, rgba(74, 92, 106, 0.03) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(243, 215, 78, 0.2);
+  text-align: center;
+}
+
+.brand-statement p {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0;
+  font-style: italic;
+}
+
 /* 導航欄活動狀態樣式移至 components.css 統一管理 */
 
 /* ===========================================
@@ -340,6 +360,15 @@ body {
     font-size: 1rem;
     line-height: 1.7;
   }
+  
+  .brand-statement {
+    margin-top: 2rem;
+    padding: 1.5rem;
+  }
+  
+  .brand-statement p {
+    font-size: 1.1rem;
+  }
 }
 
 /* ===========================================
@@ -374,5 +403,15 @@ body {
   .tech-tag {
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
+  }
+  
+  .brand-statement {
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+  }
+  
+  .brand-statement p {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 }
