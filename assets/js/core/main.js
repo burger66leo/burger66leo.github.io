@@ -12,19 +12,61 @@ function throttle(func, limit) {
   }
 }
 
-// 滾動效果（使用節流）
-const handleScroll = throttle(function() {
-  const navbar = document.getElementById('navbar');
-  if (navbar) {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
+// 統一的 Navbar 狀態管理
+class NavbarManager {
+  constructor() {
+    this.navbar = document.getElementById('navbar');
+    this.isInitialized = false;
+    this.init();
+  }
+
+  init() {
+    if (!this.navbar) return;
+    
+    // 等待 DOM 完全載入後再設置初始狀態
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        this.updateNavbarState();
+      });
     } else {
-      navbar.classList.remove('scrolled');
+      this.updateNavbarState();
+    }
+    
+    // 綁定滾動監聽器
+    window.addEventListener('scroll', throttle(() => {
+      this.updateNavbarState();
+    }, 100));
+    
+    // 在頁面載入完成後再次檢查狀態
+    window.addEventListener('load', () => {
+      this.updateNavbarState();
+    });
+    
+    this.isInitialized = true;
+    console.log('✅ Navbar 狀態管理已初始化');
+  }
+
+  updateNavbarState() {
+    if (!this.navbar) return;
+    
+    const scrollY = window.scrollY;
+    const isScrolled = scrollY > 0; // 從 0 開始觸發
+    
+    if (isScrolled) {
+      this.navbar.classList.add('scrolled');
+    } else {
+      this.navbar.classList.remove('scrolled');
     }
   }
-}, 100);
 
-window.addEventListener('scroll', handleScroll);
+  // 手動觸發狀態更新（用於其他組件調用）
+  forceUpdate() {
+    this.updateNavbarState();
+  }
+}
+
+// 初始化 Navbar 管理器
+const navbarManager = new NavbarManager();
 
 // 移動端菜單切換
 const menuToggle = document.getElementById('menuToggle');

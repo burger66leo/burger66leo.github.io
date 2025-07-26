@@ -48,7 +48,14 @@
 @media (max-width: 768px) {
   .navbar {
     padding: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.12);
+    /* 保持與桌面版一致的透明度邏輯，確保最小可讀性 */
+    background: rgba(58, 74, 86, 0.15);
+    backdrop-filter: blur(10px);
+  }
+  
+  .navbar.scrolled {
+    background: rgba(58, 74, 86, 0.4);
+    backdrop-filter: blur(20px);
   }
   
   .menu-toggle {
@@ -60,14 +67,18 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(58, 74, 86, 0.8);
     flex-direction: column;
     gap: 0;
-    transform: translateY(-100%);
+    transform: translateY(-20px);
     opacity: 0;
     visibility: hidden;
     transition: all var(--transition-normal);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%); /* Safari 支援 */
+    border-radius: 0 0 12px 12px; /* 添加底部圓角 */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 添加陰影 */
+    /* 較低的層級，自然在 navbar 下方展開 */
   }
   
   nav.active {
@@ -247,6 +258,13 @@
 @media (max-width: 360px) {
   .navbar {
     padding: var(--spacing-xs);
+    /* 超小螢幕額外確保可讀性 */
+    background: rgba(58, 74, 86, 0.2) !important;
+    backdrop-filter: blur(15px) !important;
+  }
+  
+  .navbar.scrolled {
+    background: rgba(58, 74, 86, 0.5) !important;
   }
   
   .page-header {

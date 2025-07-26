@@ -88,44 +88,108 @@
   height: 200px; /* 減少下方間距 */
 }
 
-/* 內容範疇 */
-.content-areas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+/* 內容範疇 - 動畫卡片庫 */
+.content-gallery {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  margin: 3rem 0;
 }
 
-.area-item {
+.content-cards {
+  position: absolute;
+  width: 22rem;
+  height: 28rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.content-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(74, 92, 106, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.content-card-inner {
   text-align: center;
-  padding: 2rem;
-  background: rgba(74, 92, 106, 0.08);
-  border-radius: 12px;
-  border: 1px solid rgba(74, 92, 106, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(5px);
-}
-
-.area-item:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(243, 215, 78, 0.3);
+  padding: 2.5rem;
+  width: 100%;
 }
 
 .area-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-gold);
 }
 
-.area-item h3 {
-  font-size: 1.4rem;
+.area-icon svg {
+  width: 48px;
+  height: 48px;
+  color: inherit;
+}
+
+.content-card h3 {
+  font-size: 1.8rem;
   color: var(--text-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
 }
 
-.area-item p {
+.content-card p {
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 1.2rem;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.content-actions {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.content-prev,
+.content-next {
+  background: var(--text-primary);
+  color: var(--background-light);
+  border: solid 2px var(--background-light);
+  border-radius: 99px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  line-height: 18px;
+}
+
+.content-prev:hover,
+.content-next:hover {
+  background: var(--primary-gold);
+  color: var(--text-primary);
+  border-color: var(--primary-gold);
 }
 
 /* 團隊內容 */
@@ -303,17 +367,29 @@
     gap: 1.5rem;
   }
   
-  .content-areas {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .content-gallery {
+    height: 550px;
   }
   
-  .area-item {
-    padding: 1.5rem;
+  .content-cards {
+    width: 20rem;
+    height: 25rem;
   }
   
-  .area-icon {
-    font-size: 2.5rem;
+  .content-card {
+    width: 20rem;
+    height: 25rem;
+  }
+  
+  .content-card-inner {
+    padding: 2.2rem;
+  }
+  
+  .content-prev,
+  .content-next {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
   }
   
   .story-content p,
@@ -358,6 +434,35 @@
   .spacer {
     height: 200px;
   }
+  
+  .content-gallery {
+    height: 480px;
+  }
+  
+  .content-cards {
+    width: 18rem;
+    height: 23rem;
+  }
+  
+  .content-card {
+    width: 18rem;
+    height: 23rem;
+  }
+  
+  .content-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .content-card p {
+    font-size: 0.9rem;
+  }
+  
+  .content-prev,
+  .content-next {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
 }
 
 /* ===========================================
@@ -386,7 +491,36 @@
     padding: 1.2rem;
   }
   
-  .area-icon {
-    font-size: 2rem;
+  .content-gallery {
+    height: 420px;
+  }
+  
+  .content-cards {
+    width: 16rem;
+    height: 21rem;
+  }
+  
+  .content-card {
+    width: 16rem;
+    height: 21rem;
+  }
+  
+  .content-card-inner {
+    padding: 1.5rem;
+  }
+  
+  .content-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .content-card p {
+    font-size: 0.85rem;
+  }
+  
+  .content-prev,
+  .content-next {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
   }
 }

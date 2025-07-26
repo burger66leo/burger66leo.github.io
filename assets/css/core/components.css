@@ -2,26 +2,30 @@
    共用元件樣式
    =========================================== */
 
-/* 導航欄 - 深色半透明版 */
+/* 導航欄 - 統一狀態管理 */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(58, 74, 86, 0.4);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: var(--spacing-md) var(--spacing-xl);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: var(--z-navbar);
-  transition: all var(--transition-normal);
   height: var(--navbar-height);
+  transition: all var(--transition-normal);
+  
+  /* 初始狀態 - 保持最小透明度確保可讀性 */
+  background: rgba(58, 74, 86, 0.15);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar.scrolled {
-  background: rgba(58, 74, 86, 0.5);
-  border-bottom-color: rgba(255, 255, 255, 0.2);
+  /* 滾動狀態 - 半透明背景 */
+  background: rgba(58, 74, 86, 0.4);
+  backdrop-filter: blur(20px);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
 }
 
 .logo {
