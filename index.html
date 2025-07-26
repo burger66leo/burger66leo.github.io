@@ -489,9 +489,16 @@
         // 清除現有粒子
         particlesContainer.innerHTML = '';
         
-        // 粒子數量配置 - 根據設備性能調整
+        // 粒子數量配置 - 根據設備性能和螢幕大小調整
+        const isMobile = window.innerWidth <= 768;
         const isLowEnd = navigator.hardwareConcurrency < 4 || navigator.deviceMemory < 4;
-        const particleCount = isLowEnd ? 1200 : 2000; // 低端設備減少粒子數量
+        
+        let particleCount;
+        if (isMobile) {
+          particleCount = isLowEnd ? 800 : 1200; // 手機設備減少粒子數量
+        } else {
+          particleCount = isLowEnd ? 1200 : 2000; // 桌面設備
+        }
         
         console.log(`🎨 生成 ${particleCount} 個圓圈粒子 (低端設備: ${isLowEnd})`);
         
@@ -505,8 +512,8 @@
           const n1 = simplex.noise2D(i * 0.003, i * 0.0033);
           const n2 = simplex.noise2D(i * 0.002, i * 0.001);
           
-          // 使用網站統一的黃色 #F3D74E
-          const opacity = 0.5;
+          // 使用網站統一的黃色 #F3D74E，手機上增加透明度
+          const opacity = isMobile ? 0.7 : 0.5;
 
           // 動態計算x軸位置：基於容器寬度偏移到左邊1/3
           const containerWidth = particlesContainer.offsetWidth;

@@ -30,38 +30,58 @@
 }
 
 .stack-card {
-  border-radius: 30px;
+  border-radius: 20px;
   position: relative;
   width: 100%;
   min-height: 350px;
   padding: 3rem 2.5rem;
   transform-origin: 50% 0%;
-  margin-bottom: 3rem; /* 減少卡片間距 */
+  margin-bottom: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
+  
+  /* 淺色背景和細邊框 */
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(74, 92, 106, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .stack-card__body {
   width: 100%;
   text-align: center;
-  color: white;
+  color: var(--text-primary);
+}
+
+.stack-card__icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  color: var(--primary-gold);
+}
+
+.stack-card__icon svg {
+  width: 48px;
+  height: 48px;
+  color: inherit;
 }
 
 .stack-card__body h3 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 400;
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
+  color: var(--text-primary);
 }
 
 .stack-card__body p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  opacity: 0.9;
-  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 500px;
   margin: 0 auto;
+  font-weight: 300;
 }
 
 .spacer {
@@ -244,6 +264,11 @@
     margin-bottom: 3rem;
   }
   
+  .stack-card__icon {
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+  }
+  
   .stack-card__body h3 {
     font-size: 1.6rem;
   }
@@ -317,6 +342,11 @@
     margin-bottom: 2.5rem;
   }
   
+  .stack-card__icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
   .stack-card__body h3 {
     font-size: 1.4rem;
   }
@@ -342,8 +372,14 @@
     font-size: 1.8rem;
   }
   
-  .philosophy-card {
-    padding: 1.5rem;
+  .stack-card {
+    padding: 1.2rem;
+    min-height: 220px;
+  }
+  
+  .stack-card__icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
   }
   
   .area-item {
