@@ -323,6 +323,56 @@ class GeometricBackground {
     this.uniforms.u_color2.value.setHex(color2);
     this.uniforms.u_color3.value.setHex(color3);
   }
+
+  // Debug 功能
+  getDebugInfo() {
+    const canvas = document.getElementById('geometric-canvas');
+    return {
+      isRunning: this.isRunning,
+      canvasExists: !!canvas,
+      canvasSize: canvas ? { width: canvas.width, height: canvas.height } : null,
+      containerSize: canvas ? { 
+        width: canvas.offsetWidth, 
+        height: canvas.offsetHeight,
+        parent: canvas.parentElement ? {
+          width: canvas.parentElement.offsetWidth,
+          height: canvas.parentElement.offsetHeight,
+          className: canvas.parentElement.className
+        } : null
+      } : null,
+      uniforms: {
+        time: this.uniforms?.u_time?.value,
+        resolution: this.uniforms?.u_resolution?.value,
+        alpha: this.uniforms?.u_alpha?.value,
+        intensity: this.uniforms?.u_intensity?.value
+      },
+      threeJs: {
+        loaded: typeof THREE !== 'undefined',
+        scene: !!this.scene,
+        camera: !!this.camera,
+        renderer: !!this.renderer,
+        mesh: !!this.mesh
+      }
+    };
+  }
+
+  // 強制顯示粒子（提高透明度和強度）
+  forceShowParticles() {
+    if (this.uniforms) {
+      this.uniforms.u_alpha.value = 0.8;
+      this.uniforms.u_intensity.value = 1.0;
+      console.log('強制顯示粒子: alpha=0.8, intensity=1.0');
+    }
+  }
+
+  // 重置為正常值
+  resetParticles() {
+    if (this.uniforms) {
+      this.uniforms.u_alpha.value = 0.15;
+      this.uniforms.u_intensity.value = this.isMobile ? 0.3 : 0.5;
+      console.log('重置粒子參數為正常值');
+    }
+  }
 }
 
 // 等待DOM和Three.js載入後初始化

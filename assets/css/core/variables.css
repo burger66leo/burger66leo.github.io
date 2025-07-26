@@ -8,10 +8,10 @@
   --primary-yellow-light: #F8E9A9;
   --primary-yellow-dark: #E6C43E;
   
-  --background-light: #E2EEF2;
+  --background-light: #EEEEEE;
   --background-dark: #4A5C6A;
   --background-darker: #3A4A56;
-  --background-card: #4A5C6Abd;
+  --background-card: #FFFFFF;
   
   --text-primary: #2C3E50;
   --text-secondary: #34495E;
@@ -66,6 +66,33 @@
   --shadow-xl: 0 12px 30px rgba(74, 92, 106, 0.25);
   --shadow-yellow: 0 4px 20px rgba(243, 215, 78, 0.3);
   
+  /* 卡片系統 */
+  --card-padding: 2rem;
+  --card-radius: 6px;
+  --card-border-color: rgba(74, 92, 106, 0.25);
+  --card-border-hover: rgba(243, 215, 78, 0.4);
+  --card-shadow-hover: 0 8px 25px rgba(74, 92, 106, 0.12);
+  --card-background: #FFFFFF;
+  
+  /* Hero 系統 */
+  --hero-overlay-opacity: 0.3;
+  --hero-content-max-width: 800px;
+  --hero-text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  
+  /* 動畫令牌 */
+  --animation-magnetic-strength: 0.15;
+  --animation-duration-fast: 0.3s;
+  --animation-duration-normal: 0.6s;
+  --animation-duration-slow: 1s;
+  --animation-bounce-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --animation-smooth-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* 互動狀態 */
+  --hover-lift: -3px;
+  --hover-scale: 1.05;
+  --focus-outline: 2px solid var(--primary-yellow);
+  --focus-offset: 2px;
+  
   /* 轉場效果 */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
@@ -77,10 +104,23 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1200px;
   
+  /* 內容寬度 */
+  --content-width-narrow: 600px;
+  --content-width-normal: 800px;
+  --content-width-wide: 1000px;
+  --content-width-full: var(--breakpoint-xl);
+  
   /* Z-index */
-  --z-navbar: 1000;
-  --z-modal: 10000;
-  --z-tooltip: 20000;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-navbar: 1080;
+  --z-cursor-follower: 9999;
+  --z-particles: 9998;
   
   /* 導航欄高度 */
   --navbar-height: 80px;

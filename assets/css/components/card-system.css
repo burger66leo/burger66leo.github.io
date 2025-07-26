@@ -1,0 +1,263 @@
+/* ===========================================
+   卡片組件系統 - 可復用的卡片佈局
+   =========================================== */
+
+/* 卡片網格容器 */
+.card-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.card-grid--3-col {
+  gap: 2rem;
+}
+
+.card-grid--auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* 基礎卡片項目 */
+.card-item {
+  background: var(--background-card, #FFFFFF);
+  border-radius: var(--card-radius, 6px);
+  padding: var(--card-padding, 2rem);
+  border: 1px solid var(--card-border-color, rgba(74, 92, 106, 0.25));
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover, 0 8px 25px rgba(74, 92, 106, 0.12));
+  border-color: var(--card-border-hover, rgba(243, 215, 78, 0.4));
+}
+
+.card-item:focus {
+  outline: 2px solid var(--primary-yellow);
+  outline-offset: 2px;
+}
+
+.card-item:visited {
+  color: inherit;
+}
+
+/* 功能卡片變體 */
+.card-item--feature {
+  flex: 1;
+  justify-content: flex-start;
+  text-align: left;
+  min-height: 200px;
+}
+
+.card-item--feature .card-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.card-item--feature .card-title .main-word {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-item--feature .card-title .sub-text {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 0.3rem;
+}
+
+.card-item--feature .card-content {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 見證卡片變體 */
+.card-item--testimonial {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: rgba(74, 92, 106, 0.08);
+  border: 1px solid rgba(74, 92, 106, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.card-item--testimonial:hover {
+  border-color: rgba(243, 215, 78, 0.3);
+}
+
+.card-item--testimonial .card-quote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  font-style: italic;
+}
+
+.card-item--testimonial .card-author {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+/* 產品卡片變體 */
+.card-item--product {
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.card-item--product .card-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--spacing-lg) auto;
+  background: var(--gradient-yellow);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: var(--shadow-yellow);
+}
+
+.card-item--product .card-title {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.card-item--product .card-category {
+  color: var(--primary-yellow-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-md);
+}
+
+.card-item--product .card-content {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* 統計卡片變體 */
+.card-item--stat {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1) 0%, rgba(248, 233, 169, 0.1) 100%);
+  border: 1px solid rgba(243, 215, 78, 0.2);
+}
+
+.card-item--stat .card-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-yellow);
+  line-height: 1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.card-item--stat .card-label {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* 卡片動畫效果 */
+.card-item--magnetic {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-item--magnetic:hover {
+  /* 由 JavaScript 動態控制磁性效果 */
+}
+
+/* 卡片狀態 */
+.card-item--featured {
+  border: 2px solid var(--primary-yellow);
+  box-shadow: var(--shadow-yellow);
+}
+
+.card-item--featured:hover {
+  border-color: var(--primary-yellow);
+  box-shadow: var(--shadow-yellow);
+}
+
+.card-item--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+  .card-grid {
+    gap: var(--spacing-md);
+  }
+  
+  .card-grid--3-col {
+    gap: 1.5rem;
+  }
+  
+  .card-item {
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-grid--auto {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-item {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--spacing-md);
+  }
+  
+  .card-item--feature .card-title .main-word {
+    font-size: 1.6rem;
+  }
+  
+  .card-item--product .card-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .card-item--stat .card-number {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-item {
+    padding: var(--spacing-sm);
+  }
+  
+  .card-item--feature .card-title .main-word {
+    font-size: 1.4rem;
+  }
+  
+  .card-item--feature .card-content {
+    font-size: 0.9rem;
+  }
+}

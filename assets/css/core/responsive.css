@@ -27,6 +27,12 @@
     padding: var(--spacing-2xl) var(--spacing-lg);
   }
   
+  .feature-section {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+  
   .grid {
     gap: var(--spacing-lg);
   }
@@ -42,7 +48,7 @@
 @media (max-width: 768px) {
   .navbar {
     padding: var(--spacing-md);
-    background: rgba(74, 92, 106, 0.7);
+    background: rgba(255, 255, 255, 0.12);
   }
   
   .menu-toggle {
@@ -54,7 +60,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(74, 92, 106, 0.95);
+    background: rgba(255, 255, 255, 0.18);
     flex-direction: column;
     gap: 0;
     transform: translateY(-100%);
@@ -96,6 +102,11 @@
   
   .section {
     padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .feature-section {
+    padding: var(--spacing-lg) var(--spacing-md);
+    gap: var(--spacing-md);
   }
   
   .section h2 {
@@ -254,6 +265,11 @@
     padding: var(--spacing-md) var(--spacing-sm);
   }
   
+  .feature-section {
+    padding: var(--spacing-md) var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+  
   .section h2 {
     font-size: var(--font-size-2xl);
   }
@@ -307,6 +323,10 @@
   }
   
   .section {
+    max-width: 1400px;
+  }
+  
+  .feature-section {
     max-width: 1400px;
   }
   
@@ -378,8 +398,9 @@
 /* ===========================================
    深色模式支援 (備用)
    =========================================== */
+/* 暫時停用深色模式自動偵測，統一使用淺色主題 */
+/*
 @media (prefers-color-scheme: dark) {
-  /* 當使用者偏好深色模式時，這裡可以添加額外的深色模式優化 */
   :root {
     --background-light: #1a1a1a;
     --background-dark: #2c3e50;
@@ -387,3 +408,4 @@
     --text-secondary: #e3e3e3;
   }
 }
+*/

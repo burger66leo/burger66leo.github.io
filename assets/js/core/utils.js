@@ -70,9 +70,9 @@ const DOM = {
   }
 };
 
-// 動畫工具
+// 極簡動畫工具 - 僅保留必要效果
 const Animation = {
-  // 淡入動畫
+  // 極簡淡入
   fadeIn(element, duration = 300) {
     if (typeof element === 'string') {
       element = DOM.$(element);
@@ -83,12 +83,12 @@ const Animation = {
     element.style.display = 'block';
     element.style.transition = `opacity ${duration}ms ease`;
     
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       element.style.opacity = '1';
-    }, 10);
+    });
   },
   
-  // 淡出動畫
+  // 極簡淡出
   fadeOut(element, duration = 300) {
     if (typeof element === 'string') {
       element = DOM.$(element);
@@ -101,75 +101,18 @@ const Animation = {
     setTimeout(() => {
       element.style.display = 'none';
     }, duration);
-  },
-  
-  // 滑入動畫
-  slideIn(element, direction = 'up', duration = 600) {
-    if (typeof element === 'string') {
-      element = DOM.$(element);
-    }
-    if (!element) return;
-    
-    const transforms = {
-      up: 'translateY(30px)',
-      down: 'translateY(-30px)',
-      left: 'translateX(30px)',
-      right: 'translateX(-30px)'
-    };
-    
-    element.style.opacity = '0';
-    element.style.transform = transforms[direction];
-    element.style.transition = `all ${duration}ms ease`;
-    
-    setTimeout(() => {
-      element.style.opacity = '1';
-      element.style.transform = 'translate(0, 0)';
-    }, 10);
-  },
-  
-  // 漣漪效果
-  ripple(element, event) {
-    if (typeof element === 'string') {
-      element = DOM.$(element);
-    }
-    if (!element || !event) return;
-    
-    const ripple = DOM.create('span', 'ripple-effect');
-    const rect = element.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-    
-    ripple.style.cssText = `
-      position: absolute;
-      width: ${size}px;
-      height: ${size}px;
-      left: ${x}px;
-      top: ${y}px;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      transform: scale(0);
-      animation: ripple-animation 0.6s linear;
-      pointer-events: none;
-    `;
-    
-    element.style.position = 'relative';
-    element.style.overflow = 'hidden';
-    element.appendChild(ripple);
-    
-    setTimeout(() => {
-      ripple.remove();
-    }, 600);
   }
+  
+  // 移除所有transform動畫和漣漪效果
 };
 
-// 交集觀察器工具
+// 極簡觀察器工具
 const Observer = {
-  // 滾動動畫觀察器
+  // 極簡滾動觀察器 - 一次性效果
   scrollAnimation(elements, options = {}) {
     const defaultOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.15,  // 提高閾值
+      rootMargin: '0px 0px -30px 0px'
     };
     
     const observerOptions = { ...defaultOptions, ...options };
@@ -178,6 +121,8 @@ const Observer = {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          // 一次性效果，觀察後移除
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -322,59 +267,63 @@ const Utils = {
   }
 };
 
-// 通知系統
+// 極簡通知系統
 const Notification = {
-  show(message, type = 'info', duration = 5000) {
+  show(message, type = 'info', duration = 4000) {
     const notification = DOM.create('div', `notification ${type}`, message);
     notification.style.cssText = `
       position: fixed;
       top: 20px;
       right: 20px;
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      color: white;
-      font-weight: 500;
+      padding: 12px 16px;
+      border-radius: 2px;
+      border: 1px solid;
       z-index: 10000;
       opacity: 0;
-      transform: translateX(100%);
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease;
       max-width: 300px;
       word-wrap: break-word;
     `;
     
-    // 設置背景顏色
+    // 極簡色彩方案
     const colors = {
-      success: '#2ECC71',
-      error: '#E74C3C',
-      warning: '#F39C12',
-      info: '#4A90E2'
+      success: { bg: '#d4edda', border: '#c3e6cb', color: '#155724' },
+      error: { bg: '#f8d7da', border: '#f5c6cb', color: '#721c24' },
+      warning: { bg: '#fff3cd', border: '#ffeaa7', color: '#856404' },
+      info: { bg: '#f8f9fa', border: '#dee2e6', color: '#495057' }
     };
     
-    notification.style.background = colors[type] || colors.info;
+    const style = colors[type] || colors.info;
+    Object.assign(notification.style, {
+      backgroundColor: style.bg,
+      borderColor: style.border,
+      color: style.color
+    });
     
     document.body.appendChild(notification);
     
-    // 顯示動畫
-    setTimeout(() => {
+    // 極簡顯示效果
+    requestAnimationFrame(() => {
       notification.style.opacity = '1';
-      notification.style.transform = 'translateX(0)';
-    }, 100);
+    });
     
     // 自動隱藏
     setTimeout(() => {
       notification.style.opacity = '0';
-      notification.style.transform = 'translateX(100%)';
       setTimeout(() => {
-        notification.remove();
+        if (notification.parentNode) {
+          notification.remove();
+        }
       }, 300);
     }, duration);
     
     // 點擊關閉
     notification.addEventListener('click', () => {
       notification.style.opacity = '0';
-      notification.style.transform = 'translateX(100%)';
       setTimeout(() => {
-        notification.remove();
+        if (notification.parentNode) {
+          notification.remove();
+        }
       }, 300);
     });
     
@@ -382,31 +331,26 @@ const Notification = {
   }
 };
 
-// 添加 CSS 動畫
+// 極簡 CSS 樣式
 const style = document.createElement('style');
 style.textContent = `
-  @keyframes ripple-animation {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
-  
+  /* 極簡淡入效果 */
   .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+    transition: opacity 0.4s ease;
   }
   
   .fade-in.visible {
     opacity: 1;
-    transform: translateY(0);
   }
   
+  /* 懶加載圖片 */
   .lazy {
-    filter: blur(5px);
-    transition: filter 0.3s;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
   }
+  
+  /* 移除所有transform和複雜動畫 */
 `;
 document.head.appendChild(style);
 

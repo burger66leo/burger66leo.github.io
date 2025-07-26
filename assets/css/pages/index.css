@@ -1,0 +1,525 @@
+/* ===========================================
+   首頁專用樣式 - 功能卡片區域
+   =========================================== */
+
+/* 功能卡片區域 - 現在使用 .section 包裝，修正 Flexbox 對齊 */
+.card-grid.card-grid--3-col {
+  /* 讓卡片撐滿 .section 的寬度 */
+  width: 100%;
+  gap: 2rem;
+  justify-content: space-between !important; /* 覆蓋 card-system.css 的 center 對齊 */
+}
+
+/* 首頁功能卡片特殊樣式 */
+.card-item.card-item--feature {
+  flex: 1;
+  min-height: 280px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  background: #FFFFFF !important; /* 強制白色背景 */
+  border: 1px solid rgba(74, 92, 106, 0.25);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.card-item.card-item--feature:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(74, 92, 106, 0.12);
+  border-color: rgba(243, 215, 78, 0.4);
+}
+
+/* 卡片標題樣式優化 */
+.card-item--feature .card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.card-item--feature .card-title .main-word {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-right: 0.5rem;
+}
+
+.card-item--feature .card-title .sub-text {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(74, 92, 106, 0.7);
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* 卡片內容樣式 */
+.card-item--feature .card-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* 響應式設計 - 只需要調整卡片內部樣式，容器由 .section 處理 */
+@media (max-width: 768px) {
+  .card-grid.card-grid--3-col {
+    flex-direction: column !important; /* 手機版垂直排列 */
+    gap: 1.5rem;
+  }
+  
+  .card-item.card-item--feature {
+    min-height: 200px;
+    padding: 1.5rem;
+  }
+  
+  .card-item--feature .card-title .main-word {
+    font-size: 1.6rem;
+  }
+  
+  .card-item--feature .card-title .sub-text {
+    font-size: 0.9rem;
+  }
+  
+  .card-item--feature .card-content {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-item.card-item--feature {
+    padding: 1.25rem;
+    min-height: 180px;
+  }
+  
+  .card-item--feature .card-title .main-word {
+    font-size: 1.4rem;
+  }
+}
+
+/* ===========================================
+   Hero 區域
+   =========================================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 0 1rem;
+}
+
+/* Hero 標題樣式 */
+.hero-title-text {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+  opacity: 0; /* 初始隱藏，等待 GSAP 動畫 */
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2rem 0;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0; /* 初始隱藏，等待 GSAP 動畫 */
+}
+
+/* Hero Logo 樣式 */
+.hero-logo {
+  text-align: center;
+  margin-bottom: 2rem;
+  opacity: 0; /* 初始隱藏，等待 GSAP 動畫 */
+}
+
+.hero-logo-svg {
+  width: 300px;
+  height: auto;
+  max-width: 90vw;
+  filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.7));
+}
+
+.hero-description {
+  font-size: 1rem;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  opacity: 0; /* 初始隱藏，等待 GSAP 動畫 */
+}
+
+/* 打字機光標樣式 */
+.typing-cursor {
+  color: var(--primary-yellow);
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(243, 215, 78, 0.8);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Hero 響應式設計 */
+@media (max-width: 768px) {
+  .hero-title-text {
+    font-size: 2.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-logo-svg {
+    width: 250px;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title-text {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .hero-logo-svg {
+    width: 200px;
+  }
+  
+  .hero-description {
+    font-size: 0.85rem;
+  }
+}
+
+.hero p {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 1rem;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ===========================================
+   主要內容區域 - 粒子背景容器
+   =========================================== */
+.main-content {
+  background: var(--background-light);
+  position: relative;
+  min-height: 100vh; /* 增加高度以確保粒子有足夠空間 */
+}
+
+/* 粒子背景層 */
+#particles-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 內容層 - 在粒子上方 */
+.content-layer {
+  position: relative;
+  z-index: 2;
+}
+
+/* 漸變遮罩效果 - 暫時註解以便看到粒子 */
+/*
+.main-content::before, 
+.main-content::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--background-light) 10%, rgba(238, 238, 238, 0));
+  pointer-events: none;
+}
+
+.main-content::before {
+  top: 0;
+}
+
+.main-content::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--background-light) 50%, rgba(238, 238, 238, 0));
+}
+*/
+
+/* 粒子背景容器 - 更新為wrapper/content結構 */
+#wrapper {
+  background: var(--background-light);
+  position: relative;
+  overflow: hidden;
+}
+
+#content {
+  position: relative; /* 建立定位上下文 */
+  z-index: 1;
+}
+
+/* 粒子背景層 - 絕對定位的背景 */
+#particles-background-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* 會自動適應父容器 #content 的高度 */
+  z-index: 1; /* 背景層 */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 內容層 - 正常文檔流 */
+.main-content {
+  position: relative;
+  z-index: 2; /* 在背景層上方 */
+  background: transparent; /* 透明背景，可以看到粒子 */
+}
+
+/* 滾動指示器 */
+.scroll {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  font-family: "Noto Sans TC", sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 11px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.scroll span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.scroll svg {
+  width: 18px;
+  height: 18px;
+  animation: scroll-bounce 0.95s ease-in-out alternate infinite;
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  stroke-width: 1;
+}
+
+/* 滾動動畫 */
+@keyframes scroll-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/* 粒子樣式 - 在背景層中垂直流動 */
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 40%;
+  opacity: 0;
+  margin: -19px auto; /* 重要：負邊距讓圓圈垂直重疊流動 */
+  transition: transform 1s cubic-bezier(0.14, 0.15, 0.13, 0.99);
+  pointer-events: none;
+  position: relative; /* 在背景層內正常流動 */
+  z-index: 1;
+}
+
+/* Index 專用的 section 樣式覆蓋 */
+.section h2 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: var(--gradient-yellow);
+  border-radius: 2px;
+}
+
+/* section p 樣式已移至 core/components.css 統一管理 */
+
+/* 功能卡片區域 - 對齊其他區塊 */
+.feature-section {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  padding: var(--spacing-3xl) var(--spacing-xl); /* 與 .section 相同的 padding */
+  max-width: var(--breakpoint-xl); /* 與 .section 相同的 max-width */
+  margin: 0 auto;
+  opacity: 0; /* 初始隱藏，等待動畫 */
+}
+
+.feature-card {
+  flex: 1;
+  background: #FFFFFF;
+  padding: 2rem;
+  border-radius: 6px; /* 小圓角 */
+  text-align: left;
+  border: 1px solid rgba(74, 92, 106, 0.25); /* 深一點的邊框 */
+  box-shadow: none; /* 移除陰影 */
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  opacity: 0; /* 初始隱藏，等待動畫 */
+  text-decoration: none; /* 移除連結底線 */
+  color: inherit; /* 繼承文字顏色 */
+  cursor: pointer; /* 顯示手指游標 */
+}
+
+.feature-card:hover {
+  transform: translateY(-3px); /* 輕微上移 */
+  border-color: rgba(243, 215, 78, 0.4); /* 更淡的金色邊框 */
+  background: rgba(255, 255, 255, 0.98); /* 微妙的背景變化 */
+  box-shadow: 0 8px 25px rgba(74, 92, 106, 0.12); /* 使用藍灰色陰影 */
+  text-decoration: none; /* 確保懸停時沒有底線 */
+}
+
+.feature-card:visited {
+  color: inherit; /* 訪問後保持相同顏色 */
+}
+
+.feature-card:focus {
+  outline: 2px solid rgba(243, 215, 78, 0.5); /* 鍵盤焦點樣式 */
+  outline-offset: 2px;
+}
+
+.feature-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.feature-card h3 .main-word {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.feature-card h3 .sub-text {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 0.3rem;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 確保連結狀態下的文字顏色 */
+a.feature-card h3 {
+  color: var(--text-primary);
+}
+
+a.feature-card p {
+  color: var(--text-secondary);
+}
+
+a.feature-card:visited h3 {
+  color: var(--text-primary);
+}
+
+a.feature-card:visited p {
+  color: var(--text-secondary);
+}
+
+/* ===========================================
+   Footer 樣式移至 components.css 統一管理
+   =========================================== */
+
+/* ===========================================
+   動畫關鍵幀與 GSAP 降級方案
+   =========================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* GSAP 降級方案 */
+.gsap-fallback .hero-title-text,
+.gsap-fallback .hero-subtitle,
+.gsap-fallback .hero-description,
+.gsap-fallback .logo,
+.gsap-fallback nav a,
+.gsap-fallback .menu-toggle,
+.gsap-fallback .feature-section,
+.gsap-fallback .feature-card {
+  opacity: 1 !important;
+  animation: fadeInUp 0.8s ease forwards;
+}
+

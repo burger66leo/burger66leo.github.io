@@ -1,0 +1,177 @@
+/* 觀眾證詞卡片樣式 */
+.testimonial-content {
+  background: var(--background-light);
+  backdrop-filter: blur(20px);
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quote-icon {
+  font-size: 4rem;
+  color: var(--primary-yellow);
+  opacity: 0.3;
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.testimonial-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonial-meta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-meta .author {
+  font-weight: 600;
+  color: var(--primary-yellow);
+  font-size: 0.95rem;
+}
+
+.testimonial-meta .date {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.video-tag {
+  display: inline-block;
+  background: var(--gradient-yellow);
+  color: black;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* 輪播控制 */
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.carousel-btn {
+  background: var(--background-light);
+  border: 2px solid var(--primary-yellow);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--primary-yellow);
+  backdrop-filter: blur(10px);
+}
+
+.carousel-btn:hover {
+  background: var(--primary-yellow);
+  color: var(--text-primary);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-yellow);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(44, 62, 80, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.indicator.active {
+  background: var(--primary-yellow);
+  transform: scale(1.2);
+  border-color: rgba(44, 62, 80, 0.3);
+}
+
+.indicator:hover {
+  background: var(--primary-yellow);
+  transform: scale(1.1);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .testimonials-carousel {
+    margin: 0 1rem;
+  }
+  
+  .testimonial-content {
+    padding: 2rem 1.5rem;
+    min-height: 250px;
+  }
+  
+  .quote-icon {
+    font-size: 3rem;
+    top: 0.5rem;
+    left: 1rem;
+  }
+  
+  .carousel-controls {
+    gap: 1rem;
+  }
+  
+  .carousel-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .testimonial-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-content {
+    padding: 1.5rem 1rem;
+    min-height: 220px;
+  }
+  
+  .testimonial-text {
+    font-size: 0.95rem;
+  }
+  
+  .quote-icon {
+    font-size: 2.5rem;
+  }
+  
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

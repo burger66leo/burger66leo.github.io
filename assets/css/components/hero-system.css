@@ -1,0 +1,452 @@
+/* ===========================================
+   Hero 組件系統 - 可復用的頁面頂部區塊
+   =========================================== */
+
+/* Hero 容器基礎 */
+.hero-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  min-height: 60vh;
+}
+
+.hero-container--fullscreen {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.hero-container--large {
+  height: 80vh;
+  min-height: 600px;
+}
+
+.hero-container--medium {
+  height: 60vh;
+  min-height: 400px;
+}
+
+.hero-container--small {
+  height: 40vh;
+  min-height: 300px;
+}
+
+/* Hero 媒體背景 */
+.hero-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-media--video .hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-media--image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-media--gradient {
+  background: var(--gradient-header);
+}
+
+.hero-media--solid {
+  background: var(--background-dark);
+}
+
+/* Hero 覆蓋層 */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.hero-overlay--dark {
+  background: rgba(0, 0, 0, var(--hero-overlay-opacity));
+}
+
+.hero-overlay--light {
+  background: rgba(255, 255, 255, var(--hero-overlay-opacity));
+}
+
+.hero-overlay--gradient {
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 0, 0, 0.4) 0%, 
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+.hero-overlay--none {
+  background: none;
+}
+
+/* Hero 內容區域 */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  color: white;
+  padding: var(--spacing-xl);
+  max-width: var(--hero-content-max-width);
+  margin: 0 auto;
+}
+
+.hero-content--left {
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.hero-content--right {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.hero-content--center {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Hero Logo 區域 */
+.hero-logo {
+  margin-bottom: var(--spacing-lg);
+  opacity: 0; /* 等待動畫 */
+}
+
+.hero-logo--small .hero-logo-image {
+  width: 150px;
+  height: auto;
+  max-width: 80vw;
+}
+
+.hero-logo--medium .hero-logo-image {
+  width: 250px;
+  height: auto;
+  max-width: 85vw;
+}
+
+.hero-logo--large .hero-logo-image {
+  width: 350px;
+  height: auto;
+  max-width: 90vw;
+}
+
+.hero-logo-image {
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.7));
+}
+
+/* Hero 標題 */
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 var(--spacing-md) 0;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+  opacity: 0; /* 等待動畫 */
+}
+
+.hero-title--xl {
+  font-size: 4.5rem;
+}
+
+.hero-title--lg {
+  font-size: 3.5rem;
+}
+
+.hero-title--md {
+  font-size: 2.8rem;
+}
+
+.hero-title--sm {
+  font-size: 2.2rem;
+}
+
+/* Hero 副標題 */
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 var(--spacing-lg) 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0; /* 等待動畫 */
+}
+
+.hero-subtitle--lg {
+  font-size: 1.4rem;
+}
+
+.hero-subtitle--md {
+  font-size: 1.2rem;
+}
+
+.hero-subtitle--sm {
+  font-size: 1rem;
+}
+
+/* Hero 描述文字 */
+.hero-description {
+  font-size: 1rem;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.6;
+  text-shadow: var(--hero-text-shadow);
+  opacity: 0; /* 等待動畫 */
+}
+
+.hero-description--lg {
+  font-size: 1.2rem;
+}
+
+.hero-description--md {
+  font-size: 1rem;
+}
+
+.hero-description--sm {
+  font-size: 0.9rem;
+}
+
+/* Hero 行動按鈕 */
+.hero-actions {
+  margin-top: var(--spacing-xl);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.hero-actions--left {
+  justify-content: flex-start;
+}
+
+.hero-actions--right {
+  justify-content: flex-end;
+}
+
+.hero-button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius-full);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.hero-button--primary {
+  background: var(--primary-yellow);
+  color: var(--background-dark);
+  border: 2px solid var(--primary-yellow);
+}
+
+.hero-button--primary:hover {
+  background: var(--primary-yellow-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-yellow);
+}
+
+.hero-button--secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.hero-button--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+.hero-button--ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: none;
+  text-decoration: underline;
+}
+
+.hero-button--ghost:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* Hero 滾動提示 */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--spacing-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  animation: bounce 2s infinite;
+}
+
+.hero-scroll-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* 打字機光標 */
+.typing-cursor {
+  color: var(--primary-yellow);
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(243, 215, 78, 0.8);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+  .hero-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-title--xl {
+    font-size: 3.2rem;
+  }
+  
+  .hero-logo--large .hero-logo-image {
+    width: 280px;
+  }
+  
+  .hero-logo--medium .hero-logo-image {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container--fullscreen {
+    height: 100vh;
+  }
+  
+  .hero-content {
+    padding: var(--spacing-md);
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-title--xl {
+    font-size: 2.6rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+  }
+  
+  .hero-logo--large .hero-logo-image {
+    width: 220px;
+  }
+  
+  .hero-logo--medium .hero-logo-image {
+    width: 180px;
+  }
+  
+  .hero-logo--small .hero-logo-image {
+    width: 140px;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-button {
+    width: 200px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container--fullscreen {
+    height: 100vh;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .hero-description {
+    font-size: 0.85rem;
+  }
+  
+  .hero-logo--large .hero-logo-image {
+    width: 180px;
+  }
+  
+  .hero-logo--medium .hero-logo-image {
+    width: 150px;
+  }
+  
+  .hero-logo--small .hero-logo-image {
+    width: 120px;
+  }
+  
+  .hero-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 0.9rem;
+  }
+}
+
+/* 無障礙設計 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-hint {
+    animation: none;
+  }
+  
+  .typing-cursor {
+    animation: none;
+    opacity: 1;
+  }
+}

@@ -6,12 +6,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>關於我們 - 三稜鏡 prizm｜科技與創意的交會點</title>
-  <link rel="stylesheet" href="../assets/css/variables.css">
-  <link rel="stylesheet" href="../assets/css/base.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
-  <link rel="stylesheet" href="../assets/css/main.css">
-  <link rel="stylesheet" href="../assets/css/about.css">
-  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <link rel="stylesheet" href="../assets/css/core/variables.css">
+  <link rel="stylesheet" href="../assets/css/core/base.css">
+  <link rel="stylesheet" href="../assets/css/core/components.css">
+  <link rel="stylesheet" href="../assets/css/components/page-header.css">
+  <link rel="stylesheet" href="../assets/css/pages/index.css">
+  <link rel="stylesheet" href="../assets/css/pages/about.css">
+  <link rel="stylesheet" href="../assets/css/core/responsive.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
     <a href="/" class="logo">
       <picture>
         <source srcset="../assets/images/logo-icon.webp" type="image/webp">
-        <img src="../assets/images/logo-icon.png" alt="品牌 Logo">
+        <img src="../assets/images/logo-icon.png" alt="品牌 Logo" width="40" height="40">
       </picture>
     </a>
     
@@ -49,10 +50,10 @@
 
   <!-- 主要內容 -->
   <div class="main-content">
-    <!-- 品牌故事 -->
+    <!-- Our Story -->
     <section class="section fade-in">
-      <h2>我們的故事</h2>
-      <div class="story-content">
+      <h2>Our Story</h2>
+      <div class="text-content">
         <p>
           三稜鏡 prizm 是一個結合科技洞察、品牌分析、系統性思辨的中文內容頻道。我們相信，在這個資訊爆炸的時代，需要有人能夠深入挖掘表象背後的本質，用理性而有感的方式，為觀眾呈現真正有價值的內容。
         </p>
@@ -62,32 +63,49 @@
       </div>
     </section>
 
-    <!-- 核心理念 -->
-    <section class="section fade-in">
-      <h2>我們的理念</h2>
-      <div class="philosophy-grid">
-        <div class="philosophy-card">
-          <h3>深度洞察</h3>
-          <p>不滿足於表面報導，我們深入分析華為、蘋果、微軟等科技巨頭的產品策略與商業模式。</p>
-        </div>
-        <div class="philosophy-card">
-          <h3>文化品牌</h3>
-          <p>關注 Duolingo、Minecraft 等文化品牌，探索它們如何建立獨特的敘事手法與用戶連結。</p>
-        </div>
-        <div class="philosophy-card">
-          <h3>系統思維</h3>
-          <p>運用系統性思辨，將零散的商業現象串聯成完整的知識架構。</p>
-        </div>
-        <div class="philosophy-card">
-          <h3>實踐創新</h3>
-          <p>不只是評論者，我們也是創作者。透過開發 App 與實際項目，驗證理論與實踐的結合。</p>
+    <!-- Our Philosophy -->
+    <section class="philosophy-stacking">
+      <div class="container">
+        <div class="philosophy-cards">
+          
+          <div class="stack-card" style="background: linear-gradient(135deg, #3A4A56 0%, #4A5C6A 100%);">
+            <div class="stack-card__body">
+              <h3>創作實驗</h3>
+              <p>我們實踐自己的觀點，從 app 到內容，讓創作成為驗證與創新的場域。</p>
+            </div>
+          </div>
+
+          <div class="stack-card" style="background: linear-gradient(135deg, #4A5C6A 0%, #5A6C7A 100%);">
+            <div class="stack-card__body">
+              <h3>系統思辨</h3>
+              <p>我們相信，世界是系統構成的。用系統性思維，讓零碎的資訊轉化為可掌控的知識框架。</p>
+            </div>
+          </div>
+
+          <div class="stack-card" style="background: linear-gradient(135deg, #5A6C7A 0%, #6A7C8A 100%);">
+            <div class="stack-card__body">
+              <h3>品牌敘事</h3>
+              <p>文化品牌不只是產品，它們是時代語言。我們探索 Minecraft、華為 等如何用敘事形塑價值與認同。</p>
+            </div>
+          </div>
+
+          <div class="stack-card" style="background: linear-gradient(135deg, #F3CF4E 0%, #F3D74E 100%);">
+            <div class="stack-card__body">
+              <h3>看透表象</h3>
+              <p>我們拆解科技公司的產品策略與商業布局，不為熱點停留，只為看清選擇背後的思維模式。</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+    
+    <div class="spacer"></div>
 
-    <!-- 內容範疇 -->
+
+    <!-- What We Cover -->
     <section class="section fade-in">
-      <h2>內容範疇</h2>
+      <h2>What We Cover</h2>
       <div class="content-areas">
         <div class="area-item">
           <div class="area-icon">🔍</div>
@@ -112,15 +130,91 @@
       </div>
     </section>
 
-    <!-- 團隊介紹 -->
+    <!-- Meet the Creator -->
     <section class="section fade-in">
-      <h2>創作團隊</h2>
-      <div class="team-content">
+      <h2>Meet the Creator</h2>
+      <div class="text-content">
         <p>
-          我們是一群對科技與商業充滿好奇心的創作者。我們相信優質的內容來自於深度的思考、廣泛的閱讀，以及不斷的實踐驗證。
+          我是一個對世界充滿好奇的人，習慣用紀錄和拆解來理解現象。我是 Leo，也是三稜鏡 prizm 的創作者。
         </p>
         <p>
-          每一支影片、每一個 App、每一篇分析，都是我們對這個快速變化世界的思考記錄。我們希望透過我們的內容，能夠啟發更多人思考，也為中文內容生態貢獻一份力量。
+          這個頻道不是新聞，也不只是評論，而是一次次對「為什麼」的追問。科技產品如何影響我們的選擇？品牌如何建立文化？個人又該如何在這樣的世界中成長？這些問題，推動我不斷思考與創作。
+        </p>
+        <p>
+          我相信理性是一種自由，紀錄是自我掌控的開始。所以除了影片，我也實作自己的觀點，開發 App，建構工具，讓思考不只停留在紙上，而能真正影響生活。
+        </p>
+        <p>
+          三稜鏡是我觀察世界的方式，也是一段與你一起探索與成長的旅程。
+        </p>
+      </div>
+    </section>
+
+    <!-- Disclosure -->
+    <section class="section fade-in">
+      <h2>Disclosure</h2>
+      <div class="disclosure-intro">
+        <p>我們相信透明是建立信任的基礎。以下是我們對內容獨立性與合作透明度的承諾。</p>
+      </div>
+      
+      <div class="disclosure-grid">
+        <div class="disclosure-item">
+          <div class="disclosure-icon">🔍</div>
+          <h3>獨立性承諾</h3>
+          <p>
+            每一支影片、每一篇分析，都忠實反映我們的真實觀點與深度思考。
+          </p>
+          <ul>
+            <li>不發布受外部影響的內容</li>
+            <li>所有廣告內容明確標註與隔離</li>
+            <li>保持客觀分析的獨立立場</li>
+          </ul>
+        </div>
+        
+        <div class="disclosure-item">
+          <div class="disclosure-icon">📋</div>
+          <h3>透明度政策</h3>
+          <p>
+            我們會主動披露任何可能影響內容客觀性的利益相關情況。
+          </p>
+          <ul>
+            <li>發布時標註所有利益相關資訊</li>
+            <li>提供完整的合作背景說明</li>
+            <li>歡迎觀眾對內容獨立性提出疑問</li>
+          </ul>
+        </div>
+        
+        <div class="disclosure-item">
+          <div class="disclosure-icon">🤝</div>
+          <h3>產品合作</h3>
+          <p>
+            我們歡迎有意義的產品合作，但始終保持評測的客觀性。
+          </p>
+          <ul>
+            <li>接受產品送測，但不接受內容干涉</li>
+            <li>分享真實使用體驗與客觀評價</li>
+            <li>測試完成後歸還所有送測產品</li>
+          </ul>
+        </div>
+        
+        <div class="disclosure-item">
+          <div class="disclosure-icon">🎁</div>
+          <h3>收禮原則</h3>
+          <p>
+            我們設定明確的收禮標準，避免任何可能影響判斷的利益衝突。
+          </p>
+          <ul>
+            <li>不收受超過 <strong>$150 USD</strong> 的禮物</li>
+            <li>拒絕以影響內容為目的的贈禮</li>
+            <li>涵蓋實物、餐飲、旅行、娛樂等所有形式</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="disclosure-contact">
+        <h3>保持對話</h3>
+        <p>
+          如果您對我們的內容獨立性有任何疑問，或希望了解更多關於我們的合作政策，
+          <strong>歡迎隨時與我們聯繫</strong>。開放的對話是維護信任的最好方式。
         </p>
       </div>
     </section>
@@ -129,20 +223,20 @@
   <!-- Footer -->
   <footer>
     <div class="social-links">
-      <a href="https://www.youtube.com/@prism66" target="_blank" title="YouTube">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" />
+      <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" title="YouTube">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="24" height="24" />
       </a>
       <span class="separator">|</span>
       <a href="https://instagram.com/your_instagram" target="_blank" title="Instagram">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" />
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24" height="24" />
       </a>
       <span class="separator">|</span>
       <a href="https://facebook.com/your_facebook" target="_blank" title="Facebook">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24" height="24" />
       </a>
       <span class="separator">|</span>
       <a href="mailto:hi@prizm.com.tw" title="Email">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" />
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" width="24" height="24" />
       </a>
     </div>
     <div class="copyright">
@@ -150,8 +244,12 @@
     </div>
   </footer>
 
-  <script src="../assets/js/utils.js"></script>
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/about.js"></script>
+  <!-- GSAP 動畫庫 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="../assets/js/core/main.js"></script>
+  <script src="../assets/js/pages/about.js"></script>
 </body>
 </html>

@@ -1,30 +1,128 @@
+# ====================
 # 作業系統相關
+# ====================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
 
+# ====================
 # 編輯器相關
+# ====================
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.sublime-project
+.sublime-workspace
 
-# 暫時檔案
-*.tmp
-*.log
+# ====================
+# AI 工具相關
+# ====================
+# Claude Code 
+.claude_history
+.claude_code/
+.claude_config/
+.claude/
+CLAUDE.md
 
-# 節點模組（如果之後使用）
+# 設計文檔 (僅供內部開發參考)
+docs/
+
+# 臨時文檔和筆記
+網站架構優化策略.md
+
+# Cursor
+.cursor/
+
+# GitHub Copilot
+.copilot/
+
+# ChatGPT
+.chatgpt/
+
+# ====================
+# 開發工具
+# ====================
+# Node.js
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
 
-# 建置檔案
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# ====================
+# 建置和部署
+# ====================
 dist/
 build/
+*.tgz
+*.tar.gz
 
-# 環境變數
+# ====================
+# 環境變數和配置
+# ====================
 .env
 .env.local
-.DS_Store
-assets/.DS_Store
-.DS_Store
-.DS_Store
-assets/.DS_Store
-assets/images/.DS_Store
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ====================
+# 日誌和暫存
+# ====================
+*.log
+*.tmp
+*.temp
+*.cache
+.cache/
+
+# ====================
+# 備份檔案
+# ====================
+*.bak
+*.backup
+*.orig
+*.rej
+
+# ====================
+# 壓縮檔案
+# ====================
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ====================
+# 其他
+# ====================
+# 測試覆蓋率
+coverage/
+*.lcov
+
+# 文件系統
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent

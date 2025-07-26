@@ -1,0 +1,103 @@
+/**
+ * 粒子背景組件樣式
+ * 配合 ParticleBackground.js 使用
+ */
+
+/* 粒子背景容器基礎樣式 */
+.particle-background-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 粒子背景層 */
+.particle-background-layer,
+#particles-background-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* 確保至少有視窗高度 */
+  min-height: 100vh; /* 最小高度為視窗高度 */
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible; /* 允許粒子超出容器邊界 */
+}
+
+/* 單個粒子樣式 - 由組件動態生成 */
+.particle-bg-circle,
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 40%;
+  opacity: 0;
+  margin: -19px auto; /* 重要：負邊距讓圓圈垂直重疊流動 */
+  transition: transform 1s cubic-bezier(0.14, 0.15, 0.13, 0.99);
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+/* 不同密度的粒子容器 */
+.particle-density-low {
+  /* 低密度粒子的特殊樣式 */
+}
+
+.particle-density-medium {
+  /* 中等密度粒子的特殊樣式 */
+}
+
+.particle-density-high {
+  /* 高密度粒子的特殊樣式 */
+}
+
+/* 粒子動畫相關 */
+.particle-bg-circle.animate-in,
+.circle.animate-in {
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.particle-bg-circle.animate-out,
+.circle.animate-out {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* 調試模式樣式 */
+.particle-debug .particle-bg-circle,
+.particle-debug .circle {
+  border: 1px solid rgba(255, 0, 0, 0.3) !important;
+}
+
+.particle-debug .particle-bg-circle:nth-child(-n+10),
+.particle-debug .circle:nth-child(-n+10) {
+  border: 2px solid red !important;
+  z-index: 10;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+  .particle-bg-circle,
+  .circle {
+    width: 16px;
+    height: 16px;
+    margin: -15px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .particle-bg-circle,
+  .circle {
+    width: 12px;
+    height: 12px;
+    margin: -11px auto;
+  }
+}
+
+/* 效能優化 - 在低端設備上減少動畫 */
+@media (max-width: 480px) and (max-height: 800px) {
+  .particle-bg-circle,
+  .circle {
+    transition: none;
+  }
+}

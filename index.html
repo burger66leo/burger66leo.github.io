@@ -1,16 +1,141 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<link rel="icon" type="image/png" href="/assets/images/logo-icon.webp">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>三稜鏡 prizm｜科技與創意的交會點</title>
-  <link rel="stylesheet" href="assets/css/variables.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
+  <meta name="description" content="三稜鏡 prizm 致力於以獨特敘事呈現科技與創新的價值，專注於 YouTube 內容創作、品牌企劃與 App 開發。">
+  <meta name="keywords" content="科技影片,品牌企劃,App開發,YouTube創作,科技洞察,商業分析,三稜鏡,prizm">
+  <meta name="author" content="三稜鏡 prizm">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prizm.com.tw/">
+  <meta property="og:title" content="三稜鏡 prizm｜科技與創意的交會點">
+  <meta property="og:description" content="三稜鏡 prizm 致力於以獨特敘事呈現科技與創新的價值，專注於 YouTube 內容創作、品牌企劃與 App 開發。">
+  <meta property="og:image" content="https://prizm.com.tw/assets/images/logo-og.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://prizm.com.tw/">
+  <meta property="twitter:title" content="三稜鏡 prizm｜科技與創意的交會點">
+  <meta property="twitter:description" content="三稜鏡 prizm 致力於以獨特敘事呈現科技與創新的價值，專注於 YouTube 內容創作、品牌企劃與 App 開發。">
+  <meta property="twitter:image" content="https://prizm.com.tw/assets/images/logo-og.png">
+  
+  <link rel="canonical" href="https://prizm.com.tw/">
+  <link rel="icon" type="image/webp" href="/assets/images/logo-icon.webp">
+  <link rel="icon" type="image/png" href="/assets/images/logo-icon.png">
+  
+  <!-- 預載入關鍵資源 -->
+  <link rel="preload" href="assets/images/logo.png" as="image" type="image/png">
+  <link rel="preload" href="assets/videos/hero.mp4" as="video" type="video/mp4">
+  
+  <!-- 字體優化 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/core/variables.css">
+  <link rel="stylesheet" href="assets/css/core/base.css">
+  <link rel="stylesheet" href="assets/css/core/components.css">
+  <link rel="stylesheet" href="assets/css/components/card-system.css">
+  <link rel="stylesheet" href="assets/css/components/hero-system.css">
+  <link rel="stylesheet" href="assets/css/components/particle-background.css">
+  <link rel="stylesheet" href="assets/css/pages/index.css">
+  <link rel="stylesheet" href="assets/css/core/responsive.css">
+  
+  <!-- GSAP 動畫系統 -->
+  <style>
+    /* 防止動畫載入前的閃爍 */
+    .hero-description {
+      opacity: 0;
+    }
+    .fade-in {
+      opacity: 0;
+    }
+    
+    /* Debug 面板樣式 */
+    #debug-panel {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      z-index: 10000;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      max-width: 300px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      display: none; /* 預設隱藏 */
+    }
+    
+    #debug-panel.show {
+      display: block;
+    }
+    
+    .debug-title {
+      color: #F3D74E;
+      font-weight: bold;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+    }
+    
+    .debug-section {
+      margin-bottom: 8px;
+    }
+    
+    .debug-label {
+      color: #4A90E2;
+      font-weight: bold;
+    }
+    
+    .debug-controls {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    
+    .debug-btn {
+      background: #F3D74E;
+      color: #000;
+      border: none;
+      padding: 5px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: bold;
+    }
+    
+    .debug-btn:hover {
+      background: #E6C43E;
+    }
+    
+    .debug-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #F3D74E;
+      color: #000;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 10001;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .debug-toggle:hover {
+      background: #E6C43E;
+    }
+  </style>
 </head>
 
 <body>
@@ -19,18 +144,18 @@
     <a href="/" class="logo">
       <picture>
         <source srcset="assets/images/logo-icon.webp" type="image/webp">
-        <img src="assets/images/logo-icon.png" alt="品牌 Logo">
+        <img src="assets/images/logo-icon.png" alt="品牌 Logo" width="40" height="40">
       </picture>
     </a>
     
     <!-- 移動端菜單按鈕 -->
-    <div class="menu-toggle" id="menuToggle">
+    <button class="menu-toggle" id="menuToggle" aria-label="切換導航菜單" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
     
-    <nav id="nav">
+    <nav id="nav" aria-hidden="true" role="navigation" aria-label="主導航">
       <a href="pages/about.html">ABOUT</a>
       <a href="pages/apps.html">APPS</a>
       <a href="pages/videos.html">VIDEOS</a>
@@ -40,62 +165,90 @@
 
   <!-- Hero 區域 -->
   <div class="hero">
-    <video autoplay muted loop playsinline class="hero-video">
+    <video autoplay muted loop playsinline class="hero-video" poster="assets/images/hero-poster.jpg">
+      <source src="assets/videos/hero.webm" type="video/webm" />
       <source src="assets/videos/hero.mp4" type="video/mp4" />
       您的瀏覽器不支援影片播放。
     </video>
     <div class="hero-content">
-      <img src="assets/images/logo.png" alt="三稜鏡 prizm" class="hero-title">
-      <p>讓複雜的故事變得有感、有趣。</p>
+      <div class="hero-logo">
+        <img src="assets/images/logo.png" alt="三稜鏡 PRISM" class="hero-logo-svg">
+      </div>
+      <p class="hero-description">讓複雜的故事變得有感、有趣。</p>
     </div>
   </div>
 
-  <!-- 主要內容 -->
-  <div class="main-content">
-    <!-- Who We Are Section -->
-    <section class="section fade-in" id="about">
-      <h2>WHO WE ARE</h2>
-      <p>
-        三稜鏡 prizm 致力於以獨特敘事呈現科技與創新的價值，<br><br>
-        專注於 YouTube 內容創作、品牌企劃與 App 開發。<br><br>
-        我們結合科技影片、專題報導與 APP 工具，持續整合資源、跨界合作，打造多元且深入的內容體驗。
-      </p>
-    </section>
-    
-    <!-- 功能卡片區域 -->
-    <section class="feature-section">
-      <div class="feature-card">
-        <h3>APP工具</h3>
-        <p>我們自製了 beedea 和 trifit，分別聚焦生產力與健身紀錄。</p>
+  <!-- 粒子背景容器 - 使用原始wrapper/content結構 -->
+  <div id="wrapper">
+    <div id="content">
+      <!-- 滾動指示器 -->
+      <div class="scroll">
+        <span>SCROLL</span>
+        <svg viewBox="0 0 24 24">
+          <line class="st1" x1="12" y1="1" x2="12" y2="22.5" />
+          <line class="st1" x1="12.1" y1="22.4" x2="18.9" y2="15.6" />
+          <line class="st1" x1="11.9" y1="22.4" x2="5.1" y2="15.6" />
+        </svg>
       </div>
-      <div class="feature-card">
-        <h3>優質內容</h3>
-        <p>影片製作結合深入分析與敘事節奏，內容具備影響力與長期價值。</p>
-      </div>
-      <div class="feature-card">
-        <h3>行銷整合</h3>
-        <p>品牌可透過深度合作，融入內容脈絡，精準觸及理性與感性的觀眾。</p>
-      </div>
-    </section>
+
+      <!-- 主要內容 - 粒子將作為這個區域的背景 -->
+      <main class="main-content">
+        <!-- 粒子背景層 -->
+        <div id="particles-background-layer"></div>
+        
+        <!-- 內容層 -->
+        <div class="content-layer">
+          <!-- Who We Are Section -->
+          <section class="section fade-in" id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">WHO WE ARE</h2>
+            <div class="text-content">
+              <p>
+                三稜鏡 prizm 致力於以獨特敘事呈現科技與創新的價值，<br><br>
+                專注於 YouTube 內容創作、品牌企劃與 App 開發。<br><br>
+                我們結合科技影片、專題報導與 APP 工具，持續整合資源、跨界合作，打造多元且深入的內容體驗。
+              </p>
+            </div>
+          </section>
+          
+          <!-- 功能卡片區域 - 統一使用 .section 結構 -->
+          <section class="section">
+            <div class="card-grid card-grid--3-col">
+              <a href="pages/apps.html" class="card-item card-item--feature card-item--magnetic">
+                <h3 class="card-title"><span class="main-word">工具</span><span class="sub-text">為了讓生活更有方向</span></h3>
+                <p class="card-content">我們做了 beedea 和 trifit，一個幫你整理思緒，一個陪你記錄身體的變化。因為思考，也值得被實踐。</p>
+              </a>
+              <a href="pages/videos.html" class="card-item card-item--feature card-item--magnetic">
+                <h3 class="card-title"><span class="main-word">影片</span><span class="sub-text">是我們和世界對話的方式</span></h3>
+                <p class="card-content">從一支影片開始，探索科技的邏輯、品牌的故事，還有我們如何在這樣的世界中，找到自己的位置。</p>
+              </a>
+              <a href="pages/work-with-us.html" class="card-item card-item--feature card-item--magnetic">
+                <h3 class="card-title"><span class="main-word">合作</span><span class="sub-text">讓價值被看見</span></h3>
+                <p class="card-content">如果你的品牌有故事、有想法，歡迎一起創作。我們相信，好的內容能夠打動人，也能被信任。</p>
+              </a>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
   </div>
 
   <!-- Footer -->
   <footer>
     <div class="social-links">
-      <a href="https://www.youtube.com/@prism66" target="_blank" title="YouTube">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" />
+      <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" title="YouTube">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="24" height="24" />
       </a>
       <span class="separator">|</span>
       <a href="https://instagram.com/your_instagram" target="_blank" title="Instagram">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" />
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24" height="24" />
       </a>
       <span class="separator">|</span>
       <a href="https://facebook.com/your_facebook" target="_blank" title="Facebook">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24" height="24" />
       </a>
       <span class="separator">|</span>
       <a href="mailto:hi@prizm.com.tw" title="Email">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" />
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" width="24" height="24" />
       </a>
     </div>
     <div class="copyright">
@@ -103,7 +256,785 @@
     </div>
   </footer>
 
-  <script src="assets/js/utils.js"></script>
-  <script src="assets/js/main.js"></script>
+
+  <!-- 基礎工具腳本 -->
+  <script src="assets/js/core/utils.js"></script>
+  <script src="assets/js/core/main.js"></script>
+  
+  <!-- GSAP 動畫系統 - 必須在粒子組件之前載入 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
+  
+  <!-- 組件已移除，直接使用內聯粒子系統代碼 -->
+  
+  <!-- 內建 SimplexNoise 實現 -->
+  <script>
+    // 簡化版 SimplexNoise 實現
+    class SimplexNoise {
+      constructor() {
+        this.grad3 = [
+          [1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],
+          [1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],
+          [0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]
+        ];
+        
+        this.p = [];
+        for(let i = 0; i < 256; i++) {
+          this.p[i] = Math.floor(Math.random() * 256);
+        }
+        
+        this.perm = [];
+        for(let i = 0; i < 512; i++) {
+          this.perm[i] = this.p[i & 255];
+        }
+      }
+      
+      dot(g, x, y) {
+        return g[0] * x + g[1] * y;
+      }
+      
+      noise2D(xin, yin) {
+        const F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
+        const s = (xin + yin) * F2;
+        const i = Math.floor(xin + s);
+        const j = Math.floor(yin + s);
+        
+        const G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
+        const t = (i + j) * G2;
+        const X0 = i - t;
+        const Y0 = j - t;
+        const x0 = xin - X0;
+        const y0 = yin - Y0;
+        
+        let i1, j1;
+        if(x0 > y0) {
+          i1 = 1; j1 = 0;
+        } else {
+          i1 = 0; j1 = 1;
+        }
+        
+        const x1 = x0 - i1 + G2;
+        const y1 = y0 - j1 + G2;
+        const x2 = x0 - 1.0 + 2.0 * G2;
+        const y2 = y0 - 1.0 + 2.0 * G2;
+        
+        const ii = i & 255;
+        const jj = j & 255;
+        const gi0 = this.perm[ii + this.perm[jj]] % 12;
+        const gi1 = this.perm[ii + i1 + this.perm[jj + j1]] % 12;
+        const gi2 = this.perm[ii + 1 + this.perm[jj + 1]] % 12;
+        
+        let t0 = 0.5 - x0 * x0 - y0 * y0;
+        let n0 = 0;
+        if(t0 >= 0) {
+          t0 *= t0;
+          n0 = t0 * t0 * this.dot(this.grad3[gi0], x0, y0);
+        }
+        
+        let t1 = 0.5 - x1 * x1 - y1 * y1;
+        let n1 = 0;
+        if(t1 >= 0) {
+          t1 *= t1;
+          n1 = t1 * t1 * this.dot(this.grad3[gi1], x1, y1);
+        }
+        
+        let t2 = 0.5 - x2 * x2 - y2 * y2;
+        let n2 = 0;
+        if(t2 >= 0) {
+          t2 *= t2;
+          n2 = t2 * t2 * this.dot(this.grad3[gi2], x2, y2);
+        }
+        
+        return 70.0 * (n0 + n1 + n2);
+      }
+    }
+    
+    console.log('✅ SimplexNoise 已內建載入');
+  </script>
+  
+  <!-- 簡化的動畫系統 - 經過驗證的版本 -->
+  <script>
+    console.log('🚀 簡化動畫系統載入');
+    
+    // 簡單的 Hero 動畫
+    function initHeroAnimation() {
+      const heroLogo = document.querySelector('.hero-logo');
+      const heroDescription = document.querySelector('.hero-description');
+      
+      if (heroLogo && typeof gsap !== 'undefined') {
+        gsap.fromTo(heroLogo, 
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+        );
+      }
+      
+      if (heroDescription && typeof gsap !== 'undefined') {
+        // 簡單的淡入效果，不用複雜的打字機
+        gsap.fromTo(heroDescription,
+          { opacity: 0 },
+          { opacity: 1, duration: 1, delay: 0.5, ease: "power2.out" }
+        );
+      }
+    }
+    
+    // 經過驗證的磁性卡片效果
+    function initMagneticCards() {
+      if (typeof gsap === 'undefined') {
+        console.log('❌ GSAP 未載入，跳過磁性效果');
+        return;
+      }
+      
+      const magneticCards = document.querySelectorAll('.card-item--magnetic');
+      console.log(`🧲 找到 ${magneticCards.length} 個磁性卡片`);
+      
+      if (magneticCards.length === 0) {
+        console.log('❌ 未找到磁性卡片');
+        return;
+      }
+      
+      magneticCards.forEach((card, index) => {
+        // 防止重複綁定
+        if (card.dataset.magneticBound) {
+          console.log(`⚠️ 卡片 ${index + 1} 已經綁定`);
+          return;
+        }
+        card.dataset.magneticBound = 'true';
+        
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          
+          gsap.to(card, {
+            x: x * 0.12,
+            y: y * 0.12,
+            duration: 0.3,
+            ease: "power2.out",
+            force3D: true
+          });
+        });
+        
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.4)",
+            force3D: true
+          });
+        });
+        
+        console.log(`✅ 卡片 ${index + 1} 磁性效果已綁定`);
+      });
+    }
+    
+    // 初始化所有動畫
+    function initAllAnimations() {
+      console.log('🎬 開始初始化動畫');
+      initHeroAnimation();
+      
+      // 延遲初始化磁性效果確保DOM完全載入
+      setTimeout(() => {
+        initMagneticCards();
+      }, 100);
+    }
+    
+    // 多重載入保護
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAllAnimations);
+    } else {
+      initAllAnimations();
+    }
+    
+    // 備用載入方案
+    window.addEventListener('load', () => {
+      setTimeout(initAllAnimations, 200);
+    });
+  </script>
+
+  <!-- 直接使用 index-debug.html 的成功粒子系統 -->
+  <script>
+    console.log('🌟 使用 index-debug.html 驗證成功的粒子系統');
+    
+    // 粒子系統初始化函數 - 直接複製 index-debug.html 的成功代碼
+    function initParticleSystem() {
+      try {
+        console.log('🚀 粒子系統初始化開始');
+        
+        if (typeof gsap === 'undefined') {
+          console.error('❌ GSAP 未載入');
+          return;
+        }
+        
+        // 獲取粒子背景層容器
+        const particlesContainer = document.querySelector('#particles-background-layer');
+        
+        if (!particlesContainer) {
+          console.error('❌ particles-background-layer 容器未找到');
+          return;
+        }
+        
+        console.log('✅ 容器已找到:', particlesContainer);
+        
+        // 清除現有粒子
+        particlesContainer.innerHTML = '';
+        
+        // 粒子數量配置 - 根據設備性能調整
+        const isLowEnd = navigator.hardwareConcurrency < 4 || navigator.deviceMemory < 4;
+        const particleCount = isLowEnd ? 1200 : 2000; // 低端設備減少粒子數量
+        
+        console.log(`🎨 生成 ${particleCount} 個圓圈粒子 (低端設備: ${isLowEnd})`);
+        
+        // 創建粒子噪聲
+        const simplex = new SimplexNoise();
+        
+        for (let i = 0; i < particleCount; i++) {
+          const div = document.createElement('div');
+          div.classList.add('circle');
+          
+          const n1 = simplex.noise2D(i * 0.003, i * 0.0033);
+          const n2 = simplex.noise2D(i * 0.002, i * 0.001);
+          
+          // 使用網站統一的黃色 #F3D74E
+          const opacity = 0.5;
+
+          // 動態計算x軸位置：基於容器寬度偏移到左邊1/3
+          const containerWidth = particlesContainer.offsetWidth;
+          const baseOffset = containerWidth * (-1/3); // 向左偏移容器寬度的1/3
+          const noiseOffset = n2 * (containerWidth * 0.3); // 噪聲變化範圍為容器寬度的30%
+          const translateX = baseOffset + noiseOffset;
+          const translateY = 0; // 流式佈局，主要是垂直流動
+          const rotation = n2 * 270;
+          const scaleX = 3 + n1 * 2;
+          const scaleY = 3 + n2 * 2;
+          
+          const style = {
+            transform: `translate(${translateX}px, ${translateY}px) rotate(${rotation}deg) scale(${scaleX}, ${scaleY})`,
+            boxShadow: `0 0 0 .2px rgba(243, 215, 78, ${opacity})`, // 使用網站的 --primary-yellow
+            border: 'none' // 移除紅色邊框調試
+          };
+          
+          
+          Object.assign(div.style, style);
+          // 直接添加到背景層
+          particlesContainer.appendChild(div);
+        }
+        
+        // 位置分析完成
+        
+        // 獲取粒子元素，為 ScrollTrigger 準備
+        const circles = document.querySelectorAll('.circle');
+        console.log(`✅ ${circles.length} 個圓圈已創建，準備設置滾動動畫`);
+        
+        // 滾動觸發器 - 根據粒子容器的滾動進度
+        if (typeof gsap !== 'undefined' && circles.length > 0) {
+          console.log('🎯 設置基於容器的 ScrollTrigger');
+          
+          // 獲取粒子背景層作為觸發目標
+          const triggerElement = document.querySelector('#particles-background-layer').parentElement; // #content
+          
+          const main = gsap.timeline({
+            scrollTrigger: {
+              trigger: triggerElement,     // 以粒子容器為觸發目標
+              scrub: 0.7,                 // 保持平滑
+              start: "top 80%",           // 當容器進入視窗80%時開始
+              end: "bottom 20%"           // 當容器底部到達視窗20%時結束
+            }
+          });
+          
+          // 根據容器滾動進度顯示粒子
+          circles.forEach((circle) => {
+            main.to(circle, {
+              opacity: 1
+            });
+          });
+          
+          console.log('✅ 基於容器的粒子滾動動畫已設置');
+        }
+        
+        // 保存到全局
+        window.mainParticleSystem = {
+          particleCount: circles.length,
+          container: particlesContainer
+        };
+        
+        console.log('✅ 粒子系統初始化完成');
+        
+      } catch (error) {
+        console.error('❌ 粒子系統初始化失敗:', error);
+        console.error('錯誤堆疊:', error.stack);
+      }
+    }
+    
+    // 啟動粒子系統
+    function startParticleSystem() {
+      console.log('🚀 啟動粒子系統');
+      
+      // 多重初始化保護
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          setTimeout(initParticleSystem, 500);
+        });
+      } else {
+        setTimeout(initParticleSystem, 500);
+      }
+      
+      // 備用初始化
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          if (document.querySelectorAll('.circle').length === 0) {
+            console.log('⚠️ 備用初始化：粒子未生成，重新嘗試');
+            initParticleSystem();
+          }
+        }, 1000);
+      });
+    }
+    
+    // 立即啟動
+    startParticleSystem();
+    
+    // 提供全局控制方法
+    window.particleControls = {
+      show: () => {
+        const circles = document.querySelectorAll('.circle');
+        circles.forEach(c => c.style.opacity = '1');
+      },
+      hide: () => {
+        const circles = document.querySelectorAll('.circle');
+        circles.forEach(c => c.style.opacity = '0');
+      },
+      recreate: () => initParticleSystem(),
+      getStatus: () => window.mainParticleSystem
+    };
+  </script>
+
+  <!-- Debug 功能腳本 -->
+  <script>
+    // Debug 面板控制
+    let debugPanelVisible = false;
+    let debugUpdateInterval = null;
+    
+    function toggleDebugPanel() {
+      debugPanelVisible = !debugPanelVisible;
+      const panel = document.getElementById('debug-panel');
+      
+      if (debugPanelVisible) {
+        panel.classList.add('show');
+        startDebugUpdates();
+        updateDebugInfo();
+      } else {
+        panel.classList.remove('show');
+        stopDebugUpdates();
+      }
+    }
+    
+    // 開始定期更新debug資訊
+    function startDebugUpdates() {
+      if (debugUpdateInterval) clearInterval(debugUpdateInterval);
+      
+      debugUpdateInterval = setInterval(() => {
+        updateDebugInfo();
+      }, 1000);
+    }
+    
+    // 停止debug更新
+    function stopDebugUpdates() {
+      if (debugUpdateInterval) {
+        clearInterval(debugUpdateInterval);
+        debugUpdateInterval = null;
+      }
+    }
+    
+    // 更新debug資訊
+    function updateDebugInfo() {
+      try {
+        const status = mainParticleBackground?.getStatus();
+        
+        if (!status) {
+          document.getElementById('debug-status').textContent = '❌ 粒子系統未初始化';
+          return;
+        }
+        
+        // 系統狀態
+        document.getElementById('debug-status').textContent = 
+          status.initialized ? '✅ 系統正常運行' : '❌ 系統未初始化';
+        
+        // 粒子統計
+        document.getElementById('debug-particle-count').textContent = 
+          `粒子數量: ${status.particleCount}`;
+        
+        // 計算可見粒子數量
+        const visibleCount = countVisibleParticles();
+        document.getElementById('debug-visible-count').textContent = 
+          `可見粒子: ${visibleCount}`;
+        
+        // 效能資訊
+        const cores = navigator.hardwareConcurrency || 'unknown';
+        const memory = navigator.deviceMemory || 'unknown';
+        document.getElementById('debug-performance').textContent = 
+          `CPU核心: ${cores} | 記憶體: ${memory}GB`;
+        
+        // 位置分析
+        if (status.containerSize) {
+          const rect = status.containerSize;
+          document.getElementById('debug-position').textContent = 
+            `容器: ${rect.width.toFixed(0)}×${rect.height.toFixed(0)}px`;
+        }
+        
+      } catch (error) {
+        document.getElementById('debug-status').textContent = '❌ Debug 錯誤: ' + error.message;
+      }
+    }
+    
+    // 計算可見粒子數量（支援兩種類名）
+    function countVisibleParticles() {
+      const particles = document.querySelectorAll('.circle, .particle-bg-circle');
+      let visible = 0;
+      
+      particles.forEach(particle => {
+        const opacity = parseFloat(particle.style.opacity) || 0;
+        if (opacity > 0.1) visible++;
+      });
+      
+      return visible;
+    }
+    
+    // Debug 控制功能
+    function debugShowAll() {
+      if (mainParticleBackground) {
+        mainParticleBackground.showAllParticles();
+        updateDebugInfo();
+        console.log('🔧 Debug: 顯示所有粒子');
+      } else {
+        // 備用方法：直接操作 DOM（支援 debug 版本的 .circle 類名）
+        const circles = document.querySelectorAll('.circle, .particle-bg-circle');
+        circles.forEach(c => c.style.opacity = '1');
+        updateDebugInfo();
+        console.log('🔧 Debug: 顯示所有粒子 (直接 DOM 操作)');
+      }
+    }
+    
+    function debugHideAll() {
+      if (mainParticleBackground) {
+        mainParticleBackground.hideAllParticles();
+        updateDebugInfo();
+        console.log('🔧 Debug: 隱藏所有粒子');
+      } else {
+        // 備用方法：直接操作 DOM（支援 debug 版本的 .circle 類名）
+        const circles = document.querySelectorAll('.circle, .particle-bg-circle');
+        circles.forEach(c => c.style.opacity = '0');
+        updateDebugInfo();
+        console.log('🔧 Debug: 隱藏所有粒子 (直接 DOM 操作)');
+      }
+    }
+    
+    function debugAnalyze() {
+      if (mainParticleBackground) {
+        const status = mainParticleBackground.getStatus();
+        console.log('🔍 Debug: 粒子系統分析', status);
+        
+        // 重新生成粒子以獲取新的位置分析
+        mainParticleBackground.updateOptions({
+          showAnalysis: true
+        });
+        
+        updateDebugInfo();
+      }
+    }
+    
+    function debugChangeColor() {
+      if (mainParticleBackground) {
+        const colors = ['#F3D74E', '#4A90E2', '#2ECC71', '#E74C3C', '#9B59B6'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        mainParticleBackground.updateOptions({
+          color: randomColor
+        });
+        
+        console.log(`🎨 Debug: 改變粒子顏色為 ${randomColor}`);
+        updateDebugInfo();
+      }
+    }
+    
+    function debugForceVisible() {
+      if (mainParticleBackground) {
+        mainParticleBackground.updateOptions({
+          color: '#FFFF00',  // 亮黃色
+          opacity: 1.0       // 完全不透明
+        });
+        
+        // 同時強制顯示
+        mainParticleBackground.showAllParticles();
+        
+        console.log('🔧 Debug: 強制粒子可見 - 亮黃色，完全不透明');
+        updateDebugInfo();
+      }
+    }
+    
+    function debugCreateTest() {
+      console.log('🧪 創建測試粒子');
+      
+      const container = document.getElementById('particles-background-layer');
+      if (!container) {
+        console.error('❌ 找不到 particles-background-layer 容器');
+        return;
+      }
+      
+      // 清除舊的測試粒子
+      const oldTests = container.querySelectorAll('.debug-test-particle');
+      oldTests.forEach(p => p.remove());
+      
+      // 創建明顯的測試粒子
+      const testParticle = document.createElement('div');
+      testParticle.className = 'circle debug-test-particle';
+      testParticle.style.cssText = `
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: red;
+        border: 3px solid yellow;
+        border-radius: 50%;
+        left: 200px;
+        top: 300px;
+        opacity: 1;
+        z-index: 1000;
+        box-shadow: 0 0 20px red;
+      `;
+      testParticle.innerHTML = '<div style="color:white;text-align:center;line-height:34px;font-size:10px;font-weight:bold;">TEST</div>';
+      
+      container.appendChild(testParticle);
+      console.log('✅ 測試粒子已創建:', testParticle);
+      console.log('📍 容器位置:', container.getBoundingClientRect());
+      console.log('📍 測試粒子位置:', testParticle.getBoundingClientRect());
+      
+      updateDebugInfo();
+    }
+    
+    function debugDeepInspect() {
+      console.log('🔍 深度檢查開始...');
+      
+      // 1. 檢查 particles-background-layer 容器
+      const container = document.getElementById('particles-background-layer');
+      console.log('📦 粒子容器:', {
+        存在: !!container,
+        位置: container ? container.getBoundingClientRect() : null,
+        樣式: container ? {
+          position: getComputedStyle(container).position,
+          zIndex: getComputedStyle(container).zIndex,
+          overflow: getComputedStyle(container).overflow,
+          opacity: getComputedStyle(container).opacity
+        } : null,
+        子元素數量: container ? container.children.length : 0
+      });
+      
+      // 2. 檢查 mainParticleBackground 實例
+      console.log('🎯 粒子背景實例:', {
+        實例存在: !!mainParticleBackground,
+        狀態: mainParticleBackground?.getStatus?.() || '無狀態方法'
+      });
+      
+      // 3. 檢查所有粒子元素
+      const allParticles = document.querySelectorAll('.circle, .particle-bg-circle');
+      console.log('🎨 粒子元素分析:', {
+        總數: allParticles.length,
+        circle類: document.querySelectorAll('.circle').length,
+        particleBgCircle類: document.querySelectorAll('.particle-bg-circle').length
+      });
+      
+      // 4. 分析前5個粒子的詳細狀態
+      Array.from(allParticles).slice(0, 5).forEach((particle, index) => {
+        const rect = particle.getBoundingClientRect();
+        const computed = getComputedStyle(particle);
+        console.log(`粒子 ${index}:`, {
+          類名: particle.className,
+          位置: {
+            left: rect.left,
+            top: rect.top,
+            right: rect.right,
+            bottom: rect.bottom
+          },
+          樣式: {
+            opacity: particle.style.opacity || computed.opacity,
+            transform: particle.style.transform || computed.transform,
+            position: computed.position,
+            zIndex: computed.zIndex
+          },
+          可見性: {
+            在視窗內: rect.top < window.innerHeight && rect.bottom > 0 && rect.left < window.innerWidth && rect.right > 0,
+            有面積: rect.width > 0 && rect.height > 0
+          }
+        });
+      });
+      
+      // 5. 檢查 GSAP ScrollTrigger
+      if (typeof ScrollTrigger !== 'undefined') {
+        const triggers = ScrollTrigger.getAll();
+        console.log('📜 ScrollTrigger 狀態:', {
+          觸發器數量: triggers.length,
+          觸發器詳情: triggers.map(t => ({
+            trigger: t.trigger,
+            start: t.start,
+            end: t.end,
+            progress: t.progress
+          }))
+        });
+      }
+      
+      updateDebugInfo();
+    }
+    
+    // 依賴檢查功能
+    function debugCheckDependencies() {
+      console.log('🔍 === 依賴檢查報告 ===');
+      
+      const checks = {
+        '基礎依賴': {
+          'GSAP': typeof gsap !== 'undefined' ? `✅ 已載入 (${gsap.version || 'unknown'})` : '❌ 未載入',
+          'ScrollTrigger': typeof ScrollTrigger !== 'undefined' ? '✅ 已載入' : '❌ 未載入', 
+          'ScrollSmoother': typeof ScrollSmoother !== 'undefined' ? '✅ 已載入' : '⚠️ 未載入（可選）',
+          'SimplexNoise': typeof SimplexNoise !== 'undefined' ? '✅ 已載入' : '❌ 未載入'
+        },
+        '粒子組件': {
+          'ParticleBackground': typeof ParticleBackground !== 'undefined' ? '✅ 已載入' : '❌ 未載入',
+          'ParticleBackgroundPresets': typeof ParticleBackgroundPresets !== 'undefined' ? 
+            `✅ 已載入 (${Object.keys(ParticleBackgroundPresets).length} 個預設)` : '❌ 未載入'
+        },
+        'DOM 結構': {
+          '粒子容器': (() => {
+            const container = document.getElementById('particles-background-layer');
+            if (!container) return '❌ 容器不存在';
+            const rect = container.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 ? 
+              `✅ 容器正常 (${rect.width.toFixed(0)}×${rect.height.toFixed(0)}px)` :
+              `⚠️ 容器存在但無尺寸 (${rect.width}×${rect.height}px)`;
+          })(),
+          '粒子元素': (() => {
+            const circles = document.querySelectorAll('.circle');
+            const particleBgs = document.querySelectorAll('.particle-bg-circle');
+            const total = circles.length + particleBgs.length;
+            return total > 0 ? 
+              `✅ 找到 ${total} 個粒子 (circle:${circles.length}, bg:${particleBgs.length})` :
+              '❌ 無粒子元素';
+          })()
+        },
+        '初始化狀態': {
+          '全域實例': !!mainParticleBackground ? '✅ 實例已創建' : '❌ 實例未創建',
+          '實例狀態': (() => {
+            if (!mainParticleBackground) return '❌ 無實例';
+            try {
+              const status = mainParticleBackground.getStatus();
+              return `✅ 狀態正常 (${status.particleCount} 個粒子)`;
+            } catch (e) {
+              return `❌ 狀態異常: ${e.message}`;
+            }
+          })(),
+          'ScrollTrigger觸發器': (() => {
+            if (typeof ScrollTrigger === 'undefined') return '❌ ScrollTrigger 未載入';
+            const triggers = ScrollTrigger.getAll();
+            return triggers.length > 0 ? 
+              `✅ ${triggers.length} 個觸發器` : 
+              '⚠️ 無觸發器';
+          })()
+        }
+      };
+      
+      // 輸出檢查結果
+      Object.entries(checks).forEach(([category, items]) => {
+        console.log(`\n📂 ${category}:`);
+        Object.entries(items).forEach(([name, status]) => {
+          console.log(`  ${name}: ${status}`);
+        });
+      });
+      
+      // 統計
+      const allResults = Object.values(checks).flatMap(category => Object.values(category));
+      const success = allResults.filter(r => r.startsWith('✅')).length;
+      const errors = allResults.filter(r => r.startsWith('❌')).length;
+      const warnings = allResults.filter(r => r.startsWith('⚠️')).length;
+      
+      console.log(`\n📊 檢查統計: ✅${success} ❌${errors} ⚠️${warnings}`);
+      
+      // 給出建議
+      if (errors > 0) {
+        console.log('\n🔧 修復建議:');
+        if (!window.gsap) console.log('  1. 檢查 GSAP 腳本是否正確載入');
+        if (!window.SimplexNoise) console.log('  2. 檢查 SimplexNoise 是否在組件之前定義');
+        if (!window.ParticleBackground) console.log('  3. 檢查 ParticleBackground 組件是否載入');
+        if (!mainParticleBackground) console.log('  4. 檢查初始化函數是否被調用');
+      } else if (warnings > 0) {
+        console.log('\n⚠️ 注意事項: 有警告項目，但不影響基本功能');
+      } else {
+        console.log('\n🎉 所有檢查通過！系統應該正常工作');
+      }
+      
+      // 更新內置依賴檢查顯示
+      updateInlineDependencyCheck(checks, success, errors, warnings);
+      
+      updateDebugInfo();
+    }
+    
+    // 更新內置依賴檢查顯示
+    function updateInlineDependencyCheck(checks, successCount, errorCount, warningCount) {
+      const element = document.getElementById('inline-dependency-check');
+      if (!element) return;
+      
+      let html = `<div style="font-size: 11px; line-height: 1.4;">`;
+      html += `<strong>統計:</strong> ✅${successCount} ❌${errorCount} ⚠️${warningCount}<br>`;
+      
+      // 顯示關鍵依賴狀態
+      const keyItems = [
+        checks['基礎依賴']['GSAP'],
+        checks['基礎依賴']['SimplexNoise'],
+        checks['粒子組件']['ParticleBackground'],
+        checks['初始化狀態']['全域實例']
+      ];
+      
+      html += keyItems.map(status => `<span style="display:block;">${status}</span>`).join('');
+      html += `</div>`;
+      
+      element.innerHTML = html;
+    }
+    
+    // 自動運行依賴檢查（延遲執行）
+    function autoRunDependencyCheck() {
+      setTimeout(() => {
+        debugCheckDependencies();
+      }, 1000);
+    }
+    
+    // 頁面載入後自動檢查
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', autoRunDependencyCheck);
+    } else {
+      autoRunDependencyCheck();
+    }
+    
+    // 鍵盤快捷鍵
+    document.addEventListener('keydown', (e) => {
+      // 按 D 鍵切換debug面板
+      if (e.key === 'd' || e.key === 'D') {
+        if (e.ctrlKey || e.metaKey) {
+          e.preventDefault();
+          toggleDebugPanel();
+        }
+      }
+    });
+    
+    // 頁面載入完成後自動顯示debug按鈕（開發模式）
+    window.addEventListener('load', () => {
+      // 可以在這裡自動開啟debug面板
+      // toggleDebugPanel();
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,356 @@
+/* ===========================================
+   About 頁面專用樣式
+   =========================================== */
+
+/* 頁面標題區域樣式移至 components/page-header.css 統一管理 */
+
+/* 故事內容 */
+.story-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.story-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+}
+
+/* 理念堆疊卡片 */
+.philosophy-stacking {
+  overflow: hidden;
+  padding: 4rem 0 2rem 0; /* 上面增加間距 */
+}
+
+.philosophy-cards {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stack-card {
+  border-radius: 30px;
+  position: relative;
+  width: 100%;
+  min-height: 350px;
+  padding: 3rem 2.5rem;
+  transform-origin: 50% 0%;
+  margin-bottom: 3rem; /* 減少卡片間距 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.stack-card__body {
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+.stack-card__body h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.stack-card__body p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.spacer {
+  height: 200px; /* 減少下方間距 */
+}
+
+/* 內容範疇 */
+.content-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.area-item {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(74, 92, 106, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(74, 92, 106, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.area-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(243, 215, 78, 0.3);
+}
+
+.area-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.area-item h3 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.area-item p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 團隊內容 */
+.team-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.team-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+}
+
+/* Disclosure 樣式 */
+.disclosure-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(243, 215, 78, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(243, 215, 78, 0.2);
+}
+
+.disclosure-intro p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 300;
+}
+
+.disclosure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.disclosure-item {
+  background: rgba(74, 92, 106, 0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(74, 92, 106, 0.1);
+  transition: all 0.3s ease;
+}
+
+.disclosure-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(243, 215, 78, 0.3);
+}
+
+.disclosure-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.disclosure-item h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.disclosure-item p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.disclosure-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.disclosure-item li {
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.disclosure-item li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary-gold);
+  font-weight: bold;
+}
+
+.disclosure-contact {
+  text-align: center;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1) 0%, rgba(74, 92, 106, 0.05) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(243, 215, 78, 0.2);
+}
+
+.disclosure-contact h3 {
+  color: var(--primary-gold);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.disclosure-contact p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 導航欄活動狀態樣式移至 components.css 統一管理 */
+
+/* ===========================================
+   響應式設計 - 平板
+   =========================================== */
+@media (max-width: 1024px) {
+  .page-header {
+    padding: 7rem 1.5rem 3rem 1.5rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .stack-card {
+    min-height: 300px;
+    padding: 2rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .stack-card__body h3 {
+    font-size: 1.6rem;
+  }
+  
+  .stack-card__body p {
+    font-size: 1rem;
+  }
+  
+  .content-areas {
+    gap: 1.5rem;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 手機
+   =========================================== */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 6rem 1rem 2.5rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 2rem;
+  }
+  
+  .header-content p {
+    font-size: 1rem;
+  }
+  
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .content-areas {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .area-item {
+    padding: 1.5rem;
+  }
+  
+  .area-icon {
+    font-size: 2.5rem;
+  }
+  
+  .story-content p,
+  .team-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .disclosure-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .disclosure-item {
+    padding: 1.5rem;
+  }
+  
+  .disclosure-intro,
+  .disclosure-contact {
+    padding: 1.5rem;
+  }
+  
+  .stack-card {
+    min-height: 250px;
+    padding: 1.5rem 1rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .stack-card__body h3 {
+    font-size: 1.4rem;
+  }
+  
+  .stack-card__body p {
+    font-size: 0.9rem;
+  }
+  
+  .spacer {
+    height: 200px;
+  }
+}
+
+/* ===========================================
+   響應式設計 - 小手機
+   =========================================== */
+@media (max-width: 480px) {
+  .page-header {
+    padding: 5rem 1rem 2rem 1rem;
+  }
+  
+  .header-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .philosophy-card {
+    padding: 1.5rem;
+  }
+  
+  .area-item {
+    padding: 1.2rem;
+  }
+  
+  .area-icon {
+    font-size: 2rem;
+  }
+}

@@ -2,39 +2,20 @@
    Apps 頁面專用樣式
    =========================================== */
 
-/* 頁面標題區域 */
-.page-header {
-  background: var(--gradient-header);
-  padding: 8rem 2rem 4rem 2rem;
-  text-align: center;
-  margin-top: var(--navbar-height);
+/* 頁面標題區域樣式移至 components/page-header.css 統一管理 */
+
+/* 確保 body 也使用淺色背景 */
+body {
+  background: var(--background-light);
 }
 
-.header-content h1 {
-  font-size: var(--font-size-6xl);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-  font-weight: 300;
+/* 主要內容區域 */
+.main-content {
+  background: var(--background-light);
+  padding: 2rem 0;
 }
 
-.header-content p {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  font-weight: 100;
-}
-
-/* 開發理念內容 */
-.philosophy-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.philosophy-content p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  color: var(--text-secondary);
-}
+/* 開發理念內容樣式已移至 core/components.css 統一管理 */
 
 /* 應用卡片網格 */
 .apps-grid {
@@ -45,14 +26,14 @@
 }
 
 .app-card {
-  background: rgba(74, 92, 106, 0.08);
+  background: #FFFFFF;
   border-radius: 16px;
   padding: 2rem;
-  border: 1px solid rgba(74, 92, 106, 0.2);
+  border: 1px solid rgba(74, 92, 106, 0.1);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(5px);
+  box-shadow: var(--shadow-sm);
 }
 
 .app-card.featured {
@@ -63,7 +44,7 @@
 .app-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(243, 215, 78, 0.3);
+  border-color: rgba(243, 215, 78, 0.4);
 }
 
 .app-card.featured:hover {
@@ -121,12 +102,12 @@
 }
 
 .feature-tag {
-  background: rgba(243, 215, 78, 0.1);
-  color: var(--primary-yellow);
+  background: rgba(243, 215, 78, 0.15);
+  color: var(--primary-yellow-dark);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.8rem;
-  border: 1px solid rgba(243, 215, 78, 0.2);
+  border: 1px solid rgba(243, 215, 78, 0.3);
 }
 
 /* 應用狀態 */
@@ -164,18 +145,18 @@
 }
 
 .insight-card {
-  background: rgba(74, 92, 106, 0.08);
+  background: #FFFFFF;
   padding: 2rem;
   border-radius: 12px;
-  border: 1px solid rgba(74, 92, 106, 0.2);
+  border: 1px solid rgba(74, 92, 106, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(5px);
+  box-shadow: var(--shadow-sm);
 }
 
 .insight-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(243, 215, 78, 0.3);
+  border-color: rgba(243, 215, 78, 0.4);
 }
 
 .insight-card h3 {
@@ -210,12 +191,12 @@
 }
 
 .tech-tag {
-  background: rgba(74, 92, 106, 0.12);
+  background: rgba(74, 92, 106, 0.06);
   color: var(--text-secondary);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
-  border: 1px solid rgba(74, 92, 106, 0.25);
+  border: 1px solid rgba(74, 92, 106, 0.15);
   transition: all 0.3s ease;
 }
 
@@ -278,13 +259,7 @@
   transform: translateY(-2px);
 }
 
-/* 導航欄活動狀態 */
-nav a.active {
-  color: #000;
-  background: var(--gradient-yellow);
-  border-radius: 50px;
-  font-weight: 600;
-}
+/* 導航欄活動狀態樣式移至 components.css 統一管理 */
 
 /* ===========================================
    響應式設計 - 平板

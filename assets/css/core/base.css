@@ -9,11 +9,12 @@
 }
 
 body {
-  font-family: "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.6;
   color: var(--text-secondary);
   background: var(--background-light);
   min-height: 100vh;
+  font-display: swap;
 }
 
 /* 文字樣式 */
@@ -106,30 +107,20 @@ img {
   display: inline-block;
 }
 
-.section h2::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 80px;
-  height: 2px;
-  background: var(--gradient-yellow);
-  border-radius: 2px;
-}
+/* 移除裝飾性下劃線 */
 
-/* 通用卡片樣式 */
+/* 通用卡片樣式 - 簡化版 */
 .card {
-  background: rgba(74, 92, 106, 0.08);
-  border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(74, 92, 106, 0.2);
-  transition: all var(--transition-normal);
-  backdrop-filter: blur(5px);
+  background: var(--background-light);
+  border-radius: 2px;  /* 極小圓角 */
+  border: 1px solid rgba(74, 92, 106, 0.15);  /* 淡化邊框 */
+  transition: border-color var(--transition-normal);
+  /* 移除backdrop-filter */
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(243, 215, 78, 0.3);
+  border-color: rgba(74, 92, 106, 0.25);
+  /* 移除transform和box-shadow */
 }
 
 /* 通用網格 */
@@ -150,42 +141,43 @@ img {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-/* 通用按鈕樣式 */
+/* 通用按鈕樣式 - 簡化版 */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-md) var(--spacing-xl);
-  border-radius: 30px;
-  font-weight: 500;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: 2px;  /* 極小圓角 */
+  font-weight: 400;    /* 減輕字重 */
   text-decoration: none;
-  transition: all var(--transition-normal);
+  transition: var(--transition-normal);
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
   font-size: var(--font-size-base);
 }
 
 .btn-primary {
-  background: var(--gradient-yellow);
+  background: var(--primary-yellow);  /* 移除漸變 */
   color: var(--background-light);
+  border-color: var(--primary-yellow);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-yellow);
+  background: var(--primary-yellow-dark);
+  /* 移除transform和box-shadow */
   color: var(--background-light);
 }
 
 .btn-secondary {
   background: transparent;
   color: var(--primary-yellow);
-  border: 2px solid var(--primary-yellow);
+  border: 1px solid var(--primary-yellow);  /* 減細邊框 */
 }
 
 .btn-secondary:hover {
   background: var(--primary-yellow);
   color: var(--background-light);
-  transform: translateY(-2px);
+  /* 移除transform */
 }
 
 /* 動畫效果 */
