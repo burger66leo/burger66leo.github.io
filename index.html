@@ -27,20 +27,16 @@
   <link rel="icon" type="image/png" href="/assets/images/logo-icon.png">
   
   <!-- 預載入關鍵資源 -->
-  <link rel="preload" href="assets/images/logo.png" as="image" type="image/png">
-  <link rel="preload" href="assets/videos/hero.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="assets/images/logo.png" as="image">
+  <link rel="preload" href="assets/videos/hero.mp4" as="video">
   
   <!-- 字體優化 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="assets/css/core/variables.css">
-  <link rel="stylesheet" href="assets/css/core/base.css">
-  <link rel="stylesheet" href="assets/css/core/components.css">
-  <link rel="stylesheet" href="assets/css/components/card-system.css">
-  <link rel="stylesheet" href="assets/css/components/hero-system.css">
-  <link rel="stylesheet" href="assets/css/components/particle-background.css">
+  <!-- 新架構：使用 enhanced bundle -->
+  <link rel="stylesheet" href="assets/css/bundles/enhanced.css">
   <link rel="stylesheet" href="assets/css/pages/index.css">
   <link rel="stylesheet" href="assets/css/core/responsive.css">
   
@@ -165,14 +161,13 @@
 
   <!-- Hero 區域 -->
   <div class="hero">
-    <video autoplay muted loop playsinline class="hero-video" poster="assets/images/hero-poster.jpg">
-      <source src="assets/videos/hero.webm" type="video/webm" />
+    <video autoplay muted loop playsinline class="hero-video">
       <source src="assets/videos/hero.mp4" type="video/mp4" />
       您的瀏覽器不支援影片播放。
     </video>
     <div class="hero-content">
       <div class="hero-logo">
-        <img src="assets/images/logo.png" alt="三稜鏡 PRISM" class="hero-logo-svg">
+        <img src="assets/images/logo.png" alt="三稜鏡 PRIZM" class="hero-logo-svg">
       </div>
       <p class="hero-description">讓複雜的故事變得有感、有趣。</p>
     </div>
@@ -181,15 +176,6 @@
   <!-- 粒子背景容器 - 使用原始wrapper/content結構 -->
   <div id="wrapper">
     <div id="content">
-      <!-- 滾動指示器 -->
-      <div class="scroll">
-        <span>SCROLL</span>
-        <svg viewBox="0 0 24 24">
-          <line class="st1" x1="12" y1="1" x2="12" y2="22.5" />
-          <line class="st1" x1="12.1" y1="22.4" x2="18.9" y2="15.6" />
-          <line class="st1" x1="11.9" y1="22.4" x2="5.1" y2="15.6" />
-        </svg>
-      </div>
 
       <!-- 主要內容 - 粒子將作為這個區域的背景 -->
       <main class="main-content">
@@ -257,131 +243,131 @@
   </footer>
 
 
-  <!-- 基礎工具腳本 -->
+  <!-- 新架構：正確的依賴順序 -->
+  <!-- 1. 基礎工具 -->
   <script src="assets/js/core/utils.js"></script>
   <script src="assets/js/core/main.js"></script>
   
-  <!-- GSAP 動畫系統 - 必須在粒子組件之前載入 -->
+  <!-- 2. GSAP 動畫庫 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
   
-  <!-- 組件已移除，直接使用內聯粒子系統代碼 -->
+  <!-- 3. Enhanced bundle (SimplexNoise + 共用動畫) -->
+  <script src="assets/js/bundles/enhanced.js"></script>
   
-  <!-- 內建 SimplexNoise 實現 -->
-  <script>
-    // 簡化版 SimplexNoise 實現
-    class SimplexNoise {
-      constructor() {
-        this.grad3 = [
-          [1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],
-          [1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],
-          [0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]
-        ];
-        
-        this.p = [];
-        for(let i = 0; i < 256; i++) {
-          this.p[i] = Math.floor(Math.random() * 256);
-        }
-        
-        this.perm = [];
-        for(let i = 0; i < 512; i++) {
-          this.perm[i] = this.p[i & 255];
-        }
-      }
-      
-      dot(g, x, y) {
-        return g[0] * x + g[1] * y;
-      }
-      
-      noise2D(xin, yin) {
-        const F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
-        const s = (xin + yin) * F2;
-        const i = Math.floor(xin + s);
-        const j = Math.floor(yin + s);
-        
-        const G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
-        const t = (i + j) * G2;
-        const X0 = i - t;
-        const Y0 = j - t;
-        const x0 = xin - X0;
-        const y0 = yin - Y0;
-        
-        let i1, j1;
-        if(x0 > y0) {
-          i1 = 1; j1 = 0;
-        } else {
-          i1 = 0; j1 = 1;
-        }
-        
-        const x1 = x0 - i1 + G2;
-        const y1 = y0 - j1 + G2;
-        const x2 = x0 - 1.0 + 2.0 * G2;
-        const y2 = y0 - 1.0 + 2.0 * G2;
-        
-        const ii = i & 255;
-        const jj = j & 255;
-        const gi0 = this.perm[ii + this.perm[jj]] % 12;
-        const gi1 = this.perm[ii + i1 + this.perm[jj + j1]] % 12;
-        const gi2 = this.perm[ii + 1 + this.perm[jj + 1]] % 12;
-        
-        let t0 = 0.5 - x0 * x0 - y0 * y0;
-        let n0 = 0;
-        if(t0 >= 0) {
-          t0 *= t0;
-          n0 = t0 * t0 * this.dot(this.grad3[gi0], x0, y0);
-        }
-        
-        let t1 = 0.5 - x1 * x1 - y1 * y1;
-        let n1 = 0;
-        if(t1 >= 0) {
-          t1 *= t1;
-          n1 = t1 * t1 * this.dot(this.grad3[gi1], x1, y1);
-        }
-        
-        let t2 = 0.5 - x2 * x2 - y2 * y2;
-        let n2 = 0;
-        if(t2 >= 0) {
-          t2 *= t2;
-          n2 = t2 * t2 * this.dot(this.grad3[gi2], x2, y2);
-        }
-        
-        return 70.0 * (n0 + n1 + n2);
-      }
-    }
-    
-    console.log('✅ SimplexNoise 已內建載入');
-  </script>
+  <!-- SimplexNoise 已包含在 enhanced.js bundle 中 -->
   
   <!-- 簡化的動畫系統 - 經過驗證的版本 -->
   <script>
     console.log('🚀 簡化動畫系統載入');
     
-    // 簡單的 Hero 動畫
+    // 修復的 Hero 動畫 - 防止重複執行並恢復打字效果
     function initHeroAnimation() {
+      // 防止重複初始化
+      if (window.heroAnimationInitialized) {
+        return;
+      }
+      window.heroAnimationInitialized = true;
+      
       const heroLogo = document.querySelector('.hero-logo');
       const heroDescription = document.querySelector('.hero-description');
       
+      console.log('🎬 初始化 Hero 動畫 - 防止重複執行');
+      
       if (heroLogo && typeof gsap !== 'undefined') {
-        gsap.fromTo(heroLogo, 
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
-        );
+        gsap.set(heroLogo, { opacity: 0, y: 30 });
+        gsap.to(heroLogo, { 
+          opacity: 1, 
+          y: 0, 
+          duration: 1, 
+          ease: "power2.out" 
+        });
       }
       
       if (heroDescription && typeof gsap !== 'undefined') {
-        // 簡單的淡入效果，不用複雜的打字機
-        gsap.fromTo(heroDescription,
-          { opacity: 0 },
-          { opacity: 1, duration: 1, delay: 0.5, ease: "power2.out" }
-        );
+        // 恢復打字動畫效果
+        setupTypingEffect(heroDescription, 1.2);
       }
     }
     
-    // 經過驗證的磁性卡片效果
+    // 打字機效果函數
+    function setupTypingEffect(element, delay) {
+      const originalText = element.textContent;
+      
+      // 設定初始狀態 - 確保不會閃爍
+      gsap.set(element, {
+        opacity: 1,
+        y: 0
+      });
+
+      // 清空文字，添加光標
+      element.innerHTML = '<span class="typing-cursor">|</span>';
+
+      // 光標閃爍動畫
+      const cursor = element.querySelector('.typing-cursor');
+      if (cursor) {
+        const cursorTL = gsap.timeline({ repeat: -1 });
+        cursorTL.to(cursor, {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut"
+        }).to(cursor, {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.inOut"
+        });
+      }
+
+      // 延遲後開始打字
+      setTimeout(() => {
+        typeText(element, originalText, {
+          speed: 0.1,
+          onComplete: () => {
+            // 打字完成後讓光標消失
+            setTimeout(() => {
+              if (cursor) {
+                gsap.to(cursor, {
+                  opacity: 0,
+                  duration: 0.3,
+                  delay: 1
+                });
+              }
+            }, 500);
+          }
+        });
+      }, delay * 1000);
+    }
+
+    // 打字機實現
+    function typeText(element, text, options = {}) {
+      const { speed = 0.1, onComplete } = options;
+      const cursor = element.querySelector('.typing-cursor');
+      let currentText = '';
+      let charIndex = 0;
+
+      const typeInterval = setInterval(() => {
+        if (charIndex < text.length) {
+          currentText += text[charIndex];
+          element.innerHTML = currentText + '<span class="typing-cursor">|</span>';
+          charIndex++;
+        } else {
+          clearInterval(typeInterval);
+          if (onComplete) onComplete();
+        }
+      }, speed * 1000);
+    }
+    
+    // 經過驗證的磁性卡片效果 - 加強重複執行保護
     function initMagneticCards() {
       if (typeof gsap === 'undefined') {
         console.log('❌ GSAP 未載入，跳過磁性效果');
+        return;
+      }
+      
+      // 全域保護
+      if (window.magneticCardsInitialized) {
+        console.log('⚠️ 磁性卡片已初始化，跳過重複執行');
         return;
       }
       
@@ -392,6 +378,8 @@
         console.log('❌ 未找到磁性卡片');
         return;
       }
+      
+      window.magneticCardsInitialized = true;
       
       magneticCards.forEach((card, index) => {
         // 防止重複綁定
@@ -438,9 +426,16 @@
       });
     }
     
-    // 初始化所有動畫
+    // 初始化所有動畫 - 簡化並防止重複執行
     function initAllAnimations() {
-      console.log('🎬 開始初始化動畫');
+      // 全域保護避免重複初始化
+      if (window.animationsInitialized) {
+        console.log('⚠️ 動畫系統已初始化，跳過重複執行');
+        return;
+      }
+      window.animationsInitialized = true;
+      
+      console.log('🎬 開始初始化動畫系統 (單次執行)');
       initHeroAnimation();
       
       // 延遲初始化磁性效果確保DOM完全載入
@@ -449,17 +444,13 @@
       }, 100);
     }
     
-    // 多重載入保護
+    // 簡化載入邏輯 - 只使用一種方式
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initAllAnimations);
     } else {
-      initAllAnimations();
+      // DOM 已經載入完成，直接執行
+      setTimeout(initAllAnimations, 100);
     }
-    
-    // 備用載入方案
-    window.addEventListener('load', () => {
-      setTimeout(initAllAnimations, 200);
-    });
   </script>
 
   <!-- 直接使用 index-debug.html 的成功粒子系統 -->
@@ -569,11 +560,36 @@
           console.log('✅ 基於容器的粒子滾動動畫已設置');
         }
         
-        // 保存到全局
-        window.mainParticleSystem = {
-          particleCount: circles.length,
-          container: particlesContainer
+        // 保存到全局 - 使用正確的變數名
+        window.mainParticleBackground = {
+          getStatus: () => ({
+            initialized: true,
+            particleCount: circles.length,
+            container: particlesContainer,
+            containerSize: particlesContainer.getBoundingClientRect()
+          }),
+          showAllParticles: () => {
+            circles.forEach(c => c.style.opacity = '1');
+          },
+          hideAllParticles: () => {
+            circles.forEach(c => c.style.opacity = '0');
+          },
+          updateOptions: (options) => {
+            if (options.color || options.opacity) {
+              circles.forEach(c => {
+                if (options.color) {
+                  c.style.boxShadow = `0 0 0 .2px ${options.color}`;
+                }
+                if (options.opacity) {
+                  c.style.opacity = options.opacity;
+                }
+              });
+            }
+          }
         };
+        
+        // 保持舊版相容性
+        window.mainParticleSystem = window.mainParticleBackground;
         
         console.log('✅ 粒子系統初始化完成');
         

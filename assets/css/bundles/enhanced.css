@@ -1,0 +1,18 @@
+/* ===========================================
+   ENHANCED CSS BUNDLE
+   包含：common + 粒子背景 + 首頁專用組件
+   適用於：首頁 (index.html) 和需要豐富動畫的頁面
+   注意：About 頁面現在有專用的 about.css bundle
+   =========================================== */
+
+/* 1. 通用樣式 */
+@import url('./common.css');
+
+/* 2. 粒子背景系統 */
+@import url('../components/particle-background.css');
+
+/* 3. 首頁專用組件 */
+@import url('../components/card-system.css');
+
+/* 4. Hero 系統（首頁專用）*/
+@import url('../components/hero-system.css');

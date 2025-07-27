@@ -6,7 +6,7 @@
 
 /* 故事內容 */
 .story-content {
-  max-width: 800px;
+  max-width: var(--breakpoint-xl); /* 統一使用 1200px 寬度 */
   margin: 0 auto;
 }
 
@@ -20,12 +20,14 @@
 /* 理念堆疊卡片 */
 .philosophy-stacking {
   overflow: hidden;
-  padding: 4rem 0 2rem 0; /* 上面增加間距 */
+  padding: 4rem 0 2rem 0; /* 上面增加間距，左右無邊距 */
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
 }
 
 .philosophy-cards {
   position: relative;
-  max-width: 800px;
+  max-width: 800px; /* 恢復原始寬度，確保卡片動畫正常 */
   margin: 0 auto;
 }
 
@@ -152,85 +154,160 @@
   width: 100%;
   height: 100%;
   border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(74, 92, 106, 0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 250, 235, 0.3); /* 淺色偏白的透明背景 */
+  backdrop-filter: blur(15px); /* 毛玻璃效果 */
+  border: 2px solid rgba(248, 220, 85, 0.5); /* 更寬的半透明黃色邊框 */
+  box-shadow: none; /* 移除陰影 */
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transform-origin: center center;
   will-change: transform, opacity;
+  overflow: hidden;
+  font-family: inherit;
 }
 
 .content-card-inner {
-  text-align: center;
   padding: 2.5rem;
   width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .area-icon {
-  margin-bottom: 1.5rem;
-  color: var(--primary-gold);
+  color: rgba(248, 220, 85, 0.3); /* 透明度0.3的黃色背景圖標 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -40%); /* 稍微偏移，不完全居中 */
+  z-index: 1;
 }
 
 .area-icon svg {
-  width: 48px;
-  height: 48px;
+  width: 180px; /* 更大的背景圖標 */
+  height: 180px;
   color: inherit;
 }
 
 .content-card h3 {
-  font-size: 1.8rem;
-  color: var(--text-primary);
-  margin-bottom: 1.2rem;
-  font-weight: 500;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgb(120, 95, 35); /* 在毛玻璃上更清晰的標題色 */
+  font-size: 0.75rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  z-index: 3;
+  position: relative;
 }
 
 .content-card p {
-  color: var(--text-secondary);
-  line-height: 1.7;
-  font-size: 1.2rem;
-  max-width: 380px;
-  margin: 0 auto;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: rgb(70, 55, 20); /* 在毛玻璃上更清晰的文字色 */
+  line-height: 1.2;
+  margin: 0;
+  z-index: 3;
+  position: relative;
+  max-width: 200px; /* 限制寬度讓文字更集中 */
+}
+
+/* 詳細描述 - 像 demo 的 author 區域 */
+.content-card::after {
+  content: attr(data-details);
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  font-weight: 500;
+  color: rgba(120, 95, 35, 0.8); /* 在毛玻璃上更清晰的描述文字 */
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  line-height: 1.3;
+  z-index: 4;
+  text-align: center;
+}
+
+.content-card:hover::after {
+  opacity: 1;
+}
+
+/* 添加裝飾性元素 - 模仿 demo 的小圖標效果 */
+.content-card::before {
+  content: "";
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 16px;
+  height: 16px;
+  background: rgba(200, 160, 60, 0.4); /* 在毛玻璃上更明顯的裝飾點 */
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 3;
+}
+
+.content-card:hover::before {
+  opacity: 1;
 }
 
 .content-actions {
   position: absolute;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  width: 100%;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  padding: 0 2rem;
   z-index: 1000;
+  pointer-events: none; /* 讓容器不阻擋點擊 */
 }
 
 .content-prev,
 .content-next {
-  background: var(--text-primary);
-  color: var(--background-light);
-  border: solid 2px var(--background-light);
-  border-radius: 99px;
-  padding: 12px 25px;
-  font-size: 1rem;
-  font-weight: 600;
+  background: rgba(248, 220, 85, 0.8);
+  color: var(--text-primary);
+  border: 2px solid rgba(248, 220, 85, 0.5);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: inline-block;
-  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  pointer-events: auto; /* 讓按鈕可以點擊 */
+  transform: translateY(-50%);
+}
+
+.content-prev {
+  left: -25px; /* 稍微突出到卡片外 */
+}
+
+.content-next {
+  right: -25px; /* 稍微突出到卡片外 */
 }
 
 .content-prev:hover,
 .content-next:hover {
-  background: var(--primary-gold);
-  color: var(--text-primary);
-  border-color: var(--primary-gold);
+  background: rgba(248, 220, 85, 1);
+  border-color: rgba(248, 220, 85, 0.8);
+  transform: translateY(-50%) scale(1.1);
 }
 
 /* 團隊內容 */
 .team-content {
-  max-width: 800px;
+  max-width: var(--breakpoint-xl); /* 統一使用 1200px 寬度 */
   margin: 0 auto;
 }
 
@@ -247,34 +324,54 @@
   color: var(--text-secondary);
   text-align: center;
   margin-bottom: 3rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
   line-height: 1.6;
 }
 
-.disclosure-toggle-list {
-  max-width: 800px;
+/* 統一的大矩形容器 - 繼承父容器 .section 的寬度 (1200px) */
+.disclosure-container {
   margin: 0 auto 3rem auto;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(74, 92, 106, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.disclosure-container:hover {
+  border-color: rgba(243, 215, 78, 0.3);
+  box-shadow: 0 4px 25px rgba(74, 92, 106, 0.1);
+}
+
+.disclosure-toggle-list {
+  /* 移除原本的邊框和背景，由父容器統一處理 */
 }
 
 .disclosure-toggle-item {
-  border: 1px solid rgba(74, 92, 106, 0.15);
-  border-radius: 12px;
-  margin-bottom: 1rem;
+  /* 移除個別項目的邊框和圓角 */
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
   overflow: hidden;
   transition: all 0.3s ease;
+  /* 添加分隔線，除了最後一個項目 */
+  border-bottom: 1px solid rgba(74, 92, 106, 0.1);
+}
+
+.disclosure-toggle-item:last-child {
+  border-bottom: none;
 }
 
 .disclosure-toggle-item:hover {
   border-color: rgba(243, 215, 78, 0.3);
-  box-shadow: 0 2px 8px rgba(74, 92, 106, 0.1);
+  box-shadow: none; /* 移除個別陰影 */
 }
 
 .disclosure-toggle-header {
   width: 100%;
   padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: transparent; /* 透明背景，讓統一容器的背景顯示 */
   border: none;
   cursor: pointer;
   display: flex;
@@ -320,7 +417,7 @@
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.3); /* 更淡的背景，與統一容器協調 */
 }
 
 .disclosure-toggle-content.active {
@@ -357,28 +454,168 @@
   font-weight: bold;
 }
 
-.disclosure-contact {
+/* 保持對話 - 磁力卡片設計 */
+.contact-engagement {
   text-align: center;
-  padding: 2.5rem;
-  background: linear-gradient(135deg, rgba(243, 215, 78, 0.1) 0%, rgba(74, 92, 106, 0.05) 100%);
-  border-radius: 12px;
-  border: 1px solid rgba(243, 215, 78, 0.2);
+  padding: 2.5rem 0;
 }
 
-.disclosure-contact h3 {
-  color: var(--primary-gold);
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
+.contact-engagement h3 {
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.5px;
 }
 
-.disclosure-contact p {
+/* .contact-engagement h3::before - 漸變點設計已移除 */
+
+.contact-engagement h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-yellow) 0%, rgba(243, 215, 78, 0.3) 100%);
+}
+
+.contact-engagement .engagement-quote {
+  margin: 0 auto 2.5rem auto;
+  max-width: 650px;
+  position: relative;
+  padding: 2rem 3rem 2rem 4rem;
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.03) 0%, rgba(243, 215, 78, 0.08) 100%);
+  border-left: 4px solid var(--primary-yellow);
+  border-top: 1px solid rgba(243, 215, 78, 0.2);
+  border-bottom: 1px solid rgba(243, 215, 78, 0.2);
+  border-right: 1px solid rgba(243, 215, 78, 0.1);
+  transform: skew(-1deg);
+  box-shadow: 0 4px 20px rgba(243, 215, 78, 0.1);
+}
+
+.contact-engagement .engagement-quote::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 4rem;
+  color: rgba(243, 215, 78, 0.3);
+  font-family: Georgia, serif;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.contact-engagement .engagement-quote::after {
+  content: '"';
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  font-size: 4rem;
+  color: rgba(243, 215, 78, 0.3);
+  font-family: Georgia, serif;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.contact-engagement .engagement-intro {
   color: var(--text-secondary);
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1.2rem;
+  line-height: 1.7;
   margin: 0;
-  max-width: 600px;
-  margin: 0 auto;
+  font-style: italic;
 }
+
+/* 卡片網格容器 - 複用首頁樣式 */
+.contact-engagement .card-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.contact-engagement .card-grid--3-col {
+  gap: 2rem;
+}
+
+/* 基礎卡片項目 - 複用首頁樣式 */
+.contact-engagement .card-item {
+  background: var(--background-card, #FFFFFF);
+  border-radius: var(--card-radius, 6px);
+  padding: var(--card-padding, 2rem);
+  border: 1px solid var(--card-border-color, rgba(74, 92, 106, 0.25));
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-engagement .card-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover, 0 8px 25px rgba(74, 92, 106, 0.12));
+  border-color: var(--card-border-hover, rgba(243, 215, 78, 0.4));
+}
+
+.contact-engagement .card-item:focus {
+  outline: 2px solid var(--primary-yellow);
+  outline-offset: 2px;
+}
+
+.contact-engagement .card-item:visited {
+  color: inherit;
+}
+
+/* 功能卡片變體 - 複用首頁樣式 */
+.contact-engagement .card-item--feature {
+  flex: 1;
+  justify-content: flex-start;
+  text-align: left;
+  min-height: 200px;
+}
+
+.contact-engagement .card-item--feature .card-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.contact-engagement .card-item--feature .card-title .main-word {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.contact-engagement .card-item--feature .card-title .sub-text {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 0.3rem;
+}
+
+.contact-engagement .card-item--feature .card-content {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 磁力卡片動畫效果 - 複用首頁樣式 */
+.contact-engagement .card-item--magnetic {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-engagement .card-item--magnetic:hover {
+  /* 由 JavaScript 動態控制磁性效果 */
+}
+
+/* 粒子背景樣式已移至 core/components.css 統一管理 */
 
 /* 導航欄活動狀態樣式移至 components.css 統一管理 */
 
@@ -386,6 +623,12 @@
    響應式設計 - 平板
    =========================================== */
 @media (max-width: 1024px) {
+  /* 平板尺寸開始恢復適當的左右邊距 */
+  .section {
+    padding-left: var(--spacing-lg) !important;
+    padding-right: var(--spacing-lg) !important;
+  }
+  
   .page-header {
     padding: 7rem 1.5rem 3rem 1.5rem;
   }
@@ -422,6 +665,12 @@
    響應式設計 - 手機
    =========================================== */
 @media (max-width: 768px) {
+  /* 手機尺寸使用更適當的邊距 */
+  .section {
+    padding-left: var(--spacing-md) !important;
+    padding-right: var(--spacing-md) !important;
+  }
+  
   .page-header {
     padding: 6rem 1rem 2.5rem 1rem;
   }
@@ -470,18 +719,52 @@
     line-height: 1.7;
   }
   
-  .disclosure-grid {
-    grid-template-columns: 1fr;
+  /* 舊的 disclosure-grid 和 disclosure-item 樣式已移除，
+     現在使用 disclosure-container 統一樣式 */
+  
+  .contact-engagement {
+    padding: 1.5rem 0;
+  }
+  
+  .contact-engagement h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section h2::after {
+    width: 100px;
+  }
+  
+  /* .contact-engagement h3::before - 漸變點設計已移除 */
+  
+  .contact-engagement h3::after {
+    width: 50px;
+  }
+  
+  .contact-engagement .engagement-quote {
+    padding: 1.5rem 2rem 1.5rem 3rem;
+    transform: skew(-0.5deg);
+  }
+  
+  .contact-engagement .engagement-intro {
+    font-size: 1.1rem;
+  }
+  
+  .contact-engagement .engagement-quote::before,
+  .contact-engagement .engagement-quote::after {
+    font-size: 3rem;
+  }
+  
+  .contact-engagement .card-grid {
+    gap: var(--spacing-md);
+  }
+  
+  .contact-engagement .card-grid--3-col {
     gap: 1.5rem;
   }
   
-  .disclosure-item {
-    padding: 1.5rem;
-  }
-  
-  .disclosure-intro,
-  .disclosure-contact {
-    padding: 1.5rem;
+  .contact-engagement .card-item {
+    padding: var(--spacing-lg);
   }
   
   .stack-card {
@@ -541,6 +824,12 @@
    響應式設計 - 小手機
    =========================================== */
 @media (max-width: 480px) {
+  /* 小手機保持基本的邊距 */
+  .section {
+    padding-left: var(--spacing-sm) !important;
+    padding-right: var(--spacing-sm) !important;
+  }
+  
   .page-header {
     padding: 5rem 1rem 2rem 1rem;
   }
@@ -595,4 +884,547 @@
     height: 35px;
     font-size: 1rem;
   }
+  
+  /* 響應式卡片設計 */
+  .contact-engagement .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-engagement h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .section h2::after {
+    width: 80px;
+    bottom: -0.8rem;
+  }
+  
+  /* .contact-engagement h3::before - 漸變點設計已移除 */
+  
+  .contact-engagement h3::after {
+    width: 40px;
+    height: 1.5px;
+  }
+  
+  .contact-engagement .engagement-quote {
+    padding: 1rem 1.5rem 1rem 2.5rem;
+    transform: skew(0deg);
+    max-width: 90%;
+  }
+  
+  .contact-engagement .engagement-intro {
+    font-size: 1rem;
+  }
+  
+  .contact-engagement .engagement-quote::before,
+  .contact-engagement .engagement-quote::after {
+    font-size: 2.5rem;
+  }
+  
+  .contact-engagement .card-item {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--spacing-md);
+  }
+  
+  .contact-engagement .card-item--feature .card-title .main-word {
+    font-size: 1.4rem;
+  }
+}
+
+/* ===========================================
+   Meet the Creator 區塊 - 3D 卡片設計
+   =========================================== */
+
+/* About 頁面統一移除所有 section 的左右邊距 - 僅在桌面版生效 */
+@media (min-width: 1025px) {
+  .section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* About 頁面標題裝飾線 */
+.section h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: var(--gradient-yellow);
+  border-radius: 1px;
+}
+
+.creator-content {
+  margin: 0 auto;
+  /* perspective: 1000px; */ /* 移除 3D 透視 */
+}
+
+.creator-card {
+  padding-top: 50px;
+  border: 2px solid rgba(250, 240, 200, 0.4);
+  border-radius: 24px;
+  /* transform-style: preserve-3d; */ /* 移除 3D 變換樣式 */
+  background: 
+    linear-gradient(135deg, #0000 18.75%, rgba(255, 230, 150, 0.25) 0 31.25%, #0000 0),
+    repeating-linear-gradient(45deg, rgba(255, 220, 130, 0.2) -6.25% 6.25%, rgba(230, 200, 140, 0.3) 0 18.75%),
+    radial-gradient(circle at 25% 25%, rgba(255, 235, 180, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(240, 215, 160, 0.12) 0%, transparent 50%);
+  background-size: 40px 40px, 40px 40px, 120px 120px, 100px 100px;
+  background-position: 0 0, 0 0, 0 0, 100% 100%;
+  background-color: rgba(255, 248, 225, 0.7);
+  width: 100%;
+  box-shadow: rgba(230, 220, 180, 0.12) 0px 20px 40px -10px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+}
+
+/* 保留背景動畫但移除 3D 效果 */
+.creator-card:hover {
+  background-position: -60px 60px, -60px 60px, 15px 15px, 85% 85%;
+  background-size: 38px 38px, 38px 38px, 130px 130px, 110px 110px;
+  border-color: rgba(250, 230, 180, 0.5);
+  /* 移除所有 3D transform 效果 */
+}
+
+.creator-content-box {
+  background: rgba(255, 253, 245, 0.8); /* 淡黃色背景 */
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 248, 220, 0.3);
+  transition: all 0.5s ease-in-out;
+  padding: 60px 25px 25px 25px;
+  /* transform-style: preserve-3d; */ /* 移除 3D 變換樣式 */
+  position: relative;
+}
+
+.creator-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  /* transform: translate3d(0px, 0px, 40px); */ /* 移除 3D 變換 */
+}
+
+.creator-avatar {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 245, 220, 0.8);
+  border: 2px solid rgba(240, 220, 180, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.creator-avatar:hover {
+  transform: scale(1.05);
+  border-color: rgba(240, 220, 180, 0.8);
+}
+
+.avatar-placeholder {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.creator-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.creator-info {
+  flex: 1;
+}
+
+.creator-name {
+  display: block;
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.creator-subtitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.creator-main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin: 2rem 0;
+  /* transform: translate3d(0px, 0px, 30px); */ /* 移除 3D 變換 */
+}
+
+.creator-bio {
+  /* 移除原本的 margin 和 transform，由父容器處理 */
+}
+
+.bio-main {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(240, 220, 180, 0.3);
+  position: relative;
+}
+
+.bio-main::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: rgba(200, 170, 120, 0.6);
+}
+
+.bio-main p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+}
+
+.bio-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.bio-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-left: 3px solid transparent;
+  padding-left: 1rem;
+  transition: all 0.3s ease;
+}
+
+.bio-item:hover {
+  border-left-color: rgba(200, 170, 120, 0.4);
+  background: rgba(255, 250, 235, 0.3);
+}
+
+.bio-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.bio-value {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.creator-social-links {
+  /* transform: translate3d(0px, 0px, 20px); */ /* 移除 3D 變換 */
+}
+
+.creator-social-links h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(240, 220, 180, 0.3);
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.creator-social-links h4::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: rgba(200, 170, 120, 0.6);
+}
+
+.social-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  color: var(--text-secondary);
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.social-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 250, 235, 0.5);
+  border-left-color: rgba(200, 170, 120, 0.6);
+  transform: translateX(5px);
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 245, 220, 0.8);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.social-link:hover .social-icon {
+  background: rgba(200, 170, 120, 0.2);
+  transform: scale(1.1);
+}
+
+.social-link.youtube:hover .social-icon {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+}
+
+.social-link.instagram:hover .social-icon {
+  background: rgba(225, 48, 108, 0.1);
+  color: #e1306c;
+}
+
+.social-link.twitter:hover .social-icon {
+  background: rgba(29, 161, 242, 0.1);
+  color: #1da1f2;
+}
+
+.social-link.email:hover .social-icon {
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+}
+
+/* 移除舊的社群按鈕樣式 */
+
+/* Creator badge 已移除 */
+
+/* ===========================================
+   Meet the Creator 響應式設計
+   =========================================== */
+@media (max-width: 1024px) {
+  /* .creator-content {
+    padding: 15px;
+  } */
+  
+  .creator-header {
+    gap: 1.5rem;
+  }
+  
+  .creator-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .creator-name {
+    font-size: 2rem;
+  }
+  
+  .creator-main-content {
+    gap: 2rem;
+  }
+  
+  .bio-main p {
+    font-size: 1rem;
+  }
+  
+  .bio-label {
+    min-width: 70px;
+    font-size: 0.8rem;
+  }
+  
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* .creator-content {
+    padding: 10px;
+  } */
+  
+  .creator-card {
+    padding-top: 40px;
+  }
+  
+  .creator-content-box {
+    padding: 40px 20px 20px 20px;
+  }
+  
+  .creator-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .creator-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .creator-name {
+    font-size: 1.8rem;
+  }
+  
+  .creator-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .creator-main-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .bio-main {
+    margin-bottom: 2rem;
+  }
+  
+  .bio-main p {
+    font-size: 1rem;
+  }
+  
+  .bio-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .bio-label {
+    min-width: auto;
+    font-size: 0.75rem;
+  }
+  
+  .bio-value {
+    font-size: 0.95rem;
+  }
+  
+  .creator-social-links h4 {
+    font-size: 0.9rem;
+  }
+  
+  .social-link {
+    font-size: 0.85rem;
+  }
+  
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* .creator-content {
+    padding: 8px;
+  } */
+  
+  .creator-card {
+    padding-top: 30px;
+    border-width: 2px;
+  }
+  
+  .creator-content-box {
+    padding: 30px 15px 15px 15px;
+  }
+  
+  .creator-header {
+    gap: 0.8rem;
+  }
+  
+  .creator-avatar {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .creator-name {
+    font-size: 1.5rem;
+  }
+  
+  .creator-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .bio-main p {
+    font-size: 0.95rem;
+  }
+  
+  .bio-label {
+    font-size: 0.7rem;
+  }
+  
+  .bio-value {
+    font-size: 0.9rem;
+  }
+  
+  .social-link {
+    font-size: 0.8rem;
+    padding: 0.7rem 0.8rem;
+  }
+  
+  .social-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* ===========================================
+   強制覆蓋 - 確保 creator-section 沒有左右邊距
+   =========================================== */
+/* 移除重複的 .section 規則，讓響應式邊距正常生效 */
+
+/* About 頁面標題裝飾線 */
+.section h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 120px;
+  height: 2px;
+  background: var(--gradient-yellow);
+  border-radius: 1px;
 }

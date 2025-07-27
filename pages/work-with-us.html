@@ -6,12 +6,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>三稜鏡 | Work With Us - 專業內容合作夥伴</title>
-  <link rel="stylesheet" href="../assets/css/core/variables.css">
-  <link rel="stylesheet" href="../assets/css/core/base.css">
-  <link rel="stylesheet" href="../assets/css/core/components.css">
-  <link rel="stylesheet" href="../assets/css/components/page-header.css">
-  <link rel="stylesheet" href="../assets/css/pages/work-with-us.css">
+  <!-- 新架構：使用 common bundle + carousel 組件 -->
+  <link rel="stylesheet" href="../assets/css/bundles/common.css">
   <link rel="stylesheet" href="../assets/css/components/carousel.css">
+  <link rel="stylesheet" href="../assets/css/pages/work-with-us.css">
   <link rel="stylesheet" href="../assets/css/core/responsive.css">
 </head>
 
@@ -68,7 +66,7 @@
       <div class="about-section">
         <h3>關於</h3>
         <p>
-          三棱鏡 Prism是一個專注於數位化生活的 YouTube 頻道，致力於為觀眾提供深入淺出的教學、實用的工具推薦，以及與數位生活相關的一切。我們的內容涵蓋 <strong>旅遊、軟體開發、工作效率應用、數位安全</strong> 等領域，幫助觀眾輕鬆上手各類工具，提升創作與工作效率。
+          三稜鏡 Prizm是一個專注於數位化生活的 YouTube 頻道，致力於為觀眾提供深入淺出的教學、實用的工具推薦，以及與數位生活相關的一切。我們的內容涵蓋 <strong>旅遊、軟體開發、工作效率應用、數位安全</strong> 等領域，幫助觀眾輕鬆上手各類工具，提升創作與工作效率。
         </p>
         <p>
           我們的受眾以 <strong>知識型工作者、職場人士、科技愛好者</strong> 為主，涵蓋廣泛的 <strong>創業者、自由工作者</strong>。憑藉精準的選題、專業的講解風格，我們的影片獲得了廣泛認可，具備 <strong>高黏著性</strong> 的特點，能夠為品牌帶來有效的曝光與用戶轉化。
@@ -486,12 +484,12 @@
         <div class="process-highlights">
           <div class="highlight-card">
             <h4>穩定進度</h4>
-            <p>三棱鏡頻道在合作初期即會提供 <strong>完整的合作製程表</strong>，清楚列出各階段的製作進度與審核時間點，確保雙方對流程有一致的預期。我們的製作進度規劃明確，包含 <strong>腳本撰寫、審核調整、影片製作、影片審核及最終發布</strong>，讓品牌能夠掌握進度，確保內容按時、高品質產出。透過這種穩定的運作方式，我們能夠 <strong>確保影片準時上線，並達到最佳推廣效果</strong>。</p>
+            <p>三稜鏡頻道在合作初期即會提供 <strong>完整的合作製程表</strong>，清楚列出各階段的製作進度與審核時間點，確保雙方對流程有一致的預期。我們的製作進度規劃明確，包含 <strong>腳本撰寫、審核調整、影片製作、影片審核及最終發布</strong>，讓品牌能夠掌握進度，確保內容按時、高品質產出。透過這種穩定的運作方式，我們能夠 <strong>確保影片準時上線，並達到最佳推廣效果</strong>。</p>
           </div>
 
           <div class="highlight-card">
             <h4>雙重審核機制</h4>
-            <p>為確保品牌形象與推廣內容達到最佳效果，三棱鏡頻道提供 <strong>雙重審核機制</strong>，讓品牌能夠在關鍵環節確認內容，確保推廣符合期待。</p>
+            <p>為確保品牌形象與推廣內容達到最佳效果，三稜鏡頻道提供 <strong>雙重審核機制</strong>，讓品牌能夠在關鍵環節確認內容，確保推廣符合期待。</p>
             <ul>
               <li><strong>腳本確認</strong>：影片製作前，提供完整腳本，品牌可審核並修改內容 <strong>最多兩次</strong>。</li>
               <li><strong>影片確認</strong>：影片初稿完成後，品牌可再次審核，對合作片段進行 <strong>最多兩次</strong> 調整。</li>
@@ -578,7 +576,7 @@
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
       </a>
       <span class="separator">|</span>
-      <a href="mailto:prism66.business@outlook.com" title="Email">
+      <a href="mailto:prizm66.business@outlook.com" title="Email">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" />
       </a>
     </div>
@@ -587,10 +585,16 @@
     </div>
   </footer>
 
+  <!-- 新架構：正確的依賴順序 -->
+  <!-- 1. 基礎工具 -->
   <script src="../assets/js/core/utils.js"></script>
   <script src="../assets/js/core/main.js"></script>
+  
+  <!-- 2. 組件腳本 -->
   <script src="../assets/js/components/testimonials-carousel.js"></script>
   <script src="../assets/js/components/examples-carousel.js"></script>
+  
+  <!-- 3. Work-with-us 頁面專用腳本 -->
   <script src="../assets/js/pages/work-with-us.js"></script>
 </body>
 </html>

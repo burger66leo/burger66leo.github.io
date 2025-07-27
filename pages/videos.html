@@ -6,16 +6,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>精選影片 - 三稜鏡 prizm｜科技與創意的交會點</title>
-  <link rel="stylesheet" href="../assets/css/core/variables.css">
-  <link rel="stylesheet" href="../assets/css/core/base.css">
-  <link rel="stylesheet" href="../assets/css/core/components.css">
-  <link rel="stylesheet" href="../assets/css/components/page-header.css">
-  <link rel="stylesheet" href="../assets/css/pages/index.css">
+  <!-- 新架構：使用 enhanced bundle (Videos 需要粒子背景) -->
+  <link rel="stylesheet" href="../assets/css/bundles/enhanced.css">
   <link rel="stylesheet" href="../assets/css/pages/videos.css">
   <link rel="stylesheet" href="../assets/css/core/responsive.css">
+  <!-- 開發中提示樣式 -->
+  <style>
+    .dev-notice-banner {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(243, 215, 78, 0.1) 0%, rgba(74, 92, 106, 0.05) 100%);
+      padding: 2rem;
+    }
+    
+    .dev-notice-content {
+      text-align: center;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(243, 215, 78, 0.3);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dev-notice-content h2 {
+      color: #d4af37;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .dev-notice-content p {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .back-home-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      background: #d4af37;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .back-home-btn:hover {
+      background: #b8941f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .dev-notice-content {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+      }
+      
+      .dev-notice-content h2 {
+        font-size: 1.6rem;
+      }
+      
+      .dev-notice-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- 粒子背景 -->
+  <div id="particles-background-layer" class="particle-background-layer"></div>
+
   <!-- 導航欄 -->
   <div class="navbar" id="navbar">
     <a href="/" class="logo">
@@ -40,214 +109,158 @@
     </nav>
   </div>
 
-  <!-- 頁面標題區域 -->
-  <div class="page-header">
-    <div class="header-content">
-      <h1>精選影片</h1>
-      <p>深度洞察，系統思辨</p>
+  <!-- 開發中提示 -->
+  <div class="dev-notice-banner">
+    <div class="dev-notice-content">
+      <h2>🚧 頁面開發中</h2>
+      <p>我們正在重新設計影片展示頁面，提供更好的觀看和導航體驗。</p>
+      <p>敬請期待更豐富的內容呈現！</p>
+      <a href="/" class="back-home-btn">← 返回首頁</a>
     </div>
   </div>
 
-  <!-- 主要內容 -->
-  <div class="main-content">
+  <!-- 頁面標題區域（暫時隱藏） -->
+  <div class="page-header" style="display: none;">
+    <div class="header-content">
+      <h1>深度思考，精準表達</h1>
+      <p>用系統性思維解析科技世界的商業現象</p>
+    </div>
+  </div>
+
+  <!-- 主要內容（暫時隱藏） -->
+  <div class="main-content" style="display: none;">
     <!-- 內容理念 -->
     <section class="section fade-in">
       <h2>內容理念</h2>
-      <div class="text-content">
-        <p>
-          每一支影片都是我們對科技世界深度思考的結晶。我們不追求快速的熱點報導，而是致力於提供有深度、有洞察、有價值的長期內容。
+      <div class="philosophy-simple">
+        <p class="philosophy-main">
+          我們不追逐熱點，專注長期價值——用系統性思維解析商業現象背後的本質。
         </p>
-        <p>
-          從華為的戰略佈局到蘋果的設計哲學，從 Duolingo 的用戶增長到 Minecraft 的文化影響力，我們用系統性思維解析商業現象背後的本質。
-        </p>
+        <div class="philosophy-points">
+          <div class="point">
+            <span class="point-icon">🔍</span>
+            <span>深度研究</span>
+          </div>
+          <div class="point">
+            <span class="point-icon">🧠</span>
+            <span>獨立思考</span>
+          </div>
+          <div class="point">
+            <span class="point-icon">⚡</span>
+            <span>長期價值</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 影片分類 -->
+    <!-- 精選代表作 -->
     <section class="section fade-in">
-      <h2>內容分類</h2>
-      <div class="category-filter">
-        <button class="filter-btn active" data-category="all">全部</button>
-        <button class="filter-btn" data-category="tech-giants">科技巨頭</button>
-        <button class="filter-btn" data-category="brand-analysis">品牌分析</button>
-        <button class="filter-btn" data-category="product-strategy">產品策略</button>
-        <button class="filter-btn" data-category="business-model">商業模式</button>
-      </div>
-    </section>
-
-    <!-- 精選影片 -->
-    <section class="section fade-in">
-      <h2>精選作品</h2>
-      <div class="videos-grid" id="videosGrid">
+      <h2>精選代表作</h2>
+      <p class="section-intro">三部最具代表性的深度分析作品，展現我們對商業現象的獨特觀察角度</p>
+      <div class="featured-videos-grid">
         
-        <!-- 科技巨頭分析 -->
-        <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-card" data-category="tech-giants">
-          <div class="video-thumbnail">
-            <div class="thumbnail-placeholder">
-              <div class="play-icon">▶</div>
+        <!-- 1. Minecraft 的文化影響力 -->
+        <div class="featured-video-card">
+          <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-link">
+            <div class="video-thumbnail">
+              <div class="thumbnail-placeholder">
+                <div class="play-icon">▶</div>
+              </div>
+              <div class="video-duration">20:15</div>
             </div>
-            <div class="video-duration">15:42</div>
-          </div>
-          <div class="video-info">
-            <h3>華為的逆境突圍：制裁下的戰略轉型</h3>
-            <p class="video-description">
-              深度分析華為如何在美國制裁下重新定義自己的商業版圖，從硬體製造商轉型為生態系統建構者。
-            </p>
-            <div class="video-meta">
-              <span class="category-tag tech-giants">科技巨頭</span>
-              <span class="views">128K 觀看</span>
-              <span class="date">2024-12</span>
+            <div class="video-info">
+              <h3>Minecraft 的文化影響力：從遊戲到創意平台</h3>
+              <p class="video-description">
+                探討 Minecraft 如何從單純的遊戲發展成為創意表達的平台，影響整個世代的創造力培養。
+              </p>
+              <div class="video-meta">
+                <span class="views">203K 觀看</span>
+                <span class="date">2024-09</span>
+              </div>
             </div>
-          </div>
-        </a>
-
-        <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-card" data-category="tech-giants">
-          <div class="video-thumbnail">
-            <div class="thumbnail-placeholder">
-              <div class="play-icon">▶</div>
-            </div>
-            <div class="video-duration">18:26</div>
-          </div>
-          <div class="video-info">
-            <h3>蘋果的設計哲學：極簡背後的商業邏輯</h3>
-            <p class="video-description">
-              從產品設計到用戶體驗，探討蘋果如何用設計語言建立品牌護城河，創造高溢價的商業模式。
-            </p>
-            <div class="video-meta">
-              <span class="category-tag tech-giants">科技巨頭</span>
-              <span class="views">95K 觀看</span>
-              <span class="date">2024-11</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 品牌分析 -->
-        <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-card" data-category="brand-analysis">
-          <div class="video-thumbnail">
-            <div class="thumbnail-placeholder">
-              <div class="play-icon">▶</div>
-            </div>
-            <div class="video-duration">12:18</div>
-          </div>
-          <div class="video-info">
-            <h3>Duolingo 的增長密碼：如何讓學習變成遊戲</h3>
-            <p class="video-description">
-              分析 Duolingo 如何運用遊戲化機制、社群功能與個人化學習，建立全球最大的語言學習平台。
-            </p>
-            <div class="video-meta">
-              <span class="category-tag brand-analysis">品牌分析</span>
-              <span class="views">156K 觀看</span>
-              <span class="date">2024-10</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-card" data-category="brand-analysis">
-          <div class="video-thumbnail">
-            <div class="thumbnail-placeholder">
-              <div class="play-icon">▶</div>
-            </div>
-            <div class="video-duration">20:15</div>
-          </div>
-          <div class="video-info">
-            <h3>Minecraft 的文化影響力：從遊戲到創意平台</h3>
-            <p class="video-description">
-              探討 Minecraft 如何從單純的遊戲發展成為創意表達的平台，影響整個世代的創造力培養。
-            </p>
-            <div class="video-meta">
-              <span class="category-tag brand-analysis">品牌分析</span>
-              <span class="views">203K 觀看</span>
-              <span class="date">2024-09</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 產品策略 -->
-        <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-card" data-category="product-strategy">
-          <div class="video-thumbnail">
-            <div class="thumbnail-placeholder">
-              <div class="play-icon">▶</div>
-            </div>
-            <div class="video-duration">16:33</div>
-          </div>
-          <div class="video-info">
-            <h3>微軟的雲端轉型：從軟體公司到服務平台</h3>
-            <p class="video-description">
-              分析微軟如何從傳統軟體授權模式轉向雲端訂閱服務，重新定義企業軟體的商業模式。
-            </p>
-            <div class="video-meta">
-              <span class="category-tag product-strategy">產品策略</span>
-              <span class="views">87K 觀看</span>
-              <span class="date">2024-08</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 商業模式 -->
-        <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-card" data-category="business-model">
-          <div class="video-thumbnail">
-            <div class="thumbnail-placeholder">
-              <div class="play-icon">▶</div>
-            </div>
-            <div class="video-duration">14:07</div>
-          </div>
-          <div class="video-info">
-            <h3>訂閱經濟的崛起：為什麼所有產品都在變服務？</h3>
-            <p class="video-description">
-              從 Netflix 到 Adobe，探討訂閱模式如何改變商業邏輯，以及企業應該如何適應這個趨勢。
-            </p>
-            <div class="video-meta">
-              <span class="category-tag business-model">商業模式</span>
-              <span class="views">174K 觀看</span>
-              <span class="date">2024-07</span>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- 製作理念 -->
-    <section class="section fade-in">
-      <h2>製作理念</h2>
-      <div class="production-values">
-        <div class="value-item">
-          <div class="value-icon">🔍</div>
-          <h3>深度研究</h3>
-          <p>每支影片都經過大量的資料收集與分析，確保內容的準確性與深度。</p>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">🎯</div>
-          <h3>清晰論述</h3>
-          <p>複雜的商業現象透過結構化的敘事方式，讓觀眾易於理解與吸收。</p>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">🧠</div>
-          <h3>獨立思考</h3>
-          <p>不盲從主流觀點，用批判性思維提供獨特而有價值的觀察角度。</p>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">⚡</div>
-          <h3>長期價值</h3>
-          <p>追求能夠經得起時間考驗的內容，而非追逐短期的流量熱點。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 訂閱頻道 -->
-    <section class="section fade-in">
-      <h2>訂閱我們的頻道</h2>
-      <div class="subscribe-section">
-        <p>
-          想要第一時間觀看我們的最新影片？歡迎訂閱我們的 YouTube 頻道，我們會定期發布高品質的科技與商業分析內容。
-        </p>
-        <div class="subscribe-cta">
-          <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="subscribe-button">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" />
-            訂閱頻道
           </a>
-          <div class="subscriber-count">已有 12.5K 訂閱者與我們一起思考</div>
+          <div class="core-insight">
+            <h4>核心洞察</h4>
+            <p>遊戲不只是娛樂，而是文化載體——當產品成為用戶表達自我的工具時，它就超越了功能性價值，成為不可替代的平台。</p>
+          </div>
         </div>
+
+        <!-- 2. 訂閱經濟的崛起 -->
+        <div class="featured-video-card">
+          <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-link">
+            <div class="video-thumbnail">
+              <div class="thumbnail-placeholder">
+                <div class="play-icon">▶</div>
+              </div>
+              <div class="video-duration">14:07</div>
+            </div>
+            <div class="video-info">
+              <h3>訂閱經濟的崛起：為什麼所有產品都在變服務？</h3>
+              <p class="video-description">
+                從 Netflix 到 Adobe，探討訂閱模式如何改變商業邏輯，以及企業應該如何適應這個趨勢。
+              </p>
+              <div class="video-meta">
+                <span class="views">174K 觀看</span>
+                <span class="date">2024-07</span>
+              </div>
+            </div>
+          </a>
+          <div class="core-insight">
+            <h4>核心洞察</h4>
+            <p>商業模式決定產品設計——訂閱制不只改變收費方式，而是重新定義了企業與用戶的關係：從一次性交易到持續價值創造。</p>
+          </div>
+        </div>
+
+        <!-- 3. Duolingo 的增長密碼 -->
+        <div class="featured-video-card">
+          <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="video-link">
+            <div class="video-thumbnail">
+              <div class="thumbnail-placeholder">
+                <div class="play-icon">▶</div>
+              </div>
+              <div class="video-duration">12:18</div>
+            </div>
+            <div class="video-info">
+              <h3>Duolingo 的增長密碼：如何讓學習變成遊戲</h3>
+              <p class="video-description">
+                分析 Duolingo 如何運用遊戲化機制、社群功能與個人化學習，建立全球最大的語言學習平台。
+              </p>
+              <div class="video-meta">
+                <span class="views">156K 觀看</span>
+                <span class="date">2024-10</span>
+              </div>
+            </div>
+          </a>
+          <div class="core-insight">
+            <h4>核心洞察</h4>
+            <p>習慣比功能更重要——真正的產品護城河不是技術領先，而是能讓用戶自然而然地每天回來，將使用變成生活的一部分。</p>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- 輕量引導 -->
+    <section class="section fade-in">
+      <div class="gentle-engagement">
+        <h2>持續思考，持續分享</h2>
+        <p class="engagement-intro">
+          如果這些內容對你有啟發，歡迎在 YouTube 上追蹤我們的頻道。我們會持續分享更多深度觀察。
+        </p>
+        <div class="engagement-options">
+          <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="gentle-cta youtube">
+            <span class="cta-icon">📺</span>
+            <span>YouTube 頻道</span>
+          </a>
+          <a href="/pages/about.html" class="gentle-cta about">
+            <span class="cta-icon">💭</span>
+            <span>了解我們</span>
+          </a>
+        </div>
+        <p class="engagement-note">
+          有想法想交流？我們樂意聽聽不同的觀點和思考。
+        </p>
       </div>
     </section>
   </div>
@@ -276,8 +289,22 @@
     </div>
   </footer>
 
+  <!-- 新架構：正確的依賴順序 -->
+  <!-- 1. 基礎工具 -->
   <script src="../assets/js/core/utils.js"></script>
   <script src="../assets/js/core/main.js"></script>
+  
+  <!-- 2. GSAP 動畫庫 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- 3. Enhanced bundle (SimplexNoise + 共用動畫) -->
+  <script src="../assets/js/bundles/enhanced.js"></script>
+  
+  <!-- 4. 智能粒子背景系統 -->
+  <script src="../assets/js/core/smart-particles.js"></script>
+  
+  <!-- 5. Videos 頁面專用腳本 -->
   <script src="../assets/js/pages/videos.js"></script>
 </body>
 </html>

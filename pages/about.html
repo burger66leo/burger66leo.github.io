@@ -6,16 +6,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>關於我們 - 三稜鏡 prizm｜科技與創意的交會點</title>
-  <link rel="stylesheet" href="../assets/css/core/variables.css">
-  <link rel="stylesheet" href="../assets/css/core/base.css">
-  <link rel="stylesheet" href="../assets/css/core/components.css">
-  <link rel="stylesheet" href="../assets/css/components/page-header.css">
-  <link rel="stylesheet" href="../assets/css/pages/index.css">
-  <link rel="stylesheet" href="../assets/css/pages/about.css">
-  <link rel="stylesheet" href="../assets/css/core/responsive.css">
+  <!-- About 專用 bundle：精簡且明確的依賴 -->
+  <link rel="stylesheet" href="../assets/css/bundles/about.css">
 </head>
 
 <body>
+  <!-- 粒子背景 -->
+  <div id="particles-background-layer" class="particle-background-layer"></div>
+
   <!-- 導航欄 -->
   <div class="navbar" id="navbar">
     <a href="/" class="logo">
@@ -135,7 +133,7 @@
       <h2>What We Cover</h2>
       <div class="content-gallery">
         <ul class="content-cards">
-          <li class="content-card">
+          <li class="content-card" data-details="深度解析蘋果、華為、微軟、Google 等公司的戰略思維與產品哲學">
             <div class="content-card-inner">
               <div class="area-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,11 +141,11 @@
                   <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h3>科技巨頭分析</h3>
-              <p>深度解析蘋果、華為、微軟、Google 等公司的戰略思維與產品哲學</p>
+              <h3>Tech Giants Analysis</h3>
+              <p>科技巨頭分析</p>
             </div>
           </li>
-          <li class="content-card">
+          <li class="content-card" data-details="探討成功品牌的敘事手法、用戶體驗設計與商業模式創新">
             <div class="content-card-inner">
               <div class="area-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -155,22 +153,22 @@
                   <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h3>品牌策略洞察</h3>
-              <p>探討成功品牌的敘事手法、用戶體驗設計與商業模式創新</p>
+              <h3>Brand Strategy Insights</h3>
+              <p>品牌策略洞察</p>
             </div>
           </li>
-          <li class="content-card">
+          <li class="content-card" data-details="結合理論與實作，開發有意義的應用程式，驗證我們的商業洞察">
             <div class="content-card-inner">
               <div class="area-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h3>App 開發實踐</h3>
-              <p>結合理論與實作，開發有意義的應用程式，驗證我們的商業洞察</p>
+              <h3>App Development Practice</h3>
+              <p>App 開發實踐</p>
             </div>
           </li>
-          <li class="content-card">
+          <li class="content-card" data-details="運用邏輯思維與批判性思考，建構完整的知識體系">
             <div class="content-card-inner">
               <div class="area-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,33 +178,8 @@
                   <path d="M7 12h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h3>系統性思辨</h3>
-              <p>運用邏輯思維與批判性思考，建構完整的知識體系</p>
-            </div>
-          </li>
-          <!-- 重複卡片以支援無限循環 -->
-          <li class="content-card">
-            <div class="content-card-inner">
-              <div class="area-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h3>科技巨頭分析</h3>
-              <p>深度解析蘋果、華為、微軟、Google 等公司的戰略思維與產品哲學</p>
-            </div>
-          </li>
-          <li class="content-card">
-            <div class="content-card-inner">
-              <div class="area-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <h3>品牌策略洞察</h3>
-              <p>探討成功品牌的敘事手法、用戶體驗設計與商業模式創新</p>
+              <h3>Systematic Thinking</h3>
+              <p>系統性思辨</p>
             </div>
           </li>
         </ul>
@@ -218,21 +191,77 @@
     </section>
 
     <!-- Meet the Creator -->
-    <section class="section fade-in">
+    <section class="section fade-in creator-section">
       <h2>Meet the Creator</h2>
-      <div class="text-content">
-        <p>
-          我是一個對世界充滿好奇的人，習慣用紀錄和拆解來理解現象。我是 Leo，也是三稜鏡 prizm 的創作者。
-        </p>
-        <p>
-          這個頻道不是新聞，也不只是評論，而是一次次對「為什麼」的追問。科技產品如何影響我們的選擇？品牌如何建立文化？個人又該如何在這樣的世界中成長？這些問題，推動我不斷思考與創作。
-        </p>
-        <p>
-          我相信理性是一種自由，紀錄是自我掌控的開始。所以除了影片，我也實作自己的觀點，開發 App，建構工具，讓思考不只停留在紙上，而能真正影響生活。
-        </p>
-        <p>
-          三稜鏡是我觀察世界的方式，也是一段與你一起探索與成長的旅程。
-        </p>
+      <div class="creator-content">
+        <div class="creator-card">
+          <div class="creator-content-box">
+            <div class="creator-header">
+              <div class="creator-avatar">
+                <img src="../assets/images/creator-photo.webp" alt="Leo - 三稜鏡 prizm 創作者" class="creator-photo" width="120" height="120">
+              </div>
+              <div class="creator-info">
+                <h3 class="creator-name">Leo</h3>
+                <p class="creator-subtitle">三稜鏡 prizm 創作者</p>
+              </div>
+            </div>
+            
+            <div class="creator-main-content">
+              <div class="creator-bio">
+                <div class="bio-main">
+                  <p>專注於科技產品分析與商業模式研究，透過系統性思維解析現象背後的邏輯。</p>
+                </div>
+                
+                <div class="bio-details">
+                  <div class="bio-item">
+                    <span class="bio-label">專業領域</span>
+                    <span class="bio-value">科技分析 · 產品策略 · App 開發</span>
+                  </div>
+                  <div class="bio-item">
+                    <span class="bio-label">創作方向</span>
+                    <span class="bio-value">深度研究 · 長期價值 · 實用工具</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="creator-social-links">
+                <h4>關注我們</h4>
+                <div class="social-grid">
+                  <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="social-link youtube">
+                    <div class="social-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23 7.8c0-1.3-.8-2.4-2-2.8-1.8-.5-9-.5-9-.5s-7.2 0-9 .5c-1.2.4-2 1.5-2 2.8 0 0-.5 2.3-.5 4.7v2.2c0 2.4.5 4.7.5 4.7 0 1.3.8 2.4 2 2.8 1.8.5 9 .5 9 .5s7.2 0 9-.5c1.2-.4 2-1.5 2-2.8 0 0 .5-2.3.5-4.7v-2.2c0-2.4-.5-4.7-.5-4.7z" fill="currentColor"/>
+                        <polygon points="9.75,15.02 15.5,12 9.75,8.98" fill="white"/>
+                      </svg>
+                    </div>
+                    <span>YouTube</span>
+                  </a>
+                  
+                  <a href="https://instagram.com/prizmtech" target="_blank" class="social-link instagram">
+                    <div class="social-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/>
+                      </svg>
+                    </div>
+                    <span>Instagram</span>
+                  </a>
+                  
+                  <a href="mailto:hi@prizm.com.tw" class="social-link email">
+                    <div class="social-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/>
+                        <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
+                      </svg>
+                    </div>
+                    <span>Email</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -241,8 +270,10 @@
       <h2>Disclosure</h2>
       <p class="disclosure-intro-text">我們相信透明是建立信任的基礎。以下是我們對內容獨立性與合作透明度的承諾。</p>
       
-      <div class="disclosure-toggle-list">
-        <div class="disclosure-toggle-item">
+      <!-- 統一的大矩形容器 -->
+      <div class="disclosure-container">
+        <div class="disclosure-toggle-list">
+          <div class="disclosure-toggle-item">
           <button class="disclosure-toggle-header" data-toggle="independence">
             <div class="disclosure-toggle-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -287,9 +318,9 @@
           <div class="disclosure-toggle-content" id="transparency">
             <p>我們會主動披露任何可能影響內容客觀性的利益相關情況。</p>
             <ul>
-              <li>發布時標註所有利益相關資訊</li>
-              <li>提供完整的合作背景說明</li>
-              <li>歡迎觀眾對內容獨立性提出疑問</li>
+              <li>有合作關係時會主動說明</li>
+              <li>保持內容製作的透明度</li>
+              <li>歡迎觀眾提出相關疑問</li>
             </ul>
           </div>
         </div>
@@ -349,13 +380,30 @@
           </div>
         </div>
       </div>
+      </div>
       
-      <div class="disclosure-contact">
+      <!-- 保持對話 - 磁力卡片設計 -->
+      <div class="contact-engagement">
         <h3>保持對話</h3>
-        <p>
-          如果您對我們的內容獨立性有任何疑問，或希望了解更多關於我們的合作政策，
-          <strong>歡迎隨時與我們聯繫</strong>。開放的對話是維護信任的最好方式。
-        </p>
+        <div class="engagement-quote">
+          <p class="engagement-intro">
+            如果您對我們的內容獨立性有任何疑問，或希望了解更多關於我們的合作政策，歡迎隨時與我們聯繫。開放的對話是維護信任的最好方式。
+          </p>
+        </div>
+        <div class="card-grid card-grid--3-col">
+          <a href="mailto:hi@prizm.com.tw" class="card-item card-item--feature card-item--magnetic">
+            <h4 class="card-title"><span class="main-word">Email</span><span class="sub-text">直接交流</span></h4>
+            <p class="card-content">hi@prizm.com.tw<br/>最直接的溝通方式，我們會仔細閱讀每一封來信</p>
+          </a>
+          <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="card-item card-item--feature card-item--magnetic">
+            <h4 class="card-title"><span class="main-word">YouTube</span><span class="sub-text">留言互動</span></h4>
+            <p class="card-content">在影片下方留言，與我們和其他觀眾一起討論想法</p>
+          </a>
+          <a href="/pages/work-with-us.html" class="card-item card-item--feature card-item--magnetic">
+            <h4 class="card-title"><span class="main-word">合作</span><span class="sub-text">創作夥伴</span></h4>
+            <p class="card-content">如果有合作想法或品牌故事想分享，歡迎了解我們的合作方式</p>
+          </a>
+        </div>
       </div>
     </section>
   </div>
@@ -384,12 +432,23 @@
     </div>
   </footer>
 
-  <!-- GSAP 動畫庫 -->
+  <!-- About 專用架構：清晰且最小化的依賴 -->
+  <!-- 1. 基礎工具 -->
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="../assets/js/core/main.js"></script>
+  
+  <!-- 2. GSAP 動畫庫 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
-  <script src="../assets/js/core/utils.js"></script>
-  <script src="../assets/js/core/main.js"></script>
+  <!-- 3. About 專用 bundle (包含 SimplexNoise) -->
+  <script src="../assets/js/bundles/about.js"></script>
+  
+  <!-- 4. 智能粒子背景系統 -->
+  <script src="../assets/js/core/smart-particles.js"></script>
+  
+  <!-- 5. About 頁面邏輯 -->
   <script src="../assets/js/pages/about.js"></script>
+  
 </body>
 </html>

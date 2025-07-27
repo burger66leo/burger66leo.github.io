@@ -6,13 +6,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>我們的應用 - 三稜鏡 prizm｜科技與創意的交會點</title>
-  <link rel="stylesheet" href="../assets/css/core/variables.css">
-  <link rel="stylesheet" href="../assets/css/core/base.css">
-  <link rel="stylesheet" href="../assets/css/core/components.css">
-  <link rel="stylesheet" href="../assets/css/components/page-header.css">
-  <link rel="stylesheet" href="../assets/css/pages/index.css">
+  <!-- 新架構：使用 common bundle -->
+  <link rel="stylesheet" href="../assets/css/bundles/common.css">
   <link rel="stylesheet" href="../assets/css/pages/apps.css">
   <link rel="stylesheet" href="../assets/css/core/responsive.css">
+  <!-- 開發中提示樣式 -->
+  <style>
+    .dev-notice-banner {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(243, 215, 78, 0.1) 0%, rgba(74, 92, 106, 0.05) 100%);
+      padding: 2rem;
+    }
+    
+    .dev-notice-content {
+      text-align: center;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(243, 215, 78, 0.3);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dev-notice-content h2 {
+      color: #d4af37;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .dev-notice-content p {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .back-home-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      background: #d4af37;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .back-home-btn:hover {
+      background: #b8941f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .dev-notice-content {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+      }
+      
+      .dev-notice-content h2 {
+        font-size: 1.6rem;
+      }
+      
+      .dev-notice-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -21,18 +87,18 @@
     <a href="/" class="logo">
       <picture>
         <source srcset="../assets/images/logo-icon.webp" type="image/webp">
-        <img src="../assets/images/logo-icon.png" alt="品牌 Logo">
+        <img src="../assets/images/logo-icon.png" alt="品牌 Logo" width="40" height="40">
       </picture>
     </a>
     
     <!-- 移動端菜單按鈕 -->
-    <div class="menu-toggle" id="menuToggle">
+    <button class="menu-toggle" id="menuToggle" aria-label="切換導航菜單" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
     
-    <nav id="nav">
+    <nav id="nav" aria-hidden="true" role="navigation" aria-label="主導航">
       <a href="about.html">ABOUT</a>
       <a href="apps.html" class="active">APPS</a>
       <a href="videos.html">VIDEOS</a>
@@ -40,115 +106,182 @@
     </nav>
   </div>
 
-  <!-- 頁面標題區域 -->
-  <div class="page-header">
-    <div class="header-content">
-      <h1>prizmlab</h1>
-      <p>從靈感，到實作。從我們，到你每天的生活。</p>
+  <!-- 開發中提示 -->
+  <div class="dev-notice-banner">
+    <div class="dev-notice-content">
+      <h2>🚧 頁面開發中</h2>
+      <p>我們正在精心打造這個頁面的內容，包括我們的應用程式展示和互動體驗。</p>
+      <p>敬請期待更完整的內容！</p>
+      <a href="/" class="back-home-btn">← 返回首頁</a>
     </div>
   </div>
 
-  <!-- 主要內容 -->
-  <div class="main-content">
-    <!-- 開發理念 -->
-    <section class="section fade-in">
-      <h2>Philosophy</h2>
-      <div class="text-content">
-        <p>
-          每個應用程式，都是我們對科技、生活與人的深度觀察——從需求出發，融合美感、技術與直覺，打造好用、耐用、想用的工具。
-        </p>
-        <p>
-          我們不只是分享想法，我們親手實現。從創作到產品，從內容到實踐，讓思考真正落地，讓工具為你所用。
-        </p>
-      </div>
-    </section>
-
-    <!-- 應用展示 -->
-    <section class="section fade-in">
-      <h2>Featured Apps</h2>
-      <div class="apps-grid">
-        <!-- beedea -->
-        <div class="app-card featured">
-          <div class="app-icon">
-            <div class="app-icon-placeholder">BD</div>
+  <!-- 全屏內容容器（暫時隱藏） -->
+  <div class="fullscreen-container" style="display: none;">
+    <!-- 應用展示內容 -->
+    <div class="content-wrapper">
+      <!-- 第一頁：介紹和快速導航 -->
+      <section class="app-section gradient-intro" id="intro-section">
+        <div class="intro-content">
+          <div class="intro-hero">
+            <h1 class="intro-title">prizmLab</h1>
+            <p class="intro-subtitle">從靈感，到實作，到你每天的生活。</p>
           </div>
-          <div class="app-info">
-            <h3>beedea｜存證信函產生器</h3>
-            <p class="app-category">法律工具</p>
-            <p class="app-description">
-              簡化法律文件的建立流程，讓存證信函的撰寫變得更直覺、更專業。
-            </p>
-            <div class="app-features">
-              <span class="feature-tag">範本庫</span>
-              <span class="feature-tag">智能填表</span>
-              <span class="feature-tag">法律檢核</span>
+          
+          <div class="intro-description">
+            <p>每個應用程式，都是我們對科技、生活與人的深度觀察——從需求出發，融合美感、技術與直覺，打造好用、耐用、想用的工具。</p>
+            <p>我們不只是分享想法，我們親手實現。從創作到產品，從內容到實踐，讓思考真正落地，讓工具為你所用。</p>
+          </div>
+          
+          <div class="quick-navigation">
+            <h3>我們的應用</h3>
+            <div class="nav-buttons">
+              <a href="#beedea-section" class="nav-button nav-button--beedea">
+                <div class="nav-icon">BD</div>
+                <div class="nav-text">
+                  <h4>beedea</h4>
+                  <p>存證信函產生器</p>
+                </div>
+                <div class="nav-arrow">→</div>
+              </a>
+              
+              <a href="#trifit-section" class="nav-button nav-button--trifit">
+                <div class="nav-icon">TF</div>
+                <div class="nav-text">
+                  <h4>trifit</h4>
+                  <p>更聰明的健身紀錄</p>
+                </div>
+                <div class="nav-arrow">→</div>
+              </a>
+              
+              <a href="#philosophy-section" class="nav-button nav-button--philosophy">
+                <div class="nav-icon">💡</div>
+                <div class="nav-text">
+                  <h4>開發理念</h4>
+                  <p>讓思考真正落地</p>
+                </div>
+                <div class="nav-arrow">→</div>
+              </a>
             </div>
           </div>
-          <div class="app-status">
-            <span class="status-badge development">開發中</span>
+          
+          <div class="scroll-indicator">
+            <span>向下滾動探索</span>
+            <div class="scroll-arrow">↓</div>
           </div>
         </div>
+      </section>
 
-        <!-- trifit -->
-        <div class="app-card featured">
-          <div class="app-icon">
-            <div class="app-icon-placeholder">TF</div>
-          </div>
-          <div class="app-info">
-            <h3>trifit｜更聰明的健身紀錄</h3>
-            <p class="app-category">三個核心：記錄、分析、進步。</p>
-            <p class="app-description">
-              不只是做，而是變更強、更科學、更有效率。
-            </p>
-            <div class="app-features">
-              <span class="feature-tag">快速紀錄｜直覺操作，不卡關</span>
-              <span class="feature-tag">數據分析｜視覺化進步，看得見成果</span>
-              <span class="feature-tag">目標追蹤｜持續優化，不走回頭路</span>
+      <!-- beedea 展示區域 -->
+      <section class="app-section gradient-yellow" id="beedea-section">
+        <div class="app-detail">
+          <div class="app-hero">
+            <div class="app-icon-large">BD</div>
+            <div class="app-title-section">
+              <h1>beedea</h1>
+              <p class="app-subtitle">存證信函產生器</p>
+              <div class="status-badge development">開發中</div>
             </div>
           </div>
-          <div class="app-status">
-            <span class="status-badge development">開發中</span>
+          
+          <div class="app-description-section">
+            <h3>為什麼選擇 beedea？</h3>
+            <p>簡化法律文件的建立流程，讓存證信函的撰寫變得更直覺、更專業。</p>
+            
+            <div class="feature-list">
+              <div class="feature-item">
+                <h4>📚 範本庫</h4>
+                <p>精選法律範本，涵蓋各種情境</p>
+              </div>
+              <div class="feature-item">
+                <h4>✨ 智能填表</h4>
+                <p>引導式填寫，降低出錯機率</p>
+              </div>
+              <div class="feature-item">
+                <h4>⚖️ 法律檢核</h4>
+                <p>自動檢核內容，確保合法性</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-
-    <!-- 新應用正在路上 -->
-    <section class="section fade-in">
-      <h2>新應用正在路上</h2>
-      <div class="text-content">
-        <p>
-          我們期待開發更多實用、好看、可持續成長的應用。
-        </p>
-        <p>
-          每一款新工具，都來自我們對科技趨勢的關注、對用戶需求的理解、以及創作者視角的洞察。
-        </p>
-        <p>
-          有想法想與我們討論？或是希望看到某種類型的應用？歡迎隨時與我們聯絡，一起讓想法成為現實。
-        </p>
-      </div>
-    </section>
-
-    <!-- 關注我們 -->
-    <section class="section fade-in">
-      <h2>關注我們｜不要錯過下一個驚喜</h2>
-      <div class="coming-soon">
-        <div class="cta-buttons">
-          <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="cta-button primary">
-            🔔 訂閱 YouTube 頻道｜看我們如何打造工具
-          </a>
-          <a href="work-with-us.html" class="cta-button secondary">
-            📧 聯絡我們｜合作開發？產品回饋？歡迎聊聊
-          </a>
+      <!-- trifit 展示區域 -->
+      <section class="app-section gradient-blue" id="trifit-section">
+        <div class="app-detail">
+          <div class="app-hero">
+            <div class="app-icon-large">TF</div>
+            <div class="app-title-section">
+              <h1>trifit</h1>
+              <p class="app-subtitle">更聰明的健身紀錄</p>
+              <div class="status-badge development">開發中</div>
+            </div>
+          </div>
+          
+          <div class="app-description-section">
+            <h3>三個核心：記錄、分析、進步</h3>
+            <p>不只是做，而是變更強、更科學、更有效率。</p>
+            
+            <div class="feature-list">
+              <div class="feature-item">
+                <h4>⚡ 快速紀錄</h4>
+                <p>直覺操作，不卡關</p>
+              </div>
+              <div class="feature-item">
+                <h4>📊 數據分析</h4>
+                <p>視覺化進步，看得見成果</p>
+              </div>
+              <div class="feature-item">
+                <h4>🎯 目標追蹤</h4>
+                <p>持續優化，不走回頭路</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="brand-statement">
-          <p>
-            工具是延伸，進步是目的。我們做的不只是 App，而是幫助你更好生活的起點。
-          </p>
+      </section>
+
+      <!-- 開發理念區域 -->
+      <section class="app-section gradient-purple" id="philosophy-section">
+        <div class="app-detail">
+          <div class="app-hero">
+            <div class="app-icon-large">💡</div>
+            <div class="app-title-section">
+              <h1>開發理念</h1>
+              <p class="app-subtitle">讓思考真正落地</p>
+            </div>
+          </div>
+          
+          <div class="app-description-section">
+            <h3>Philosophy</h3>
+            <p>每個應用程式，都是我們對科技、生活與人的深度觀察——從需求出發，融合美感、技術與直覺，打造好用、耐用、想用的工具。</p>
+            
+            <div class="philosophy-points">
+              <div class="philosophy-item">
+                <h4>💭 從想法到實現</h4>
+                <p>我們不只是分享想法，我們親手實現。從創作到產品，從內容到實踐。</p>
+              </div>
+              <div class="philosophy-item">
+                <h4>🚀 持續創新</h4>
+                <p>我們期待開發更多實用、好看、可持續成長的應用。</p>
+              </div>
+              <div class="philosophy-item">
+                <h4>🤝 開放合作</h4>
+                <p>有想法想與我們討論？歡迎聯絡，一起讓想法成為現實。</p>
+              </div>
+            </div>
+            
+            <div class="cta-section">
+              <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="cta-button primary">
+                訂閱 YouTube 頻道
+              </a>
+              <a href="work-with-us.html" class="cta-button secondary">
+                聯絡我們
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -175,6 +308,11 @@
     </div>
   </footer>
 
+  <!-- GSAP 動畫系統 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  
   <script src="../assets/js/core/utils.js"></script>
   <script src="../assets/js/core/main.js"></script>
   <script src="../assets/js/pages/apps.js"></script>

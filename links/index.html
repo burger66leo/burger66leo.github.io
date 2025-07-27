@@ -6,63 +6,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>三稜鏡 prizm｜連結導航</title>
+    <link rel="stylesheet" href="../assets/css/core/variables.css">
     <link rel="stylesheet" href="links.css">
 </head>
 
 <body>
-    <div class="hero">
-        <img src="/assets/images/logo-banner.png" alt="三稜鏡 prizm Banner" class="hero-img" width="300" height="auto">
-        <div class="hero-text">
-            <span>三稜鏡 prizm</span>
+    <!-- 品牌區塊 -->
+    <div class="brand-section">
+        <div class="brand-logo">
+            <picture>
+                <source srcset="../assets/images/logo-icon.webp" type="image/webp">
+                <img src="../assets/images/logo-icon.png" alt="三稜鏡 prizm Logo" width="80" height="80">
+            </picture>
+        </div>
+        <h1 class="brand-title">三稜鏡 prizm</h1>
+        <p class="brand-tagline">深度思考，精準表達</p>
+    </div>
+
+    <!-- 主要連結 -->
+    <div class="links-container">
+        <a href="../" class="link-item primary">
+            <span class="link-icon">🏠</span>
+            <span class="link-text">官方網站</span>
+            <span class="link-arrow">→</span>
+        </a>
+
+        <a href="../pages/videos.html" class="link-item">
+            <span class="link-icon">📺</span>
+            <span class="link-text">精選影片</span>
+            <span class="link-arrow">→</span>
+        </a>
+
+        <a href="../pages/apps.html" class="link-item">
+            <span class="link-icon">📱</span>
+            <span class="link-text">我們的應用</span>
+            <span class="link-arrow">→</span>
+        </a>
+
+        <a href="../pages/about.html" class="link-item">
+            <span class="link-icon">💭</span>
+            <span class="link-text">關於我們</span>
+            <span class="link-arrow">→</span>
+        </a>
+
+        <a href="../pages/work-with-us.html" class="link-item">
+            <span class="link-icon">🤝</span>
+            <span class="link-text">合作聯絡</span>
+            <span class="link-arrow">→</span>
+        </a>
+    </div>
+
+    <!-- 社群媒體 -->
+    <div class="social-section">
+        <h2>追蹤我們</h2>
+        <div class="social-grid">
+            <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" class="social-item youtube">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="24" height="24">
+                <span>YouTube</span>
+            </a>
+            <a href="https://instagram.com/your_instagram" target="_blank" class="social-item instagram">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24" height="24">
+                <span>Instagram</span>
+            </a>
+            <a href="https://facebook.com/your_facebook" target="_blank" class="social-item facebook">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24" height="24">
+                <span>Facebook</span>
+            </a>
+            <a href="mailto:hi@prizm.com.tw" class="social-item email">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" width="24" height="24">
+                <span>Email</span>
+            </a>
         </div>
     </div>
 
-    <div class="social-row">
-        <a href="https://www.youtube.com/@三稜鏡prizm" target="_blank" title="YouTube">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="24" height="24" />
-        </a>
-        <a href="https://instagram.com/your_instagram" target="_blank" title="Instagram">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24" height="24" />
-        </a>
-        <a href="https://facebook.com/your_facebook" target="_blank" title="Facebook">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24" height="24" />
-        </a>
-        <a href="https://prizm.com.tw" target="_blank" title="官方網站">
-            <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/globe.svg" alt="Website" width="24" height="24" />
-        </a>
-        <a href="mailto:hi@prizm.com.tw" title="Email">
-            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg" alt="Email" width="24" height="24" />
-        </a>
-    </div>
-
-    <div class="video-section">
-        <h2>推薦影片</h2>
-        <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/ce_fUa6c9I4" title="YouTube video player" frameborder="0"
-                allowfullscreen></iframe>
+    <!-- 精選內容 -->
+    <div class="featured-section">
+        <h2>精選影片</h2>
+        <div class="featured-video">
+            <iframe src="https://www.youtube.com/embed/ce_fUa6c9I4" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allowfullscreen></iframe>
         </div>
     </div>
 
-    <div class="contact-section">
-        <h2>廠商合作聯絡</h2>
-        <div class="contact-card">
-            <p class="collab-desc">
-                歡迎品牌或媒體與我們聯繫！<br>
-                我們強調自然融入與內容品質。
-            </p>
-            <div class="contact-btn-row">
-                <a class="collab-btn" href="https://prismleo.any.org/work-with-us" target="_blank">
-                    合作介紹
-                </a>
-                <a class="contact-btn" href="mailto:collab@prizm.com.tw">
-                    聯絡信箱
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2025 三稜鏡 prizm. All rights reserved.
+    <!-- Footer -->
+    <footer class="links-footer">
+        <p>&copy; 2025 三稜鏡 prizm. All rights reserved.</p>
     </footer>
 </body>
 

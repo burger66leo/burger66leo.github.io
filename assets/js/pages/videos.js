@@ -1,5 +1,228 @@
 // Videos 頁面特有的 JavaScript 功能
 
+// 等待所有依賴載入完成
+window.addEventListener('load', function() {
+  // 確保 GSAP 已載入
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // 延遲初始化避免衝突
+    setTimeout(() => {
+      // 使用智能粒子背景系統，自動調整 videos 頁面的粒子長度
+      initSmartParticleBackground({ 
+        coverageMode: 'smart', // 智能模式：根據內容長度自動調整
+        debugMode: false       // 生產模式，關閉詳細日誌
+      });
+    }, 100);
+  } else {
+    console.error('GSAP 或 ScrollTrigger 未載入');
+  }
+});
+
+// 初始化粒子背景 - 與 About 頁面相同的邏輯
+function initParticleBackground() {
+  console.log('🎨 初始化粒子背景 - Videos頁面版本');
+  
+  try {
+    if (typeof gsap === 'undefined') {
+      console.error('❌ GSAP 未載入');
+      return;
+    }
+    
+    if (typeof SimplexNoise === 'undefined') {
+      console.error('❌ SimplexNoise 未載入');
+      return;
+    }
+    
+    // 獲取粒子背景層容器
+    const particlesContainer = document.querySelector('#particles-background-layer');
+    
+    if (!particlesContainer) {
+      console.error('❌ particles-background-layer 容器未找到');
+      return;
+    }
+    
+    console.log('✅ 容器已找到:', particlesContainer);
+    
+    // 清除現有粒子
+    particlesContainer.innerHTML = '';
+    
+    // 強制設定粒子容器的高度限制
+    
+    // 動態計算粒子數量 - 根據實際內容高度
+    const isMobile = window.innerWidth <= 768;
+    const viewportHeight = window.innerHeight;
+    
+    // 計算實際內容區域高度
+    const mainContent = document.querySelector('.main-content');
+    const pageHeader = document.querySelector('.page-header');
+    const footer = document.querySelector('footer');
+    
+    const mainContentHeight = mainContent ? mainContent.offsetHeight : 0;
+    const pageHeaderHeight = pageHeader ? pageHeader.offsetHeight : 0;
+    const footerHeight = footer ? footer.offsetHeight : 100;
+    
+    // 實際需要粒子覆蓋的高度 = header + main content（不包括 footer）
+    const contentHeight = pageHeaderHeight + mainContentHeight;
+    
+    // 強制設定粒子容器的高度，確保不超過內容區域
+    particlesContainer.style.height = `${contentHeight}px`;
+    particlesContainer.style.maxHeight = `${contentHeight}px`;
+    particlesContainer.style.overflow = 'hidden';
+    
+    // 計算需要多少粒子來填滿內容區域（不包括 footer）
+    const particleSpacing = 19; 
+    const particlesPerScreen = Math.ceil(viewportHeight / particleSpacing);
+    const screensToFill = Math.ceil(contentHeight / viewportHeight);
+    
+    // 減少密度避免粒子過多
+    const densityMultiplier = isMobile ? 2 : 4;
+    const baseParticleCount = particlesPerScreen * screensToFill * densityMultiplier;
+    
+    // 限制範圍避免效能問題
+    const minParticles = isMobile ? 1500 : 3000;
+    const maxParticles = isMobile ? 6000 : 10000;
+    const particleCount = Math.min(maxParticles, Math.max(minParticles, baseParticleCount));
+    
+    console.log(`📏 Videos頁面尺寸分析:`);
+    console.log(`  Header高度: ${pageHeaderHeight}px`);
+    console.log(`  主要內容高度: ${mainContentHeight}px`);
+    console.log(`  總內容高度: ${contentHeight}px (排除footer: ${footerHeight}px)`);
+    console.log(`  視窗高度: ${viewportHeight}px`);
+    console.log(`  需要填滿: ${screensToFill} 個螢幕`);
+    console.log(`  每屏粒子: ${particlesPerScreen} 個`);
+    console.log(`  計算粒子數: ${baseParticleCount} → 實際使用: ${particleCount} 個`);
+    
+    /*------------------------------
+    Making some circles noise (按照demo邏輯)
+    ------------------------------*/
+    const simplex = new SimplexNoise();
+    for (let i = 0; i < particleCount; i++) {
+      const div = document.createElement('div');
+      div.classList.add('circle');
+      
+      const n1 = simplex.noise2D(i * 0.003, i * 0.0033);
+      const n2 = simplex.noise2D(i * 0.002, i * 0.001);
+      
+      // 完全按照demo的邏輯：translate + rotate + scale
+      // 但需要覆蓋CSS中的position和margin設定
+      const style = {
+        transform: `translate(${n2 * 200}px) rotate(${n2 * 270}deg) scale(${3 + n1 * 2}, ${3 + n2 * 2})`,
+        boxShadow: `0 0 0 .2px rgba(248, 220, 85, 0.7)`, // 使用柔和的亮黃色
+        position: 'relative', // 確保定位正確
+        margin: '-19px auto', // 保持垂直流動
+        width: '20px', // 確保尺寸
+        height: '20px',
+        borderRadius: '40%',
+        opacity: '0' // 初始透明
+      };
+      
+      Object.assign(div.style, style);
+      
+      // 記錄前3個粒子的demo風格變換
+      if (i < 3) {
+        console.log(`🎨 粒子 ${i + 1} (Videos風格): translate(${(n2 * 200).toFixed(1)}px) rotate(${(n2 * 270).toFixed(1)}deg) scale(${(3 + n1 * 2).toFixed(2)}, ${(3 + n2 * 2).toFixed(2)})`);
+      }
+      
+      particlesContainer.appendChild(div);
+    }
+    
+    // 獲取粒子元素
+    const circles = document.querySelectorAll('#particles-background-layer .circle');
+    console.log(`✅ ${circles.length} 個圓圈已創建 (Videos風格)`);
+    
+    /*------------------------------
+    Scroll Trigger (按照demo邏輯)
+    ------------------------------*/
+    if (typeof gsap !== 'undefined' && circles.length > 0) {
+      console.log('🎯 設置Videos風格滾動動畫');
+      
+      const main = gsap.timeline({
+        scrollTrigger: {
+          scrub: 0.7, // 完全按照demo
+          start: "top 25%", // 完全按照demo
+          end: "bottom bottom" // 完全按照demo
+        }
+      });
+      
+      // 完全按照demo：每個圓圈都加到timeline
+      circles.forEach((circle) => {
+        main.to(circle, {
+          opacity: 1
+        });
+      });
+      
+      console.log('✅ Videos風格粒子滾動動畫已設置');
+    }
+    
+    // 創建全局控制函數
+    window.videosParticleControls = {
+      showAll: () => {
+        const circles = document.querySelectorAll('#particles-background-layer .circle');
+        circles.forEach(c => c.style.opacity = '1');
+        console.log(`✅ 手動顯示所有 ${circles.length} 個粒子`);
+      },
+      quickTest: () => {
+        console.log('🚀 Videos快速測試：立即顯示前200個粒子');
+        const circles = document.querySelectorAll('#particles-background-layer .circle');
+        circles.forEach((circle, index) => {
+          if (index < 200) {
+            circle.style.opacity = '1';
+            circle.style.backgroundColor = '#F3D74E';
+            circle.style.border = '1px solid #F3D74E';
+          }
+        });
+        console.log(`✅ 已顯示前200個粒子，總共${circles.length}個`);
+      },
+      forceReset: () => {
+        console.log('🔄 強制重新初始化粒子系統');
+        initParticleBackground();
+      },
+      checkDimensions: () => {
+        const mainContent = document.querySelector('.main-content');
+        const pageHeader = document.querySelector('.page-header');
+        const footer = document.querySelector('footer');
+        const container = document.querySelector('#particles-background-layer');
+        
+        console.log('📐 當前頁面尺寸:');
+        console.log('  Header:', pageHeader ? pageHeader.offsetHeight : 0, 'px');
+        console.log('  Main Content:', mainContent ? mainContent.offsetHeight : 0, 'px');
+        console.log('  Footer:', footer ? footer.offsetHeight : 0, 'px');
+        console.log('  Body總高度:', document.body.scrollHeight, 'px');
+        console.log('  粒子容器高度:', container ? container.offsetHeight : 0, 'px');
+        console.log('  視窗高度:', window.innerHeight, 'px');
+      }
+    };
+    
+    console.log('✅ Videos風格粒子系統初始化完成');
+    console.log('🎮 可用控制: videosParticleControls.showAll(), videosParticleControls.quickTest()');
+    
+    // 監聽內容變化，重新計算粒子
+    const observer = new MutationObserver(() => {
+      // 延遲重新計算，避免頻繁更新
+      setTimeout(() => {
+        const newMainContentHeight = mainContent ? mainContent.offsetHeight : 0;
+        const newContentHeight = pageHeaderHeight + newMainContentHeight;
+        
+        // 如果內容高度變化超過 20%，重新初始化粒子
+        const heightDifference = Math.abs(newContentHeight - contentHeight) / contentHeight;
+        if (heightDifference > 0.2) {
+          console.log(`📐 內容高度變化大 (${contentHeight}px → ${newContentHeight}px)，重新生成粒子`);
+          initParticleBackground();
+        }
+      }, 1000);
+    });
+    
+    // 觀察主要內容的變化
+    if (mainContent) {
+      observer.observe(mainContent, { childList: true, subtree: true });
+    }
+    
+  } catch (error) {
+    console.error('❌ Videos頁面粒子系統初始化失敗:', error);
+  }
+}
+
 // 頁面載入時的動畫
 document.addEventListener('DOMContentLoaded', function() {
   // 為頁面標題添加淡入動畫
@@ -172,7 +395,7 @@ if (subscribeButton) {
 }
 
 // 滾動時的特殊動畫效果
-const observerOptions = {
+const videosObserverOptions = {
   threshold: 0.1,
   rootMargin: '0px 0px -50px 0px'
 };
@@ -203,7 +426,7 @@ const enhancedObserver = new IntersectionObserver(function(entries) {
       }
     }
   });
-}, observerOptions);
+}, videosObserverOptions);
 
 // 觀察需要特殊動畫的元素
 document.querySelectorAll('.videos-grid, .production-values').forEach(el => {
@@ -228,8 +451,8 @@ document.querySelectorAll('.videos-grid, .production-values').forEach(el => {
 });
 
 // 添加 CSS 動畫
-const style = document.createElement('style');
-style.textContent = `
+const videosStyleSheet = document.createElement('style');
+videosStyleSheet.textContent = `
   @keyframes ripple {
     to {
       transform: scale(4);
@@ -261,7 +484,7 @@ style.textContent = `
     left: 100%;
   }
 `;
-document.head.appendChild(style);
+document.head.appendChild(videosStyleSheet);
 
 // 分類標籤的彩色效果
 const categoryTags = document.querySelectorAll('.category-tag');

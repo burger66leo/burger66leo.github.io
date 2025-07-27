@@ -1,0 +1,20 @@
+/* ===========================================
+   ABOUT PAGE CSS BUNDLE
+   專為 About 頁面設計的精簡依賴
+   包含：核心樣式 + 頁面標題 + 粒子背景 + About 專用樣式
+   =========================================== */
+
+/* 1. 核心樣式系統 */
+@import url('../core/variables.css');
+@import url('../core/base.css');
+@import url('../core/components.css');
+
+/* 2. About 頁面需要的組件 */
+@import url('../components/page-header.css');
+@import url('../components/particle-background.css');
+
+/* 3. About 頁面專用樣式 */
+@import url('../pages/about.css');
+
+/* 4. 響應式設計（放在最後） */
+@import url('../core/responsive.css');

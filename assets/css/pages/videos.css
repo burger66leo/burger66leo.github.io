@@ -20,7 +20,7 @@
   border: 2px solid rgba(74, 92, 106, 0.25);
   background: transparent;
   color: var(--text-secondary);
-  border-radius: 25px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.9rem;
@@ -49,7 +49,7 @@
 
 .video-card {
   background: rgba(74, 92, 106, 0.08);
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid rgba(74, 92, 106, 0.2);
   transition: all 0.3s ease;
@@ -142,7 +142,7 @@
 
 .category-tag {
   padding: 0.3rem 0.8rem;
-  border-radius: 15px;
+  border-radius: 3px;
   font-size: 0.8rem;
   font-weight: 500;
 }
@@ -184,7 +184,7 @@
   text-align: center;
   padding: 2rem;
   background: rgba(74, 92, 106, 0.08);
-  border-radius: 12px;
+  border-radius: 6px;
   border: 1px solid rgba(74, 92, 106, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(5px);
@@ -241,7 +241,7 @@
   background: #FF0000;
   color: white;
   text-decoration: none;
-  border-radius: 30px;
+  border-radius: 6px;
   font-weight: 600;
   font-size: 1.1rem;
   transition: all 0.3s ease;
@@ -263,6 +263,12 @@
 .subscriber-count {
   color: var(--text-muted);
   font-size: 0.9rem;
+}
+
+/* 主要內容區域 */
+.main-content {
+  position: relative;
+  z-index: 5; /* 確保在粒子背景之上 */
 }
 
 /* 導航欄活動狀態樣式移至 components.css 統一管理 */
@@ -288,6 +294,186 @@
 }
 
 /* ===========================================
+   新版 Videos 頁面樣式
+   =========================================== */
+
+/* 區塊介紹 */
+.section-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 1rem auto 2.5rem auto;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+/* 精選影片網格 */
+.featured-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+/* 精選影片卡片 */
+.featured-video-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(74, 92, 106, 0.15);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.featured-video-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(243, 215, 78, 0.3);
+}
+
+.video-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 核心洞察 */
+.core-insight {
+  padding: 1.5rem 2rem 2rem 2rem;
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.08) 0%, rgba(255, 255, 255, 0.5) 100%);
+  border-top: 1px solid rgba(243, 215, 78, 0.2);
+}
+
+.core-insight h4 {
+  font-size: 1rem;
+  color: var(--primary-yellow-dark);
+  margin: 0 0 0.8rem 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.core-insight p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* 簡化理念 */
+.philosophy-simple {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.philosophy-main {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+}
+
+.philosophy-points {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.point-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.point span:last-child {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* 輕量引導 */
+.gentle-engagement {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(243, 215, 78, 0.05) 0%, rgba(255, 255, 255, 0.8) 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(243, 215, 78, 0.15);
+}
+
+.gentle-engagement h2 {
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.engagement-intro {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.engagement-options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.gentle-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.8rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(243, 215, 78, 0.3);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.gentle-cta:hover {
+  background: rgba(243, 215, 78, 0.1);
+  border-color: var(--primary-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(243, 215, 78, 0.2);
+}
+
+.gentle-cta.youtube:hover {
+  color: #FF0000;
+  border-color: #FF0000;
+}
+
+.cta-icon {
+  font-size: 1.2rem;
+}
+
+.engagement-note {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ===========================================
    響應式設計 - 平板
    =========================================== */
 @media (max-width: 1024px) {
@@ -305,6 +491,20 @@
   }
   
   .production-values {
+    gap: 1.5rem;
+  }
+  
+  /* 新版響應式 */
+  .featured-videos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .philosophy-points {
+    gap: 2rem;
+  }
+  
+  .engagement-options {
     gap: 1.5rem;
   }
 }
@@ -383,6 +583,52 @@
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
   }
+  
+  /* 新版響應式 */
+  .featured-videos-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .core-insight {
+    padding: 1.2rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .philosophy-main {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .philosophy-points {
+    gap: 1.5rem;
+  }
+  
+  .point-icon {
+    font-size: 1.8rem;
+  }
+  
+  .gentle-engagement {
+    padding: 2rem 1.5rem;
+  }
+  
+  .gentle-engagement h2 {
+    font-size: 1.6rem;
+  }
+  
+  .engagement-intro {
+    font-size: 1rem;
+  }
+  
+  .engagement-options {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .gentle-cta {
+    width: 200px;
+    justify-content: center;
+  }
 }
 
 /* ===========================================
@@ -433,4 +679,68 @@
     width: 100%;
     max-width: 280px;
   }
+  
+  /* 新版響應式 */
+  .section-intro {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .core-insight {
+    padding: 1rem 1.2rem 1.2rem 1.2rem;
+  }
+  
+  .core-insight h4 {
+    font-size: 0.9rem;
+  }
+  
+  .core-insight p {
+    font-size: 0.9rem;
+  }
+  
+  .philosophy-main {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .philosophy-points {
+    gap: 1rem;
+  }
+  
+  .point-icon {
+    font-size: 1.6rem;
+  }
+  
+  .point span:last-child {
+    font-size: 0.9rem;
+  }
+  
+  .gentle-engagement {
+    padding: 1.5rem 1rem;
+  }
+  
+  .gentle-engagement h2 {
+    font-size: 1.4rem;
+  }
+  
+  .engagement-intro {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gentle-cta {
+    width: 180px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .engagement-note {
+    font-size: 0.9rem;
+  }
 }
+
+/* ===========================================
+   Videos 頁面粒子背景樣式
+   =========================================== */
+
+/* 粒子背景樣式已移至 core/components.css 統一管理 */

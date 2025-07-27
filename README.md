@@ -147,7 +147,7 @@ php -S localhost:8000
 ## 聯絡資訊
 
 - **官方網站**: https://prizm.com.tw
-- **YouTube**: https://www.youtube.com/@prism66
+- **YouTube**: https://www.youtube.com/@prizm66
 - **商業合作**: collab@prizm.com.tw
 - **一般聯絡**: hi@prizm.com.tw
 

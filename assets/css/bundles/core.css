@@ -1,0 +1,14 @@
+/* ===========================================
+   CORE CSS BUNDLE
+   包含：variables + base + components
+   適用於：所有頁面的基礎樣式
+   =========================================== */
+
+/* 1. CSS 變數定義 */
+@import url('../core/variables.css');
+
+/* 2. 基礎樣式 */
+@import url('../core/base.css');
+
+/* 3. 共用元件樣式 */
+@import url('../core/components.css');

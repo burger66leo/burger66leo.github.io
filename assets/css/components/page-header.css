@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10; /* 確保在粒子背景之上 */
 }
 
 /* 標題內容區域 */

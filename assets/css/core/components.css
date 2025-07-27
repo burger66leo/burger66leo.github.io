@@ -15,16 +15,16 @@
   height: var(--navbar-height);
   transition: all var(--transition-normal);
   
-  /* 初始狀態 - 保持最小透明度確保可讀性 */
-  background: rgba(58, 74, 86, 0.15);
+  /* 統一使用滾動狀態的背景樣式 */
+  background: rgba(58, 74, 86, 0.4);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .navbar.scrolled {
-  /* 滾動狀態 - 半透明背景 */
+  /* 滾動狀態保持相同樣式 */
   background: rgba(58, 74, 86, 0.4);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   border-bottom-color: rgba(255, 255, 255, 0.15);
 }
 
@@ -141,13 +141,15 @@ nav a.active::after {
 
 /* Footer */
 footer {
-  background: rgba(58, 74, 86, 0.9);
+  background: rgba(58, 74, 86, 0.7);
   backdrop-filter: blur(20px);
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: var(--spacing-2xl) var(--spacing-xl);
   margin-top: var(--spacing-3xl);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: var(--z-fixed); /* 確保footer在粒子和遮罩之上 */
 }
 
 .social-links {
@@ -192,6 +194,99 @@ footer {
   color: rgba(255, 255, 255, 0.6);
   font-size: var(--font-size-base);
   margin-top: var(--spacing-md);
+}
+
+/* ===========================================
+   粒子背景系統 - 共用樣式
+   =========================================== */
+
+/* 粒子背景容器 */
+.particle-background-layer,
+#particles-background-layer {
+  position: absolute; /* 支援流動佈局 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 父容器寬度 */
+  height: auto; /* 讓高度自動根據內容調整 */
+  min-height: 100vh; /* 最小視窗高度 */
+  max-height: none; /* 移除高度限制 */
+  z-index: -10; /* 確保在所有內容後面，包括 header */
+  pointer-events: none;
+  overflow: visible; /* 允許粒子超出容器邊界 */
+  display: block; /* 確保顯示 */
+  visibility: visible; /* 確保可見 */
+}
+
+/* 粒子背景漸層遮罩 - 與背景同色融合 */
+.particle-background-layer::before,
+.particle-background-layer::after,
+#particles-background-layer::before,
+#particles-background-layer::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 120px; /* 增加遮罩高度確保覆蓋 header */
+  z-index: -5; /* 在粒子之上但遠低於 navbar */
+  pointer-events: none;
+}
+
+/* 頂部漸層遮罩 */
+.particle-background-layer::before,
+#particles-background-layer::before {
+  top: 0;
+  background: linear-gradient(to bottom, 
+    var(--background-light) 0%, 
+    var(--background-light) 20%, 
+    rgba(238, 238, 238, 0.8) 50%,
+    rgba(238, 238, 238, 0.4) 80%,
+    transparent 100%
+  );
+}
+
+/* 底部漸層遮罩 */
+.particle-background-layer::after,
+#particles-background-layer::after {
+  bottom: 0;
+  background: linear-gradient(to top, 
+    var(--background-light) 0%, 
+    var(--background-light) 20%, 
+    rgba(238, 238, 238, 0.8) 50%,
+    rgba(238, 238, 238, 0.4) 80%,
+    transparent 100%
+  );
+}
+
+/* 粒子元素 - 使用柔和的亮黃色 */
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 40%;
+  opacity: 0;
+  position: relative; /* 支援流動佈局 */
+  pointer-events: none;
+  z-index: -10; /* 確保粒子在最底層，遠低於 navbar */
+  margin: -19px auto; /* 垂直流動效果 */
+  transition: transform 1s cubic-bezier(0.14, 0.15, 0.13, 0.99);
+  /* 使用柔和的亮黃色，降低飽和度 */
+  box-shadow: 0 0 0 .2px rgba(248, 220, 85, 0.7);
+}
+
+/* 響應式粒子大小 */
+@media (max-width: 768px) {
+  .circle {
+    width: 18px;
+    height: 18px;
+    margin: -17px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .circle {
+    width: 16px;
+    height: 16px;
+    margin: -15px auto;
+  }
 }
 
 /* 標籤樣式 */
