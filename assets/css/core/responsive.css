@@ -51,6 +51,11 @@
     /* 保持與桌面版一致的透明度邏輯，確保最小可讀性 */
     background: rgba(58, 74, 86, 0.15);
     backdrop-filter: blur(10px);
+    position: fixed; /* 恢復置頂效果 */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    overflow: visible; /* 允許 menu 顯示在下方 */
   }
   
   .navbar.scrolled {
@@ -67,24 +72,22 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(58, 74, 86, 0.8);
+    background: rgba(58, 74, 86, 0.95);
     flex-direction: column;
     gap: 0;
-    transform: translateY(-20px);
+    max-height: 0;
     opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition-normal);
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
     backdrop-filter: blur(30px) saturate(180%);
     -webkit-backdrop-filter: blur(30px) saturate(180%); /* Safari 支援 */
     border-radius: 0 0 12px 12px; /* 添加底部圓角 */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 添加陰影 */
-    /* 較低的層級，自然在 navbar 下方展開 */
   }
   
   nav.active {
-    transform: translateY(0);
+    max-height: 300px; /* 足夠容納所有菜單項目 */
     opacity: 1;
-    visibility: visible;
   }
   
   nav a {

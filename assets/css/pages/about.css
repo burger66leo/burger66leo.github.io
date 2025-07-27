@@ -654,8 +654,8 @@
 @media (max-width: 768px) {
   /* 手機尺寸使用更適當的邊距 */
   .section {
-    padding-left: var(--spacing-md) !important;
-    padding-right: var(--spacing-md) !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
@@ -817,8 +817,8 @@
 @media (max-width: 480px) {
   /* 小手機保持基本的邊距 */
   .section {
-    padding-left: var(--spacing-sm) !important;
-    padding-right: var(--spacing-sm) !important;
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
@@ -1524,7 +1524,7 @@
    =========================================== */
 @media (max-width: 360px) {
   .section {
-    padding: 2rem 0.8rem !important;
+    padding: 2rem 1rem !important;
   }
   
   .page-header {
