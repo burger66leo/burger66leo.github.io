@@ -335,6 +335,23 @@
   .hero-content {
     padding: 0 1.5rem;
   }
+  
+  /* 平板/手機版內容區域 */
+  .section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .text-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
 /* 手機直向 (480px 以下) */
@@ -347,6 +364,7 @@
   .hero-title-text {
     font-size: 2rem;
     line-height: 1.1;
+    margin-bottom: 0.8rem;
   }
   
   .hero-subtitle {
@@ -370,6 +388,24 @@
   
   .hero-content {
     padding: 0 1rem;
+  }
+  
+  /* 手機版 WHO WE ARE 區塊優化 */
+  .section {
+    padding: 3rem 1rem;
+  }
+  
+  .section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .text-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    br {
+      display: none; /* 移除強制換行，讓文字自然流動 */
+    }
   }
 }
 
@@ -395,6 +431,21 @@
   .hero-description {
     font-size: 0.8rem;
     max-width: 280px;
+  }
+  
+  /* 超小螢幕內容區域優化 */
+  .section {
+    padding: 2.5rem 0.8rem;
+  }
+  
+  .section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .text-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 }
 
@@ -557,10 +608,67 @@
   }
 }
 
-/* 橫屏模式隱藏滾動指示器 */
+/* 橫屏模式優化 */
 @media (max-height: 500px) and (orientation: landscape) {
   .scroll {
     display: none;
+  }
+  
+  .hero {
+    height: 95vh; /* 橫屏時使用更多高度 */
+    min-height: auto;
+  }
+  
+  .hero-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+  }
+  
+  .hero-logo {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+  }
+  
+  .hero-text {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .hero-logo-svg {
+    width: 200px;
+  }
+}
+
+/* 超寬螢幕優化 (1920px 以上) */
+@media (min-width: 1920px) {
+  .hero-content {
+    max-width: 1600px;
+  }
+  
+  .hero-logo-svg {
+    width: 400px;
+  }
+  
+  .hero-title-text {
+    font-size: 4rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .hero-description {
+    font-size: 1.2rem;
+    max-width: 800px;
+  }
+  
+  .section {
+    padding: 6rem 2rem;
   }
 }
 

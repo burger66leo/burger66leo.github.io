@@ -128,22 +128,28 @@ function calculateSmartLayout(options = {}) {
   // 計算需要多少粒子來填滿容器高度
   const baseParticleCount = Math.ceil(containerHeight / particleVerticalSpacing);
   
+  // 增加密度倍數，因為單純按間距計算會太稀疏
+  const densityMultiplier = 27; // 手機版和桌面版統一使用27倍密度 (增加更多粒子)
+  const densifiedParticleCount = baseParticleCount * densityMultiplier;
+  
   if (debugMode) {
-    console.log(`🧮 一比一粒子計算:`);
-    console.log(`  滑動距離: ${scrollDistance}px`);
-    console.log(`  每個粒子覆蓋: ${pixelsPerParticle}px`);
+    console.log(`🧮 正確的粒子流動計算:`);
+    console.log(`  容器高度: ${containerHeight}px`);
+    console.log(`  粒子垂直間距: ${particleVerticalSpacing}px`);
     console.log(`  基礎粒子數: ${baseParticleCount}`);
-    console.log(`  密度比例: 1 粒子 / ${pixelsPerParticle}px`);
+    console.log(`  密度倍數: ${densityMultiplier}x`);
+    console.log(`  密化後粒子數: ${densifiedParticleCount}`);
+    console.log(`  邏輯: (${containerHeight}px ÷ ${particleVerticalSpacing}px) × ${densityMultiplier} = ${densifiedParticleCount} 個粒子`);
   }
   
   // 只設定最大限制，移除最小限制讓粒子數量真正與頁面高度成正比
   const maxParticles = isMobile ? 15000 : 25000;
   
   // 特殊模式調整
-  let finalParticleCount = baseParticleCount;
+  let finalParticleCount = densifiedParticleCount;
   
   if (options.increaseTotal) {
-    finalParticleCount = Math.floor(baseParticleCount * 1.5); // 增加50%
+    finalParticleCount = Math.floor(densifiedParticleCount * 1.5); // 增加50%
     if (debugMode) {
       console.log('🔢 增加總數模式：+50%');
     }
@@ -159,23 +165,24 @@ function calculateSmartLayout(options = {}) {
   const layout = {
     containerHeight,
     particleCount,
-    pixelsPerParticle,
+    particleVerticalSpacing,
+    densityMultiplier,
+    baseParticleCount,
     isMobile,
     viewportHeight,
     pageHeaderHeight,
     mainContentHeight,
-    totalPageHeight,
-    scrollDistance
+    totalPageHeight
   };
   
   if (debugMode) {
-    console.log(`📏 一比一佈局分析:`);
+    console.log(`📏 正確的佈局分析:`);
     console.log(`  Header高度: ${pageHeaderHeight}px`);
     console.log(`  主要內容高度: ${mainContentHeight}px`);
     console.log(`  頁面總高度: ${totalPageHeight}px`);
     console.log(`  粒子容器高度: ${containerHeight}px`);
-    console.log(`  計算粒子數: ${baseParticleCount} → 實際使用: ${particleCount} 個`);
-    console.log(`  粒子密度: 1粒子/${pixelsPerParticle}px`);
+    console.log(`  基礎粒子數: ${baseParticleCount} → 密化後: ${densifiedParticleCount} → 最終: ${particleCount} 個`);
+    console.log(`  粒子垂直間距: ${particleVerticalSpacing}px，密度倍數: ${densityMultiplier}x`);
   }
   
   return layout;
@@ -193,7 +200,7 @@ function generateParticles(container, layout) {
     
     const style = {
       transform: `translate(${n2 * 200}px) rotate(${n2 * 270}deg) scale(${3 + n1 * 2}, ${3 + n2 * 2})`,
-      boxShadow: `0 0 0 .2px rgba(248, 220, 85, 0.7)`,
+      boxShadow: `0 0 0 .2px rgba(248, 220, 85, 0.1)`,
       position: 'relative',
       margin: '-19px auto',
       width: '20px',

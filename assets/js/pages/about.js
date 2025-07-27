@@ -41,8 +41,8 @@ window.addEventListener('load', function() {
       // 使用智能粒子背景系統，自動調整 about 頁面的粒子長度
       if (typeof initSmartParticleBackground === 'function') {
         initSmartParticleBackground({ 
-          coverageMode: 'smart', // 智能模式：根據內容長度自動調整
-          debugMode: true        // 開啟除錯模式以診斷問題
+          coverageMode: 'to-footer', // 強制覆蓋到 footer 前，確保完整覆蓋
+          debugMode: true            // 開啟除錯模式以診斷問題
         });
       } else {
         console.error('❌ initSmartParticleBackground 函數未載入');
@@ -81,11 +81,21 @@ function initStackingCards() {
   cards.forEach((card, index) => {
     var scale = 1 - (cards.length - index) * 0.025;
     
-    let scaleDown = gsap.to(card, {
+    // 創建同時包含縮放和邊框動畫的時間軸
+    let cardTimeline = gsap.timeline();
+    
+    // 縮放動畫
+    cardTimeline.to(card, {
       scale: scale, 
       transformOrigin: "50% -160%",
       ease: "none"
-    });
+    }, 0);
+    
+    // 邊框透明度動畫 - 從1漸變到0
+    cardTimeline.to(card, {
+      "--border-opacity": 0,
+      ease: "none"
+    }, 0);
 
     ScrollTrigger.create({
       trigger: card,
@@ -93,7 +103,7 @@ function initStackingCards() {
       end: () => lastCardST.start + stickDistance,
       pin: true,
       pinSpacing: false,
-      animation: scaleDown,
+      animation: cardTimeline,
       toggleActions: "restart none none reverse"
     });
   });
